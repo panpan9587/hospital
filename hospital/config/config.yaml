@@ -1,0 +1,36 @@
+NacosApiConfig:
+  NamespaceId: dfb27e84-14e7-4bc1-ad5b-4c8dd4516d42
+  host: 124.223.203.56
+  port: 8848
+  DataId: hopsital_api
+  group: dev
+
+NacosRpcUserConfig:
+  NamespaceId: dfb27e84-14e7-4bc1-ad5b-4c8dd4516d42
+  host: 124.223.203.56
+  port: 8848
+  DataId: hospital_rpc_user
+  group: dev
+
+
+consul:
+  host: 124.223.203.56
+  port: 8500
+mysql:
+  username: Fyx711520
+  password: Fyx520711!
+  host: rm-uf697f0d0647b147kpo.mysql.rds.aliyuncs.com
+  port: 3306
+  DBName: hospital_01
+  MaxIdleConn: 10
+  MaxOpenConn: 100
+
+log:
+  path: ../zaplog/log.log
+  level:
+
+oss:
+  Bucket: 2109a-demo
+  Endpoint: oss-cn-beijing.aliyuncs.com
+  AccessKeyID: LTAI5tSV7tdNqqZhnfrmp9Fm
+  AccessKeySecret: GJUlxmvquw2d6YWpzBdKsT1NsNEEvz
