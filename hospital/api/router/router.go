@@ -18,6 +18,20 @@ func initRouter(router *gin.Engine) {
 		{
 			users.POST("/register", user.Register)
 			users.POST("/login", user.Login)
+			users.POST("/code", user.GetMobileCode) //获取验证码
+			users.POST("/update/password", user.UpdatePassword)
+			users.Use(user.ParseToken)
+
+			users.GET("/info", user.GetUserInfo) //详情不展示实名信息
+			// todo：中间件校验手机号是否一致
+			users.POST("/update", user.UpdateUser)
+			users.POST("/auth", user.AddUserAuth)                //用户实名认证
+			users.POST("/update/auth", user.UpdateUserAuth)      //修改用户实名信息
+			users.POST("/get/auth", user.GetUserAuth)            //查看用户实名信息
+			users.POST("/delete", user.DeleteUser)               //注销用户
+			users.GET("/registration", user.GetRegistrationList) //查看个人的挂号纪录
+			users.GET("/appointments", user.GetAppointments)     // 查询个人的预约
+			users.GET("/health", user.GetHealthList)             //查看个人的体检纪录
 		}
 		registrations := v1.Group("/registration")
 		{
@@ -30,13 +44,9 @@ func initRouter(router *gin.Engine) {
 			//修改预约信息
 			registrations.POST("/update", registration.UpdateRegistrationMsg)
 		}
-		//searches := v1.Group("/search")
-		//{
-		//	//todo: 全文搜索
-		//	searches.POST("/search")
-		//	//todo: 分类查询
-		//	searches.GET("/list")
-		//}
+
+
+
 	}
 
 }

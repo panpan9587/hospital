@@ -19,6 +19,7 @@ NacosRpcRegistrationConfig:
   group: dev
 
 
+
 consul:
   host: 124.223.203.56
   port: 8500
@@ -30,6 +31,11 @@ mysql:
   DBName: hospital_01
   MaxIdleConn: 10
   MaxOpenConn: 100
+
+redis:
+  host: 124.223.203.56
+  port: 6379
+  db: 3
 
 log:
   path: ../zaplog/log.log

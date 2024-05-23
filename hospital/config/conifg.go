@@ -40,6 +40,11 @@ type Config struct {
 		MaxIdleConn int    `yaml:"MaxIdleConn"`
 		MaxOpenConn int    `yaml:"MaxOpenConn"`
 	} `yaml:"mysql"`
+	Redis struct {
+		Host string `yaml:"host"`
+		Port int    `yaml:"port"`
+		Db   int    `yaml:"db"`
+	} `yaml:"redis"`
 	Log struct {
 		Path  string `yaml:"path"`
 		Level string `yaml:"level"`
@@ -50,7 +55,7 @@ var GlobalConfig Config
 
 // 初始化配置文件
 func init() {
-	viper.SetConfigFile("D:/gos/src/bookProject/hospital/hospital/config/config.yaml")
+	viper.SetConfigFile("D:/github_daima/hospital/config/config.yaml")
 	viper.ReadInConfig()
 	err := viper.Unmarshal(&GlobalConfig)
 	if err != nil {

@@ -30,6 +30,15 @@ type Config struct {
 		AccessSecret string `yaml:"accessSecret"`
 		AccessExpire int64  `yaml:"accessExpire"`
 	} `yaml:"token"`
+	Sms struct {
+		AccessKeyId     string `yaml:"AccessKeyId"`
+		AccessKeySecret string `yaml:"AccessKeySecret"`
+		Endpoint        string `yaml:"Endpoint"`
+	}
+	Auth struct {
+		SecretID  string `yaml:"SecretID"`
+		SecretKey string `yaml:"SecretKey"`
+	} `yaml:"auth"`
 }
 
 var ApiConfig Config
