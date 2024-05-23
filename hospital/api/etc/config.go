@@ -23,6 +23,15 @@ type Config struct {
 	SearchSrv struct {
 		Name string `yaml:"Name"`
 	} `yaml:"search_srv"`
+	AdvisorySrv struct {
+		Name string `yaml:"Name"`
+	} `yaml:"advisory_srv"`
+	AISrv struct {
+		HostUrl   string `yaml:"HostUrl"` //地址
+		Appid     string `yaml:"Appid"`
+		ApiSecret string `yaml:"ApiSecret"`
+		ApiKey    string `yaml:"ApiKey"`
+	} `yaml:"ai_srv"`
 	Token struct {
 		AccessSecret string `yaml:"accessSecret"`
 		AccessExpire int64  `yaml:"accessExpire"`

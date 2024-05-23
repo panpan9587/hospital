@@ -1,6 +1,7 @@
 package router
 
 import (
+	"demo/api/advisory"
 	"demo/api/user"
 	"github.com/gin-gonic/gin"
 )
@@ -18,13 +19,15 @@ func initRouter(router *gin.Engine) {
 			users.POST("/register", user.Register)
 			users.POST("/login", user.Login)
 		}
-		//searches := v1.Group("/search")
-		//{
-		//	//todo: 全文搜索
-		//	searches.POST("/search")
-		//	//todo: 分类查询
-		//	searches.GET("/list")
-		//}
+
+		//在线咨询
+		online := v1.Group("/advisory")
+		{
+			online.POST("/consult", advisory.Consult)             //AI在线咨询
+			online.POST("/information", advisory.UserInformation) //记录历史咨询消息
+
+		}
+
 	}
 
 }

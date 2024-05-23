@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package advisory;
+option go_package=".;proto";
+
+//记录用户咨询信息的入参
+message RecordsUserConsultationInformationReq {
+  string content = 1; //咨询内容
+  string result = 2; //回答的结果
+}
+//记录用户咨询信息的返参
+message RecordsUserConsultationInformationRes {
+  string documentId = 1;
+}
+
+service Advisory {
+  rpc RecordsUserConsultationInformation(RecordsUserConsultationInformationReq) returns(RecordsUserConsultationInformationRes);//记录用户咨询信息
+}
+
