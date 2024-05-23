@@ -44,9 +44,6 @@ func initRouter(router *gin.Engine) {
 			//修改预约信息
 			registrations.POST("/update", registration.UpdateRegistrationMsg)
 		}
-
-
-
 	}
 
 }
