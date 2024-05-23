@@ -20,6 +20,13 @@ type Config struct {
 		DataId      string `yaml:"DataId"`
 		Group       string `yaml:"group"`
 	} `yaml:"NacosRpcUserConfig"`
+	NacosRpcRegistrationConfig struct {
+		NamespaceId string `yaml:"NamespaceId"`
+		Host        string `yaml:"host"`
+		Port        int    `yaml:"port"`
+		DataId      string `yaml:"DataId"`
+		Group       string `yaml:"group"`
+	} `yaml:"NacosRpcRegistrationConfig"`
 	Consul struct {
 		Host string `yaml:"host"`
 		Port int    `yaml:"port"`
@@ -33,6 +40,11 @@ type Config struct {
 		MaxIdleConn int    `yaml:"MaxIdleConn"`
 		MaxOpenConn int    `yaml:"MaxOpenConn"`
 	} `yaml:"mysql"`
+	Redis struct {
+		Host string `yaml:"host"`
+		Port int    `yaml:"port"`
+		Db   int    `yaml:"db"`
+	} `yaml:"redis"`
 	Log struct {
 		Path  string `yaml:"path"`
 		Level string `yaml:"level"`
