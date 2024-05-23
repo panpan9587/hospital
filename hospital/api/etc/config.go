@@ -20,6 +20,9 @@ type Config struct {
 	UserSrv struct {
 		Name string `yaml:"Name"`
 	} `yaml:"user_srv"`
+	RegistrationSrv struct {
+		Name string `yaml:"Name"`
+	} `yaml:"registration_srv"`
 	SearchSrv struct {
 		Name string `yaml:"Name"`
 	} `yaml:"search_srv"`
@@ -36,6 +39,15 @@ type Config struct {
 		AccessSecret string `yaml:"accessSecret"`
 		AccessExpire int64  `yaml:"accessExpire"`
 	} `yaml:"token"`
+	Sms struct {
+		AccessKeyId     string `yaml:"AccessKeyId"`
+		AccessKeySecret string `yaml:"AccessKeySecret"`
+		Endpoint        string `yaml:"Endpoint"`
+	}
+	Auth struct {
+		SecretID  string `yaml:"SecretID"`
+		SecretKey string `yaml:"SecretKey"`
+	} `yaml:"auth"`
 }
 
 var ApiConfig Config

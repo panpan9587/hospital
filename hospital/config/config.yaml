@@ -11,13 +11,20 @@ NacosRpcUserConfig:
   port: 8848
   DataId: hospital_rpc_user
   group: dev
-
+NacosRpcRegistrationConfig:
+  NamespaceId: dfb27e84-14e7-4bc1-ad5b-4c8dd4516d42
+  host: 124.223.203.56
+  port: 8848
+  DataId: hospital_rpc_registration
+  group: dev
 NacosRpcAdvisoryConfig:
   NamespaceId: dfb27e84-14e7-4bc1-ad5b-4c8dd4516d42
   host: 124.223.203.56
   port: 8848
   DataId: hospital_rpc_advisory
   group: dev
+
+
 
 consul:
   host: 124.223.203.56
@@ -30,6 +37,7 @@ mysql:
   DBName: hospital_01
   MaxIdleConn: 10
   MaxOpenConn: 100
+
 mongodb:
   username: admin  #用户名
   password: admin #密码
@@ -37,12 +45,18 @@ mongodb:
   port: 27017 #端口
   database: information #数据库
   collection: user #集合
+
+redis:
+  host: 124.223.203.56
+  port: 6379
+  db: 3
+
 log:
   path: ../zaplog/log.log
   level:
 
 oss:
-  Bucket: 2109a-test
+  Bucket: 2109a-demo
   Endpoint: oss-cn-beijing.aliyuncs.com
   AccessKeyID: LTAI5tSV7tdNqqZhnfrmp9Fm
   AccessKeySecret: GJUlxmvquw2d6YWpzBdKsT1NsNEEvz

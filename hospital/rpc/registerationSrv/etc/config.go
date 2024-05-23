@@ -17,9 +17,6 @@ type Config struct {
 		Tags    string `yaml:"Tags"`
 		LogPath string `yaml:"LogPath"`
 	} `yaml:"server"`
-	Aes struct {
-		Passport string `yaml:"Passport"`
-	} `yaml:"aes"`
 }
 
 var RpcConfig Config
@@ -27,7 +24,7 @@ var RpcConfig Config
 // 接入对应的配置文件
 func init() {
 	clientConfig := constant.ClientConfig{
-		NamespaceId:         config.GlobalConfig.NacosRpcUserConfig.NamespaceId, // 如果需要支持多namespace，我们可以创建多个client,它们有不同的NamespaceId。当namespace是public时，此处填空字符串。
+		NamespaceId:         config.GlobalConfig.NacosRpcRegistrationConfig.NamespaceId, // 如果需要支持多namespace，我们可以创建多个client,它们有不同的NamespaceId。当namespace是public时，此处填空字符串。
 		TimeoutMs:           5000,
 		NotLoadCacheAtStart: true,
 		LogDir:              "/tmp/nacos/log",
@@ -36,9 +33,9 @@ func init() {
 	}
 	serverConfigs := []constant.ServerConfig{
 		{
-			IpAddr:      config.GlobalConfig.NacosRpcUserConfig.Host,
+			IpAddr:      config.GlobalConfig.NacosRpcRegistrationConfig.Host,
 			ContextPath: "/nacos",
-			Port:        uint64(config.GlobalConfig.NacosRpcUserConfig.Port),
+			Port:        uint64(config.GlobalConfig.NacosRpcRegistrationConfig.Port),
 			Scheme:      "http",
 		},
 	}
@@ -49,8 +46,8 @@ func init() {
 		},
 	)
 	content, err := configClient.GetConfig(vo.ConfigParam{
-		DataId: config.GlobalConfig.NacosRpcUserConfig.DataId,
-		Group:  config.GlobalConfig.NacosRpcUserConfig.Group})
+		DataId: config.GlobalConfig.NacosRpcRegistrationConfig.DataId,
+		Group:  config.GlobalConfig.NacosRpcRegistrationConfig.Group})
 	err = yaml.Unmarshal([]byte(content), &RpcConfig)
 	if err != nil {
 		log.Fatalln("nacos userrpc配置文件解码失败")
