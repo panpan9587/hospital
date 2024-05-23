@@ -1,0 +1,107 @@
+2024-05-22T18:56:34.646+0800	INFO	userSrv/main.go:28	服务已注册，无需重复注册
+2024-05-22T18:56:34.647+0800	INFO	userSrv/main.go:38	User Srv 服务启动8852
+2024-05-22T18:57:09.994+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-22T18:57:09.994+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-22T18:57:22.451+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-22T18:57:22.452+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-22T20:42:35.089+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-22T20:42:35.089+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-22T21:28:44.683+0800	INFO	userSrv/main.go:28	服务已注册，无需重复注册
+2024-05-22T21:28:44.684+0800	INFO	userSrv/main.go:38	User Srv 服务启动8852
+2024-05-22T21:36:17.481+0800	INFO	userSrv/main.go:35	服务注册成功
+2024-05-22T21:36:17.482+0800	INFO	userSrv/main.go:38	User Srv 服务启动8855
+2024-05-22T21:37:07.904+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-22T21:37:07.904+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-22T21:45:45.951+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-22T21:45:45.952+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-22T21:49:59.020+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-22T21:49:59.020+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-22T21:55:24.926+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-22T21:55:24.926+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-22T21:57:59.535+0800	INFO	healthSrv/main.go:22	端口监听失败listen tcp 127.0.0.1:8855: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+2024-05-22T21:57:59.554+0800	INFO	healthSrv/main.go:28	服务已注册，无需重复注册
+2024-05-22T21:57:59.554+0800	INFO	healthSrv/main.go:38	User Srv 服务启动8855
+2024-05-22T21:58:11.914+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-22T21:58:11.914+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-22T22:00:45.325+0800	INFO	userSrv/main.go:28	服务已注册，无需重复注册
+2024-05-22T22:00:45.325+0800	INFO	userSrv/main.go:38	User Srv 服务启动8852
+2024-05-22T22:00:57.726+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-22T22:00:57.726+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-22T22:01:04.461+0800	INFO	healthSrv/main.go:28	服务已注册，无需重复注册
+2024-05-22T22:01:04.462+0800	INFO	healthSrv/main.go:38	User Srv 服务启动8855
+2024-05-22T22:03:26.999+0800	INFO	healthSrv/main.go:28	服务已注册，无需重复注册
+2024-05-22T22:03:27.000+0800	INFO	healthSrv/main.go:38	User Srv 服务启动8855
+2024-05-22T22:03:40.416+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-22T22:03:40.416+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-23T09:52:13.414+0800	INFO	healthSrv/main.go:28	服务已注册，无需重复注册
+2024-05-23T09:52:13.417+0800	INFO	healthSrv/main.go:38	User Srv 服务启动8855
+2024-05-23T09:52:42.798+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-23T09:52:42.799+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-23T10:05:52.476+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-23T10:05:52.476+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-23T10:07:43.606+0800	INFO	healthSrv/main.go:28	服务已注册，无需重复注册
+2024-05-23T10:07:43.606+0800	INFO	healthSrv/main.go:38	User Srv 服务启动8855
+2024-05-23T10:07:57.757+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-23T10:07:57.757+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-23T11:46:59.102+0800	INFO	healthSrv/main.go:28	服务已注册，无需重复注册
+2024-05-23T11:46:59.102+0800	INFO	healthSrv/main.go:38	User Srv 服务启动8855
+2024-05-23T11:47:33.068+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-23T11:47:33.068+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-23T11:56:21.128+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-23T11:56:21.128+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-23T14:09:36.091+0800	INFO	healthSrv/main.go:28	服务已注册，无需重复注册
+2024-05-23T14:09:36.091+0800	INFO	healthSrv/main.go:38	User Srv 服务启动8855
+2024-05-23T14:09:50.404+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-23T14:09:50.404+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-23T14:11:22.008+0800	INFO	healthSrv/main.go:28	服务已注册，无需重复注册
+2024-05-23T14:11:22.009+0800	INFO	healthSrv/main.go:38	User Srv 服务启动8855
+2024-05-23T14:16:25.982+0800	INFO	healthSrv/main.go:28	服务已注册，无需重复注册
+2024-05-23T14:16:25.982+0800	INFO	healthSrv/main.go:38	User Srv 服务启动8855
+2024-05-23T14:20:47.046+0800	INFO	healthSrv/main.go:28	服务已注册，无需重复注册
+2024-05-23T14:20:47.047+0800	INFO	healthSrv/main.go:38	User Srv 服务启动8855
+2024-05-23T14:21:12.621+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-23T14:21:12.621+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-23T14:35:06.342+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-23T14:35:06.343+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-23T14:38:41.434+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-23T14:38:41.434+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-23T14:39:21.090+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-23T14:39:21.090+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-23T14:39:47.212+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-23T14:39:47.212+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-23T14:41:55.976+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-23T14:41:55.976+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-23T14:42:22.885+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-23T14:42:22.885+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-23T14:43:23.750+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-23T14:43:23.750+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-23T14:43:35.667+0800	INFO	healthSrv/main.go:28	服务已注册，无需重复注册
+2024-05-23T14:43:35.667+0800	INFO	healthSrv/main.go:38	User Srv 服务启动8855
+2024-05-23T14:58:02.709+0800	INFO	healthSrv/main.go:28	服务已注册，无需重复注册
+2024-05-23T14:58:02.709+0800	INFO	healthSrv/main.go:38	User Srv 服务启动8855
+2024-05-23T15:06:23.852+0800	INFO	healthSrv/main.go:28	服务已注册，无需重复注册
+2024-05-23T15:06:23.853+0800	INFO	healthSrv/main.go:38	User Srv 服务启动8855
+2024-05-23T15:06:40.237+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-23T15:06:40.237+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-23T15:23:29.423+0800	INFO	healthSrv/main.go:28	服务已注册，无需重复注册
+2024-05-23T15:23:29.423+0800	INFO	healthSrv/main.go:38	User Srv 服务启动8855
+2024-05-23T15:23:43.638+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-23T15:23:43.638+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-23T15:32:22.039+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-23T15:32:22.039+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-23T15:33:16.711+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-23T15:33:16.711+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-23T15:50:14.108+0800	INFO	healthSrv/main.go:28	服务已注册，无需重复注册
+2024-05-23T15:50:14.108+0800	INFO	healthSrv/main.go:38	User Srv 服务启动8855
+2024-05-23T15:50:27.696+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-23T15:50:27.696+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-23T15:53:29.378+0800	INFO	healthSrv/main.go:28	服务已注册，无需重复注册
+2024-05-23T15:53:29.379+0800	INFO	healthSrv/main.go:38	User Srv 服务启动8855
+2024-05-23T15:54:09.185+0800	INFO	healthSrv/main.go:28	服务已注册，无需重复注册
+2024-05-23T15:54:09.185+0800	INFO	healthSrv/main.go:38	User Srv 服务启动8855
+2024-05-23T15:54:20.275+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-23T15:54:20.275+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-23T18:47:59.905+0800	INFO	healthSrv/main.go:28	服务已注册，无需重复注册
+2024-05-23T18:47:59.906+0800	INFO	healthSrv/main.go:38	User Srv 服务启动8855
+2024-05-23T18:48:14.973+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-23T18:48:14.973+0800	INFO	router/httpserver.go:36	API 服务启动8851
