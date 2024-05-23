@@ -16,7 +16,7 @@ var UserSrv proto.UserClient
 func init() {
 	//注册consul
 	client := consul.NewRegistryClient(etc.ApiConfig.Server.Host, etc.ApiConfig.Server.Port)
-	result := client.FilterService(etc.ApiConfig.Server.Name)
+	result := client.FilterService(etc.ApiConfig.UserSrv.Name)
 	var host string
 	var port int
 	for _, service := range result {

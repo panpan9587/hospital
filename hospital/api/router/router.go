@@ -1,6 +1,7 @@
 package router
 
 import (
+	"demo/api/registration"
 	"demo/api/user"
 	"github.com/gin-gonic/gin"
 )
@@ -17,6 +18,17 @@ func initRouter(router *gin.Engine) {
 		{
 			users.POST("/register", user.Register)
 			users.POST("/login", user.Login)
+		}
+		registrations := v1.Group("/registration")
+		{
+			//预约
+			registrations.POST("/add", registration.AddRegistration)
+			//取消预约
+			registrations.POST("/cancel", registration.CancelRegistration)
+			//获取预约信息
+			registrations.GET("/get/id", registration.GetRegistrationById)
+			//修改预约信息
+			registrations.POST("/update", registration.UpdateRegistrationMsg)
 		}
 		//searches := v1.Group("/search")
 		//{

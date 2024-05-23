@@ -11,6 +11,12 @@ NacosRpcUserConfig:
   port: 8848
   DataId: hospital_rpc_user
   group: dev
+NacosRpcRegistrationConfig:
+  NamespaceId: dfb27e84-14e7-4bc1-ad5b-4c8dd4516d42
+  host: 124.223.203.56
+  port: 8848
+  DataId: hospital_rpc_registration
+  group: dev
 
 
 consul:
