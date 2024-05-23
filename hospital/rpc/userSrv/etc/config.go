@@ -17,6 +17,9 @@ type Config struct {
 		Tags    string `yaml:"Tags"`
 		LogPath string `yaml:"LogPath"`
 	} `yaml:"server"`
+	Aes struct {
+		Passport string `yaml:"Passport"`
+	} `yaml:"aes"`
 }
 
 var RpcConfig Config

@@ -2,30 +2,112 @@ syntax = "proto3";
 
 package user;
 option go_package=".;proto";
-
-
 message UserInfo {
-
+  int32  ID=1;
+  string Username=2;
+  string FullName=3;
+  string Sex=4;
+  int32  Age=5;
+  string Mobile=6;
+  int32  HealthScore=7;
+  string Email=8;
+  int32  Subscription=9;
+  int32 Status=10;
 }
 
 message RegisterRequest {
-
+  string Username=1;
+  string Password=2;
+  string FullName=3;
+  string Sex =4;
+  int32  Age = 5;
+  string Mobiles=6;
+  string Email=7;
 }
 
 message RegisterResponse {
-
+  int32  UserId=1;
 }
 
 
 message LoginRequest {
-
+    string Username = 1;
+    string Password = 2;
 }
 
 message LoginResponse {
+    UserInfo User=1;
+}
+
+message GetUserInfoRequest {
+    int32 UserId = 1;
+}
+
+message GetUserInfoResponse {
+    UserInfo User=1;
+}
+
+message UpdateUserRequest {
+  int32  ID=1;
+  string Username=2;
+  string FullName=3;
+  string Sex=4;
+  int32  Age=5;
+  string Mobile=6;
+  int32  HealthScore=7;
+  string Email=8;
+  int32  Subscription=9;
+  int32 Status=10;
+}
+
+message UpdateUserResponse {
+    UserInfo User=1;
+}
+
+
+message DeleteUserRequest {
+    int32 UserId = 1;
+}
+
+message DeleteUserResponse {
+    bool  isOk =1;
+}
+
+message UpdatePasswordRequest {
+  string Mobile = 1;
+  string Password=2;
+}
+
+message UpdatePasswordResponse {
+  bool  isOk =1;
+}
+
+
+message GetHealthListRequest {
+  int32 UserId = 1;
+}
+
+message GetHealthListResponse {
 
 }
 
+
 service User {
   rpc Register(RegisterRequest) returns(RegisterResponse);
-  rpc Login(LoginRequest) returns(LoginResponse);
+  // todo：手机号验证码登录，待实现
+  rpc Login(LoginRequest) returns(LoginResponse); //普通登录
+  // 获取用户详情信息
+  rpc GetUserInfo(GetUserInfoRequest) returns(GetUserInfoResponse);
+  // 修改用户信息
+  rpc UpdateUser(UpdateUserRequest) returns(UpdateUserResponse);
+  // 注销用户
+  rpc DeleteUser(DeleteUserRequest) returns(DeleteUserResponse);
+  // 修改密码，通过调用手机号验证码
+  rpc UpdatePassword(UpdatePasswordRequest) returns(UpdatePasswordResponse);
+  // 获取个人预约
+
+  // 获取个人挂号记录
+
+  // 获取个人体检记录
+  rpc GetHealthList(GetHealthListRequest) returns(GetHealthListResponse);
 }
