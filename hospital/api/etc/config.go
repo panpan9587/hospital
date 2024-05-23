@@ -23,6 +23,9 @@ type Config struct {
 	RegistrationSrv struct {
 		Name string `yaml:"Name"`
 	} `yaml:"registration_srv"`
+	HealthSrv struct {
+		Name string `yaml:"Name"`
+	} `yaml:"health_srv"`
 	SearchSrv struct {
 		Name string `yaml:"Name"`
 	} `yaml:"search_srv"`

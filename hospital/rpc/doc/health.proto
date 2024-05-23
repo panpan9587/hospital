@@ -1,0 +1,87 @@
+syntax = "proto3";
+
+package user;
+
+option go_package=".;proto";
+
+//体检信息表
+message BodyInspectInfo {
+  int64  ID =10;
+  int64  PeopleMsgId = 20;   //个人信息id
+  int64  Height = 30;         //身高
+  int64  Weight = 40;        //体重
+  string  Inheritance = 50; //遗传
+  int64  DoctorId = 60;     //医生id
+}
+
+//体检表添加 --入参
+message BodyInspectRequest {
+  int64  PeopleMsgId = 20;   //个人信息id
+  int64  Height = 30;         //身高
+  int64  Weight = 40;        //体重
+  string  Inheritance = 50; //遗传
+  int64  DoctorId = 60;     //医生id
+}
+
+message BodyInspectResponse {
+  BodyInspectInfo  BodyInspect = 10;
+}
+
+message MedicalItemsInfo{
+  int64   Id=10;
+  string  Visual =20;           //视力检查
+  string  Hearing = 30;         //听力检查
+  string  BloodPressure = 40;   //血压
+  string  BloodSugar = 50;      //血糖
+  string  Urine = 60;           //尿常规
+  int64   Ct  = 70;             //CT 1.胸部ct 2.脑部ct
+}
+
+//根据id查询体检项目的详情 --入参
+message MedicalItemsRequest{
+  int64   Id = 10;
+}
+
+//反参
+message MedicalItemsResponse{
+  MedicalItemsInfo  MedicalItems = 10;
+}
+
+//预约体检信息详情 --入参
+message GetBodyInspectRequest {
+  int64  Id = 20;   //个人信息id
+}
+//预约体检信息详情 --反参
+message GetBodyInspectResponse {
+  BodyInspectInfo  BodyInspect = 10;
+}
+
+message SignInInfo{
+  int64  Id   =10;
+  int64  UserId =20;          //用户id
+  string SignInMethod =30;   //签到方式
+  int64  Status =40;         //签到状态
+}
+
+//签到记录 --入参
+message GetSignInRequest{
+  int64  UserId =20;          //用户id
+  string SignInMethod =30;   //签到方式
+  int64  Status =40;         //签到状态
+}
+
+//签到记录 --反参
+message GetSignInResponse{
+  SignInInfo  SignIn = 10;
+}
+
+service HealthService {
+  //添加体检信息
+  rpc AddBodyInspect(BodyInspectRequest) returns (BodyInspectResponse) {}
+  //根据id查询体检项目的详情
+  rpc GetMedicalItems(MedicalItemsRequest) returns (MedicalItemsResponse) {}
+  //预约体检信息详情
+  rpc GetBodyInspect(GetBodyInspectRequest) returns (GetBodyInspectResponse) {}
+  //签到记录
+  rpc GetSignIn(GetSignInRequest) returns (GetSignInResponse) {}
+}
