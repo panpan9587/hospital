@@ -1,6 +1,7 @@
 package router
 
 import (
+	"demo/api/health"
 	"demo/api/registration"
 	"demo/api/user"
 	"github.com/gin-gonic/gin"
@@ -43,6 +44,17 @@ func initRouter(router *gin.Engine) {
 			registrations.GET("/get/id", registration.GetRegistrationById)
 			//修改预约信息
 			registrations.POST("/update", registration.UpdateRegistrationMsg)
+		}
+		healths := v1.Group("/health")
+		{
+			//预约体检信息记录
+			healths.GET("/AddHealth", health.AddHealth)
+			//获取体检项目信息
+			healths.GET("/GetMedicalItems", health.GetMedicalItems)
+			//预约体检信息详情
+			healths.GET("/GetBodyInspect", health.GetBodyInspect)
+			//签到记录
+			healths.GET("/GetSignIn", health.GetSignIn)
 		}
 	}
 
