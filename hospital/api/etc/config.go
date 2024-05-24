@@ -32,6 +32,9 @@ type Config struct {
 	AdvisorySrv struct {
 		Name string `yaml:"Name"`
 	} `yaml:"advisory_srv"`
+	CaseSrv struct {
+		Name string `yaml:"Name"`
+	} `yaml:"case_srv"`
 	AISrv struct {
 		HostUrl   string `yaml:"HostUrl"` //地址
 		Appid     string `yaml:"Appid"`

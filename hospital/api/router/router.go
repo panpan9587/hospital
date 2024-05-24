@@ -2,6 +2,7 @@ package router
 
 import (
 	"demo/api/advisory"
+	_case "demo/api/case"
 	"demo/api/health"
 	"demo/api/registration"
 	"demo/api/user"
@@ -62,6 +63,11 @@ func initRouter(router *gin.Engine) {
 			healths.GET("/GetBodyInspect", health.GetBodyInspect)
 			//签到记录
 			healths.GET("/GetSignIn", health.GetSignIn)
+		}
+		cases := v1.Group("/cases")
+		{
+			cases.POST("/list", _case.CaseRecordList) //病历记录
+			cases.POST("/search", _case.SearchCase)   //搜索病历
 		}
 
 	}
