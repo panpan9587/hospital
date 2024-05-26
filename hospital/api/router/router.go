@@ -44,6 +44,16 @@ func initRouter(router *gin.Engine) {
 			//修改预约信息
 			registrations.POST("/update", registration.UpdateRegistrationMsg)
 		}
+		doctors := v1.Group("/doctor")
+		{
+			//科室列表
+			doctors.GET("/office/list", registration.OfficeList)
+			//科室医生列表
+			doctors.GET("/office/doctor/list", registration.OfficeDoctorList)
+			//医生详情
+			doctors.GET("/doctor/details", registration.DoctorDetails)
+			//doctors.POST("/demo", registration.Demo)
+		}
 	}
 
 }

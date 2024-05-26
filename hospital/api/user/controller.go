@@ -294,8 +294,6 @@ func DeleteUser(ctx *gin.Context) {
 
 func AddUserAuth(ctx *gin.Context) {
 
-	common.AuthUser()
-
 }
 
 func UpdateUserAuth(ctx *gin.Context) {}

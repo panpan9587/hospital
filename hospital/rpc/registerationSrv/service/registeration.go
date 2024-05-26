@@ -2,9 +2,9 @@ package service
 
 /*
 	info(
-	desc: "用户中心逻辑"
-	author: "panpan"
-	email: "918716975@qq.com"
+	desc: "预约挂号逻辑"
+	author: "济源尚鑫平"
+	email: "As1433223@163.com"
 )
 */
 import (
@@ -19,77 +19,81 @@ type Registration struct {
 	proto.UnimplementedRegisterationServer
 }
 
-func (c *Registration) AddRegisteration(ctx context.Context, in *proto.AddAppointmentRegisterReq) (*proto.Empty, error) {
-	parsedTime, err := time.Parse(time.DateTime, in.AppointmentTime)
+func (c *Registration) AppointmentAttendingPhysician(ctx context.Context, in *proto.AppointmentAttendingPhysicianReq) (*proto.Empty, error) {
+	parsedTime, err := time.Parse(time.DateTime, in.AppointmentData)
 	if err != nil {
-		fmt.Println("解析时间字符串出错:", err)
-		return &proto.Empty{}, nil
+		fmt.Println("解析时间出错:", err)
+		return nil, err
 	}
-	registration := &mysql.PatientAppointment{
-		PatientID:       int(in.PatientId),
-		DoctorID:        int(in.DoctorId),
-		RealName:        in.RealName,
-		IdNumber:        in.IdNumber,
-		Mobile:          in.Mobile,
-		AppointmentTime: parsedTime,
-	}
-	res := mysql.DB.Create(registration)
-	if res.Error != nil {
-		return &proto.Empty{}, res.Error
-	}
-	return &proto.Empty{}, nil
-}
-func (c *Registration) CancelAppointmentRegistration(ctx context.Context, in *proto.CancelAppointmentRegistrationReq) (*proto.Empty, error) {
-	res := mysql.DB.Where("id = ?", in.AppointmentId).
-		Delete(&mysql.PatientAppointment{})
-	if res.Error != nil {
-		return &proto.Empty{}, res.Error
-	}
-	return &proto.Empty{}, nil
-}
-func (c *Registration) GetAppointmentRegistrationById(ctx context.Context, in *proto.GetAppointmentRegistrationByIdReq) (*proto.GetAppointmentRegistrationByIdRes, error) {
 	var (
-		appointment = new(mysql.PatientAppointment)
+		tx          = mysql.DB.Begin()
+		appointment = &mysql.Appointment{
+			UserID:          int(in.UserId),
+			AppointmentType: int(in.AppointmentType),
+			Mobile:          in.Mobile,
+			AppointmentData: parsedTime.Format(time.DateOnly),
+			AppointmentTime: parsedTime.Format(time.TimeOnly),
+			Status:          int(in.Status),
+		}
 	)
-	res := mysql.DB.Where("id = ?", in.AppointmentId).First(appointment)
-	if res.Error != nil {
-		return &proto.GetAppointmentRegistrationByIdRes{}, res.Error
+
+	//添加预约
+	if err = mysql.CreateAppointment(tx, appointment); err != nil {
+		tx.Rollback()
+		return &proto.Empty{}, err
+	}
+	//添加挂号表
+	if err = mysql.CreateAttendingPhysician(tx, &mysql.AttendingPhysician{
+		UserID:        int(in.UserId),
+		AppointmentId: int(appointment.ID),
+		DoctorID:      int(in.DoctorId),
+		OfficeID:      int(in.OfficeId),
+		RealName:      in.RealName,
+		IDNumber:      in.IdNumber,
+	}); err != nil {
+		tx.Rollback()
+		return &proto.Empty{}, err
+	}
+	tx.Commit()
+	return &proto.Empty{}, nil
+}
+
+// 取消预约
+func (c *Registration) CancelAppointmentRegistration(ctx context.Context, in *proto.CancelAppointmentRegistrationReq) (*proto.Empty, error) {
+	var (
+		tx = mysql.DB.Begin()
+	)
+	//删除预约表
+	if err := mysql.DeleteAppointment(tx, int(in.AppointmentId)); err != nil {
+		tx.Rollback()
+		return &proto.Empty{}, err
+	}
+	//删除挂号表
+	if err := mysql.DeleteAttendingPhysician(tx, int(in.AppointmentId)); err != nil {
+		tx.Rollback()
+		return &proto.Empty{}, err
+	}
+	return &proto.Empty{}, nil
+}
+
+// 获取预约信息
+func (c *Registration) GetAppointmentRegistrationById(ctx context.Context, in *proto.GetAppointmentRegistrationByIdReq) (*proto.GetAppointmentRegistrationByIdRes, error) {
+	res, err := mysql.GetAttendingPhysicianById(mysql.DB, int(in.AttendingPhysicianId))
+	if err != nil {
+		return &proto.GetAppointmentRegistrationByIdRes{}, err
 	}
 	return &proto.GetAppointmentRegistrationByIdRes{
-		Data: &proto.AppointmentRegistration{
-			Id:              int32(appointment.ID),
-			PatientId:       int32(appointment.PatientID),
-			DoctorId:        int32(appointment.DoctorID),
-			RealName:        appointment.RealName,
-			IdNumber:        appointment.IdNumber,
-			Mobile:          appointment.Mobile,
-			AppointmentTime: appointment.AppointmentTime.Format(time.DateTime),
+		Data: &proto.AttendingPhysician{
+			Id:            int32(res.ID),
+			UserId:        int32(res.UserID),
+			AppointmentId: int32(res.AppointmentId),
+			DoctorID:      int32(res.DoctorID),
+			OfficeID:      int32(res.OfficeID),
+			RealName:      res.RealName,
+			IDNumber:      res.IDNumber,
+			Symptoms:      res.Symptoms,
+			Diagnosis:     res.Diagnosis,
+			Prescription:  res.Prescription,
 		},
 	}, nil
-}
-func (c *Registration) UpdateAppointmentRegistration(ctx context.Context, in *proto.UpdateAppointmentRegistrationReq) (*proto.Empty, error) {
-	var (
-		registration *mysql.PatientAppointment
-	)
-	if in.Data.AppointmentTime != "" {
-		parsedTime, err := time.Parse(time.DateTime, in.Data.AppointmentTime)
-		if err != nil {
-			fmt.Println("解析时间字符串出错:", err)
-			return &proto.Empty{}, nil
-		}
-		registration.AppointmentTime = parsedTime
-	}
-
-	if in.Data.PatientId > 0 {
-		registration.PatientID = int(in.Data.PatientId)
-	}
-	if in.Data.DoctorId > 0 {
-		registration.DoctorID = int(in.Data.DoctorId)
-	}
-	registration.Status = int(in.Data.Status)
-	res := mysql.DB.Where("id = ?", in.Data.Id).Updates(registration)
-	if res.Error != nil {
-		return nil, res.Error
-	}
-	return &proto.Empty{}, nil
 }

@@ -10,6 +10,7 @@ require (
 	github.com/gin-gonic/gin v1.10.0
 	github.com/golang-jwt/jwt/v4 v4.5.0
 	github.com/google/uuid v1.6.0
+	github.com/gorilla/websocket v1.5.1
 	github.com/hashicorp/consul/api v1.28.3
 	github.com/mervick/aes-everywhere/go/aes256 v0.0.0-20240228221001-33356df39cf4
 	github.com/nacos-group/nacos-sdk-go/v2 v2.2.5

@@ -1,65 +1,113 @@
 syntax = "proto3";
 
 package user;
-option go_package=".;proto";
+option go_package = ".;proto";
 
 
 service Registeration {
-  //预约
-  rpc AddRegisteration(AddAppointmentRegisterReq) returns(Empty);
+  //挂号预约
+  rpc AppointmentAttendingPhysician(AppointmentAttendingPhysicianReq) returns(Empty);
   //取消预约
   rpc CancelAppointmentRegistration(CancelAppointmentRegistrationReq) returns(Empty);
   //获取预约信息
   rpc GetAppointmentRegistrationById(GetAppointmentRegistrationByIdReq) returns(GetAppointmentRegistrationByIdRes);
-  //修改预约信息
-  rpc UpdateAppointmentRegistration(UpdateAppointmentRegistrationReq) returns(Empty);
-
+  //------------------------------------------------//todo 医生模块--------------------------------------------------------
+  //科室列表
+  rpc OfficeList(Empty) returns(OfficeListRes);
+  //科室医生列表
+  rpc OfficeDoctorList(OfficeDoctorListReq) returns(OfficeDoctorListRes);
+  //医生详情
+  rpc DoctorDetails(DoctorDetailsReq) returns(DoctorDetailsRes);
 }
-//坐诊医生列表展示
-message AttendingPhysician {
-
-}
-//坐诊医生详情
-
 //预约  增删改查
 message Empty {
 
 }
-message AddAppointmentRegisterReq {
-  int32 patient_id = 10;
+//预约
+message AppointmentAttendingPhysicianReq {
+  int32 user_id = 10;
   int32 doctor_id = 20;
   string real_name = 30;
   string id_number = 40;
   string mobile = 50;
-  string appointment_time = 60;
+  string appointment_data = 60;
+  int32 appointment_type = 70;
+  int32 office_id = 80;
+  int32 status = 90;
 }
+//取消预约
 message CancelAppointmentRegistrationReq {
   int32 appointment_id = 1;
 }
 //获取预约信息
 message GetAppointmentRegistrationByIdReq {
-  int32 appointment_id = 1;
+  int32 attending_physician_id = 1;
 }
 message GetAppointmentRegistrationByIdRes {
-  AppointmentRegistration data = 1;
+  AttendingPhysician data = 1;
 }
-//修改预约信息
-message UpdateAppointmentRegistrationReq {
-  AppointmentRegistration data = 1;
-}
-//完成预约，添加预约记录表
 
 
+//用户预约结构体
 message AppointmentRegistration {
   int32 id = 1;
-  int32 patient_id = 10;
-  int32 doctor_id = 20;
-  string real_name = 30;
-  string id_number = 40;
-  string mobile = 50;
-  string appointment_time = 60;
-  int32 status = 70;
+  int32 user_id = 10;
+  int32 AppointmentType = 20;
+  string AppointmentDate = 40;
+  string AppointmentTime = 50;
+  int32 Status = 60;
 }
-//message AttendingPhysician {
-//  a
-//}
+//用户挂号
+message AttendingPhysician {
+  int32 id = 10;
+  int32 user_id = 20;
+  int32 appointment_id = 30;
+  int32 DoctorID = 40;
+  int32 OfficeID = 50;;
+  string RealName = 60;
+  string IDNumber = 80;
+  string Symptoms = 90;
+  string Diagnosis = 100;
+  string Prescription = 110;
+}
+
+//------------------------------------------------//todo 医生模块--------------------------------------------------------
+//科室列表
+message OfficeListRes{
+  repeated DoctorOffice data = 10;
+}
+//科室医生列表
+message OfficeDoctorListReq{
+  int32 office_id  = 10;
+}
+message OfficeDoctorListRes{
+  DoctorOffice data = 10;
+}
+//医生详情
+message DoctorDetailsReq{
+  int32 doctor_id  = 10;
+}
+message DoctorDetailsRes{
+  Doctor data = 10;
+}
+//科室
+message DoctorOffice{
+  int32 id = 10;
+  string office_name = 20;
+  int32 status = 30;
+  repeated Doctor Doctor = 40;
+}
+//医生
+message Doctor {
+  int32 id = 10;
+  string doctor_name = 20;
+  int32 age = 30;
+  int32 sex = 40;
+  string position = 50;
+  string tag = 60;
+  string description = 70;
+  int32 work_age = 80;
+  string work_time = 90;
+  int32 office_id = 100;
+  int32 status = 110;
+}
