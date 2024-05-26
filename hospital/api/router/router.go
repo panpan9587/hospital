@@ -45,7 +45,6 @@ func initRouter(router *gin.Engine) {
 			//获取预约信息
 			registrations.GET("/get/id", registration.GetRegistrationById)
 			//修改预约信息
-			registrations.POST("/update", registration.UpdateRegistrationMsg)
 		}
 		online := v1.Group("/advisory")
 		{
@@ -69,7 +68,16 @@ func initRouter(router *gin.Engine) {
 			cases.POST("/list", _case.CaseRecordList) //病历记录
 			cases.POST("/search", _case.SearchCase)   //搜索病历
 		}
-
+		doctors := v1.Group("/doctor")
+		{
+			//科室列表
+			doctors.GET("/office/list", registration.OfficeList)
+			//科室医生列表
+			doctors.GET("/office/doctor/list", registration.OfficeDoctorList)
+			//医生详情
+			doctors.GET("/doctor/details", registration.DoctorDetails)
+			//doctors.POST("/demo", registration.Demo)
+		}
 	}
 
 }

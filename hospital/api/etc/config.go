@@ -2,6 +2,7 @@ package etc
 
 import (
 	"demo/config"
+	"fmt"
 	"github.com/nacos-group/nacos-sdk-go/v2/clients"
 	"github.com/nacos-group/nacos-sdk-go/v2/common/constant"
 	"github.com/nacos-group/nacos-sdk-go/v2/vo"
@@ -60,6 +61,7 @@ var ApiConfig Config
 
 // 接入对应的配置文件
 func init() {
+	fmt.Println(config.GlobalConfig, "ddd")
 	clientConfig := constant.ClientConfig{
 		NamespaceId:         config.GlobalConfig.NacosApiConfig.NamespaceId, // 如果需要支持多namespace，我们可以创建多个client,它们有不同的NamespaceId。当namespace是public时，此处填空字符串。
 		TimeoutMs:           5000,

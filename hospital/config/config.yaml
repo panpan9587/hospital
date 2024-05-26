@@ -31,7 +31,6 @@ NacosRpcCaseConfig:
   DataId: hospital_rpc_case
   group: dev
 
-
 consul:
   host: 124.223.203.56
   port: 8500
