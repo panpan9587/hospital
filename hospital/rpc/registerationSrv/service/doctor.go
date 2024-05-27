@@ -36,7 +36,7 @@ func (c *Registration) GetOfficeDoctorListByIdTime(ctx context.Context, in *prot
 	var (
 		doctorList []*proto.ShiftDoctor
 	)
-	res, err := mysql.GetOfficeDoctorListByIdTime(int(in.OfficeId), int(in.ShiftTime))
+	res, err := mysql.GetOfficeDoctorListByIdTime(int(in.OfficeId), in.ShiftTime)
 	if err != nil {
 		return &proto.OfficeDoctorListByIdTimeRes{}, err
 	}

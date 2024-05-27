@@ -25,29 +25,6 @@ type PeopleMsg struct {
 	gorm.Model
 }
 
-// Doctor 医生表
-type Doctor struct {
-	Id         int64  `json:"id"`
-	DoctorName string `json:"doctor_name"` //医生姓名
-	Age        int    `json:"age"`         //医生年龄
-	Sex        int    `json:"sex"`         //医生性别
-	Position   string `json:"position"`    //医生职位
-	Tag        string `json:"tag"`         //医生标签
-	Desc       string `json:"desc"`        //医生简介
-	WorkAge    int    `json:"work_age"`    //医生工作年限
-	WorkTime   string `json:"work_time"`   //医生工作时间
-	OfficeId   int64  `json:"office_id"`   //科室id
-	Status     int    `json:"status"`      //状态
-	gorm.Model
-}
-
-// DoctorOffice 医生科室表
-type DoctorOffice struct {
-	Id         int64
-	OfficeName string `json:"office_name"` //科室名称
-	Status     int    `json:"status"`      //状态
-}
-
 // Case 患者病例表
 type Case struct {
 	Id          int64  `json:"id"`
@@ -95,40 +72,6 @@ type SignIn struct {
 	SignInMethod string `json:"sign_in_method"` //签到方式
 	Status       int    `json:"status"`         //签到状态
 	gorm.Model
-}
-
-// Appointment 用户预约表结构体
-type Appointment struct {
-	UserID          int    `gorm:"type:int(11);not null" json:"user_id"`
-	AppointmentType int    `gorm:"type:tinyint(1);not null;check:status IN (1,2);comment:1：代表预约的是体检 2：代表预约挂号" json:"appointment_type"`
-	Mobile          string `gorm:"type:varchar(20);not null" json:"mobile"`
-	AppointmentData string `gorm:"type:varchar(20);not null" json:"appointment_data"`
-	AppointmentTime string `gorm:"type:varchar(20);not null" son:"appointment_time"`
-	Status          int    `gorm:"type:tinyint(1);not null;check:status IN (1,2)comment:1:已预约 2:已处理" json:"status"`
-	gorm.Model
-}
-
-func (Appointment) TableName() string {
-	return "appointment"
-}
-
-// AttendingPhysician 挂号记录表结构体
-type AttendingPhysician struct {
-	UserID        int    `gorm:"type:int(11);not null" json:"user_id"`
-	AppointmentID int    `gorm:"type:int(11);not null" json:"appointment_id"`
-	DoctorID      *int   `gorm:"type:int(11);not null" json:"doctor_id,omitempty"`
-	OfficeID      *int   `gorm:"type:int(11);not null" json:"office_id,omitempty"`
-	RealName      string `gorm:"type:varchar(50);not null" json:"real_name,omitempty"`
-	Mobile        string `gorm:"type:varchar(20);not null" json:"mobile,omitempty"`
-	IDNumber      string `gorm:"type:char(18);not null" json:"id_number,omitempty"`
-	Symptoms      string `gorm:"type:TEXT" json:"symptoms,omitempty"`
-	Diagnosis     string `gorm:"type:TEXT" json:"diagnosis,omitempty"`
-	Prescription  string `gorm:"type:TEXT" json:"prescription,omitempty"`
-	gorm.Model
-}
-
-func (AttendingPhysician) TableName() string {
-	return "attending_physician"
 }
 
 type Package struct {

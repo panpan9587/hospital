@@ -31,10 +31,10 @@ func OfficeDoctorListByIdTime(ctx *gin.Context) {
 	officeId := ctx.PostForm("id")
 	shiftTime := ctx.PostForm("shiftTime")
 	id, _ := strconv.Atoi(officeId)
-	sid, _ := strconv.Atoi(shiftTime)
+	//sid, _ := strconv.Atoi(shiftTime)
 	res, err := RegistrationSrv.GetOfficeDoctorListByIdTime(ctx, &proto.OfficeDoctorListByIdTimeReq{
 		OfficeId:  int32(id),
-		ShiftTime: int32(sid),
+		ShiftTime: shiftTime,
 	})
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, model.Response{
