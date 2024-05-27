@@ -24,7 +24,7 @@ func initRouter(router *gin.Engine) {
 			users.POST("/update/password", user.UpdatePassword)
 			users.Use(user.ParseToken)
 
-			users.GET("/info", user.GetUserInfo) //详情不展示实名信息
+			users.GET("/info", user.GetUserInfo) //详情展示实名信息
 			// todo：中间件校验手机号是否一致
 			users.POST("/update", user.UpdateUser)
 			users.POST("/auth", user.AddUserAuth)                //用户实名认证
@@ -54,16 +54,18 @@ func initRouter(router *gin.Engine) {
 		}
 		healths := v1.Group("/health")
 		{
-			//预约体检信息记录
-			healths.GET("/AddHealth", health.AddHealth)
-			//获取体检项目信息
-			healths.GET("/GetMedicalItems", health.GetMedicalItems)
-			//预约体检信息详情
-			healths.GET("/GetBodyInspect", health.GetBodyInspect)
-			//签到记录
-			healths.GET("/GetSignIn", health.GetSignIn)
+			//记录预约
+			healths.GET("/GetAppointment", health.GetAppointment)
+			//体检表记录/体检项目/使用事务两表记录
+			healths.GET("/GetHealth", health.GetHealth)
+			//根据AppointmentId查询体检详情列表
+			healths.POST("/GetHealthId", health.GetHealthId)
+			//根据user_id查询体检项目详情
+			healths.POST("/HealthProjectId", health.HealthProjectId)
+			//科室详情
+			healths.POST("/GetHealthInfo", health.GetHealthInfo)
+			//套餐详情
+			healths.POST("/GetPackage", health.GetPackage)
 		}
-
 	}
-
 }

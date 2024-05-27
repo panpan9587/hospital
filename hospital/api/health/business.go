@@ -9,23 +9,24 @@ import (
 	"strconv"
 )
 
-// AddHealth 预约体检
-func AddHealth(c *gin.Context) {
-	var req model.HealthAddReq
-	err := c.ShouldBindJSON(&req)
+// GetAppointment 预约表记录
+func GetAppointment(c *gin.Context) {
+	var appointment model.GetAppointmentReq
+	err := c.ShouldBindJSON(&appointment)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, model.Response{
 			Code:    500,
-			Message: "输入信息",
+			Message: err.Error(),
 		})
 		return
 	}
-	res, err := HealthSrv.AddBodyInspect(context.Background(), &proto.BodyInspectRequest{
-		PeopleMsgId: int64(req.PeopleMsgId),
-		Height:      int64(req.Height),
-		Weight:      int64(req.Weight),
-		Inheritance: req.Inheritance,
-		DoctorId:    int64(req.DoctorId),
+	res, err := HealthSrv.GetAppointment(context.Background(), &proto.GetAppointmentReq{
+		UserID:          appointment.UserID,
+		AppointmentType: appointment.AppointmentType,
+		Mobile:          appointment.Mobile,
+		AppointmentData: appointment.AppointmentData,
+		AppointmentTime: appointment.AppointmentTime,
+		Status:          appointment.Status,
 	})
 	if err != nil {
 		c.JSON(http.StatusBadRequest, model.Response{
@@ -36,17 +37,65 @@ func AddHealth(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, model.Response{
 		Code:    200,
-		Message: "注册成功",
+		Message: "查询预约记录成功",
 		Data:    res,
 	})
 }
 
-// GetMedicalItems 根据id查询体检项目的详情
-func GetMedicalItems(c *gin.Context) {
+// GetHealth 体检表/体检项目记录
+func GetHealth(c *gin.Context) {
+	var health model.GetHealthReq
+	var project model.GetHealthInfoReq
+	err := c.ShouldBindJSON(&health)
+	err = c.ShouldBindJSON(&project)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, model.Response{
+			Code:    500,
+			Message: err.Error(),
+		})
+		return
+	}
+	res, err := HealthSrv.GetHealth(context.Background(), &proto.GetHealthReq{
+		ID:            health.UserID,
+		AppointmentId: health.AppointmentId,
+		UserID:        health.UserID,
+		RealName:      health.RealName,
+		IdNumber:      health.IdNumber,
+		ProjectInfo: &proto.HealthProjectInfo{
+			ID:           project.Id,
+			HealthId:     project.HealthId,
+			UserID:       project.UserID,
+			DoctorId:     project.DoctorId,
+			Height:       uint64(project.Height),
+			Weight:       uint64(project.Weight),
+			HeartRate:    project.HeartRate,
+			Hearing:      project.Hearing,
+			BloodPressur: project.BloodPressur,
+			BloodSugar:   project.BloodSugar,
+			Urine:        project.Urine,
+			Ct:           project.Ct,
+		},
+	})
+	if err != nil {
+		c.JSON(http.StatusBadRequest, model.Response{
+			Code:    500,
+			Message: err.Error(),
+		})
+		return
+	}
+	c.JSON(http.StatusOK, model.Response{
+		Code:    200,
+		Message: "体检记录成功",
+		Data:    res,
+	})
+}
+
+// GetHealthId 根据AppointmentId查询体检详情列表
+func GetHealthId(c *gin.Context) {
 	id := c.Query("id")
 	i, _ := strconv.Atoi(id)
-	res, err := HealthSrv.GetMedicalItems(context.Background(), &proto.MedicalItemsRequest{
-		Id: int64(i),
+	res, err := HealthSrv.GetHealthId(context.Background(), &proto.GetHealthIdReq{
+		AppointmentId: int64(i),
 	})
 	if err != nil {
 		c.JSON(http.StatusBadRequest, model.Response{
@@ -57,18 +106,16 @@ func GetMedicalItems(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, model.Response{
 		Code:    200,
-		Message: "查询成功",
+		Message: "查询体检记录详情列表成功",
 		Data:    res,
 	})
 }
 
-// GetBodyInspect 预约体检信息详情
-func GetBodyInspect(c *gin.Context) {
+// HealthProjectId 查看体检项目详情
+func HealthProjectId(c *gin.Context) {
 	id := c.Query("id")
 	i, _ := strconv.Atoi(id)
-	res, err := HealthSrv.GetBodyInspect(context.Background(), &proto.GetBodyInspectRequest{
-		Id: int64(i),
-	})
+	res, err := HealthSrv.HealthProjectId(context.Background(), &proto.HealthProjectIdReq{UserID: int64(i)})
 	if err != nil {
 		c.JSON(http.StatusBadRequest, model.Response{
 			Code:    500,
@@ -78,26 +125,16 @@ func GetBodyInspect(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, model.Response{
 		Code:    200,
-		Message: "查询成功",
+		Message: "查询体检功能详情成功",
 		Data:    res,
 	})
 }
 
-// GetSignIn 签到记录
-func GetSignIn(c *gin.Context) {
-	var SignIn model.GetSignInReq
-	err := c.ShouldBindJSON(&SignIn)
-	if err != nil {
-		c.JSON(http.StatusBadRequest, model.Response{
-			Code:    500,
-			Message: "输入信息",
-		})
-		return
-	}
-	res, err := HealthSrv.GetSignIn(context.Background(), &proto.GetSignInRequest{
-		UserId:       int64(SignIn.UserId),
-		SignInMethod: SignIn.SignInMethod,
-		Status:       int64(SignIn.Status),
+func GetHealthInfo(c *gin.Context) {
+	id := c.Query("id")
+	i, _ := strconv.Atoi(id)
+	res, err := HealthSrv.GetDoctorOffice(context.Background(), &proto.GetDoctorOfficeReq{
+		ID: int64(i),
 	})
 	if err != nil {
 		c.JSON(http.StatusBadRequest, model.Response{
@@ -108,7 +145,27 @@ func GetSignIn(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, model.Response{
 		Code:    200,
-		Message: "签到成功",
+		Message: "查询体检功能详情成功",
+		Data:    res,
+	})
+}
+
+func GetPackage(c *gin.Context) {
+	id := c.Query("id")
+	i, _ := strconv.Atoi(id)
+	res, err := HealthSrv.GetPackage(context.Background(), &proto.GetPackageReq{
+		ID: int64(i),
+	})
+	if err != nil {
+		c.JSON(http.StatusBadRequest, model.Response{
+			Code:    500,
+			Message: err.Error(),
+		})
+		return
+	}
+	c.JSON(http.StatusOK, model.Response{
+		Code:    200,
+		Message: "查询套餐详情成功",
 		Data:    res,
 	})
 }

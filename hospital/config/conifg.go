@@ -35,7 +35,13 @@ type Config struct {
 		Group       string `yaml:"group"`
 	} `yaml:"NacosRpcRegistrationConfig"`
 
-
+	NacosRpcHealthConfig struct {
+		NamespaceId string `yaml:"NamespaceId"`
+		Host        string `yaml:"host"`
+		Port        int    `yaml:"port"`
+		DataId      string `yaml:"DataId"`
+		Group       string `yaml:"group"`
+	} `yaml:"NacosRpcHealthConfig"`
 
 	Consul struct {
 		Host string `yaml:"host"`
@@ -64,7 +70,6 @@ type Config struct {
 		Db   int    `yaml:"db"`
 	} `yaml:"redis"`
 
-
 	Log struct {
 		Path  string `yaml:"path"`
 		Level string `yaml:"level"`
@@ -75,7 +80,7 @@ var GlobalConfig Config
 
 // 初始化配置文件
 func init() {
-	viper.SetConfigFile("D:/github_daima/hospital/config/config.yaml")
+	viper.SetConfigFile("D:/gocode/hospital/hospital/config/config.yaml")
 	viper.ReadInConfig()
 	err := viper.Unmarshal(&GlobalConfig)
 	if err != nil {
