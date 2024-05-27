@@ -19,12 +19,14 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Registeration_AppointmentAttendingPhysician_FullMethodName  = "/user.Registeration/AppointmentAttendingPhysician"
-	Registeration_CancelAppointmentRegistration_FullMethodName  = "/user.Registeration/CancelAppointmentRegistration"
-	Registeration_GetAppointmentRegistrationById_FullMethodName = "/user.Registeration/GetAppointmentRegistrationById"
-	Registeration_OfficeList_FullMethodName                     = "/user.Registeration/OfficeList"
-	Registeration_OfficeDoctorList_FullMethodName               = "/user.Registeration/OfficeDoctorList"
-	Registeration_DoctorDetails_FullMethodName                  = "/user.Registeration/DoctorDetails"
+	Registeration_CreateAppointment_FullMethodName                    = "/user.Registeration/CreateAppointment"
+	Registeration_CancelAppointmentRegistration_FullMethodName        = "/user.Registeration/CancelAppointmentRegistration"
+	Registeration_GetAppointmentById_FullMethodName                   = "/user.Registeration/GetAppointmentById"
+	Registeration_GetAttendingPhysicianByAppointmentId_FullMethodName = "/user.Registeration/GetAttendingPhysicianByAppointmentId"
+	Registeration_GetAttendingPhysicianByIdNumber_FullMethodName      = "/user.Registeration/GetAttendingPhysicianByIdNumber"
+	Registeration_OfficeList_FullMethodName                           = "/user.Registeration/OfficeList"
+	Registeration_GetOfficeDoctorListByIdTime_FullMethodName          = "/user.Registeration/GetOfficeDoctorListByIdTime"
+	Registeration_DoctorDetails_FullMethodName                        = "/user.Registeration/DoctorDetails"
 )
 
 // RegisterationClient is the client API for Registeration service.
@@ -32,16 +34,20 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type RegisterationClient interface {
 	// 挂号预约
-	AppointmentAttendingPhysician(ctx context.Context, in *AppointmentAttendingPhysicianReq, opts ...grpc.CallOption) (*Empty, error)
+	CreateAppointment(ctx context.Context, in *CreateAppointmentReq, opts ...grpc.CallOption) (*Empty, error)
 	// 取消预约
 	CancelAppointmentRegistration(ctx context.Context, in *CancelAppointmentRegistrationReq, opts ...grpc.CallOption) (*Empty, error)
 	// 获取预约信息
-	GetAppointmentRegistrationById(ctx context.Context, in *GetAppointmentRegistrationByIdReq, opts ...grpc.CallOption) (*GetAppointmentRegistrationByIdRes, error)
+	GetAppointmentById(ctx context.Context, in *GetAppointmentByIdReq, opts ...grpc.CallOption) (*GetAppointmentByIdRes, error)
+	// 获取挂号信息  根据预约id
+	GetAttendingPhysicianByAppointmentId(ctx context.Context, in *GetAttendingPhysicianByAppointmentIdReq, opts ...grpc.CallOption) (*GetAttendingPhysicianByAppointmentIdRes, error)
+	// 获取挂号信息 根据身份证号
+	GetAttendingPhysicianByIdNumber(ctx context.Context, in *GetAttendingPhysicianByIdNumberReq, opts ...grpc.CallOption) (*GetAttendingPhysicianByIdNumberRes, error)
 	// ------------------------------------------------//todo 医生模块--------------------------------------------------------
 	// 科室列表
 	OfficeList(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*OfficeListRes, error)
-	// 科室医生列表
-	OfficeDoctorList(ctx context.Context, in *OfficeDoctorListReq, opts ...grpc.CallOption) (*OfficeDoctorListRes, error)
+	// 排班科室医生列表
+	GetOfficeDoctorListByIdTime(ctx context.Context, in *OfficeDoctorListByIdTimeReq, opts ...grpc.CallOption) (*OfficeDoctorListByIdTimeRes, error)
 	// 医生详情
 	DoctorDetails(ctx context.Context, in *DoctorDetailsReq, opts ...grpc.CallOption) (*DoctorDetailsRes, error)
 }
@@ -54,9 +60,9 @@ func NewRegisterationClient(cc grpc.ClientConnInterface) RegisterationClient {
 	return &registerationClient{cc}
 }
 
-func (c *registerationClient) AppointmentAttendingPhysician(ctx context.Context, in *AppointmentAttendingPhysicianReq, opts ...grpc.CallOption) (*Empty, error) {
+func (c *registerationClient) CreateAppointment(ctx context.Context, in *CreateAppointmentReq, opts ...grpc.CallOption) (*Empty, error) {
 	out := new(Empty)
-	err := c.cc.Invoke(ctx, Registeration_AppointmentAttendingPhysician_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, Registeration_CreateAppointment_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -72,9 +78,27 @@ func (c *registerationClient) CancelAppointmentRegistration(ctx context.Context,
 	return out, nil
 }
 
-func (c *registerationClient) GetAppointmentRegistrationById(ctx context.Context, in *GetAppointmentRegistrationByIdReq, opts ...grpc.CallOption) (*GetAppointmentRegistrationByIdRes, error) {
-	out := new(GetAppointmentRegistrationByIdRes)
-	err := c.cc.Invoke(ctx, Registeration_GetAppointmentRegistrationById_FullMethodName, in, out, opts...)
+func (c *registerationClient) GetAppointmentById(ctx context.Context, in *GetAppointmentByIdReq, opts ...grpc.CallOption) (*GetAppointmentByIdRes, error) {
+	out := new(GetAppointmentByIdRes)
+	err := c.cc.Invoke(ctx, Registeration_GetAppointmentById_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *registerationClient) GetAttendingPhysicianByAppointmentId(ctx context.Context, in *GetAttendingPhysicianByAppointmentIdReq, opts ...grpc.CallOption) (*GetAttendingPhysicianByAppointmentIdRes, error) {
+	out := new(GetAttendingPhysicianByAppointmentIdRes)
+	err := c.cc.Invoke(ctx, Registeration_GetAttendingPhysicianByAppointmentId_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *registerationClient) GetAttendingPhysicianByIdNumber(ctx context.Context, in *GetAttendingPhysicianByIdNumberReq, opts ...grpc.CallOption) (*GetAttendingPhysicianByIdNumberRes, error) {
+	out := new(GetAttendingPhysicianByIdNumberRes)
+	err := c.cc.Invoke(ctx, Registeration_GetAttendingPhysicianByIdNumber_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -90,9 +114,9 @@ func (c *registerationClient) OfficeList(ctx context.Context, in *Empty, opts ..
 	return out, nil
 }
 
-func (c *registerationClient) OfficeDoctorList(ctx context.Context, in *OfficeDoctorListReq, opts ...grpc.CallOption) (*OfficeDoctorListRes, error) {
-	out := new(OfficeDoctorListRes)
-	err := c.cc.Invoke(ctx, Registeration_OfficeDoctorList_FullMethodName, in, out, opts...)
+func (c *registerationClient) GetOfficeDoctorListByIdTime(ctx context.Context, in *OfficeDoctorListByIdTimeReq, opts ...grpc.CallOption) (*OfficeDoctorListByIdTimeRes, error) {
+	out := new(OfficeDoctorListByIdTimeRes)
+	err := c.cc.Invoke(ctx, Registeration_GetOfficeDoctorListByIdTime_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -113,16 +137,20 @@ func (c *registerationClient) DoctorDetails(ctx context.Context, in *DoctorDetai
 // for forward compatibility
 type RegisterationServer interface {
 	// 挂号预约
-	AppointmentAttendingPhysician(context.Context, *AppointmentAttendingPhysicianReq) (*Empty, error)
+	CreateAppointment(context.Context, *CreateAppointmentReq) (*Empty, error)
 	// 取消预约
 	CancelAppointmentRegistration(context.Context, *CancelAppointmentRegistrationReq) (*Empty, error)
 	// 获取预约信息
-	GetAppointmentRegistrationById(context.Context, *GetAppointmentRegistrationByIdReq) (*GetAppointmentRegistrationByIdRes, error)
+	GetAppointmentById(context.Context, *GetAppointmentByIdReq) (*GetAppointmentByIdRes, error)
+	// 获取挂号信息  根据预约id
+	GetAttendingPhysicianByAppointmentId(context.Context, *GetAttendingPhysicianByAppointmentIdReq) (*GetAttendingPhysicianByAppointmentIdRes, error)
+	// 获取挂号信息 根据身份证号
+	GetAttendingPhysicianByIdNumber(context.Context, *GetAttendingPhysicianByIdNumberReq) (*GetAttendingPhysicianByIdNumberRes, error)
 	// ------------------------------------------------//todo 医生模块--------------------------------------------------------
 	// 科室列表
 	OfficeList(context.Context, *Empty) (*OfficeListRes, error)
-	// 科室医生列表
-	OfficeDoctorList(context.Context, *OfficeDoctorListReq) (*OfficeDoctorListRes, error)
+	// 排班科室医生列表
+	GetOfficeDoctorListByIdTime(context.Context, *OfficeDoctorListByIdTimeReq) (*OfficeDoctorListByIdTimeRes, error)
 	// 医生详情
 	DoctorDetails(context.Context, *DoctorDetailsReq) (*DoctorDetailsRes, error)
 	mustEmbedUnimplementedRegisterationServer()
@@ -132,20 +160,26 @@ type RegisterationServer interface {
 type UnimplementedRegisterationServer struct {
 }
 
-func (UnimplementedRegisterationServer) AppointmentAttendingPhysician(context.Context, *AppointmentAttendingPhysicianReq) (*Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AppointmentAttendingPhysician not implemented")
+func (UnimplementedRegisterationServer) CreateAppointment(context.Context, *CreateAppointmentReq) (*Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateAppointment not implemented")
 }
 func (UnimplementedRegisterationServer) CancelAppointmentRegistration(context.Context, *CancelAppointmentRegistrationReq) (*Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CancelAppointmentRegistration not implemented")
 }
-func (UnimplementedRegisterationServer) GetAppointmentRegistrationById(context.Context, *GetAppointmentRegistrationByIdReq) (*GetAppointmentRegistrationByIdRes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetAppointmentRegistrationById not implemented")
+func (UnimplementedRegisterationServer) GetAppointmentById(context.Context, *GetAppointmentByIdReq) (*GetAppointmentByIdRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAppointmentById not implemented")
+}
+func (UnimplementedRegisterationServer) GetAttendingPhysicianByAppointmentId(context.Context, *GetAttendingPhysicianByAppointmentIdReq) (*GetAttendingPhysicianByAppointmentIdRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAttendingPhysicianByAppointmentId not implemented")
+}
+func (UnimplementedRegisterationServer) GetAttendingPhysicianByIdNumber(context.Context, *GetAttendingPhysicianByIdNumberReq) (*GetAttendingPhysicianByIdNumberRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAttendingPhysicianByIdNumber not implemented")
 }
 func (UnimplementedRegisterationServer) OfficeList(context.Context, *Empty) (*OfficeListRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method OfficeList not implemented")
 }
-func (UnimplementedRegisterationServer) OfficeDoctorList(context.Context, *OfficeDoctorListReq) (*OfficeDoctorListRes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method OfficeDoctorList not implemented")
+func (UnimplementedRegisterationServer) GetOfficeDoctorListByIdTime(context.Context, *OfficeDoctorListByIdTimeReq) (*OfficeDoctorListByIdTimeRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOfficeDoctorListByIdTime not implemented")
 }
 func (UnimplementedRegisterationServer) DoctorDetails(context.Context, *DoctorDetailsReq) (*DoctorDetailsRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DoctorDetails not implemented")
@@ -163,20 +197,20 @@ func RegisterRegisterationServer(s grpc.ServiceRegistrar, srv RegisterationServe
 	s.RegisterService(&Registeration_ServiceDesc, srv)
 }
 
-func _Registeration_AppointmentAttendingPhysician_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AppointmentAttendingPhysicianReq)
+func _Registeration_CreateAppointment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateAppointmentReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RegisterationServer).AppointmentAttendingPhysician(ctx, in)
+		return srv.(RegisterationServer).CreateAppointment(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Registeration_AppointmentAttendingPhysician_FullMethodName,
+		FullMethod: Registeration_CreateAppointment_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RegisterationServer).AppointmentAttendingPhysician(ctx, req.(*AppointmentAttendingPhysicianReq))
+		return srv.(RegisterationServer).CreateAppointment(ctx, req.(*CreateAppointmentReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -199,20 +233,56 @@ func _Registeration_CancelAppointmentRegistration_Handler(srv interface{}, ctx c
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Registeration_GetAppointmentRegistrationById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetAppointmentRegistrationByIdReq)
+func _Registeration_GetAppointmentById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAppointmentByIdReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RegisterationServer).GetAppointmentRegistrationById(ctx, in)
+		return srv.(RegisterationServer).GetAppointmentById(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Registeration_GetAppointmentRegistrationById_FullMethodName,
+		FullMethod: Registeration_GetAppointmentById_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RegisterationServer).GetAppointmentRegistrationById(ctx, req.(*GetAppointmentRegistrationByIdReq))
+		return srv.(RegisterationServer).GetAppointmentById(ctx, req.(*GetAppointmentByIdReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Registeration_GetAttendingPhysicianByAppointmentId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAttendingPhysicianByAppointmentIdReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RegisterationServer).GetAttendingPhysicianByAppointmentId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Registeration_GetAttendingPhysicianByAppointmentId_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RegisterationServer).GetAttendingPhysicianByAppointmentId(ctx, req.(*GetAttendingPhysicianByAppointmentIdReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Registeration_GetAttendingPhysicianByIdNumber_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAttendingPhysicianByIdNumberReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RegisterationServer).GetAttendingPhysicianByIdNumber(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Registeration_GetAttendingPhysicianByIdNumber_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RegisterationServer).GetAttendingPhysicianByIdNumber(ctx, req.(*GetAttendingPhysicianByIdNumberReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -235,20 +305,20 @@ func _Registeration_OfficeList_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Registeration_OfficeDoctorList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(OfficeDoctorListReq)
+func _Registeration_GetOfficeDoctorListByIdTime_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OfficeDoctorListByIdTimeReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RegisterationServer).OfficeDoctorList(ctx, in)
+		return srv.(RegisterationServer).GetOfficeDoctorListByIdTime(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Registeration_OfficeDoctorList_FullMethodName,
+		FullMethod: Registeration_GetOfficeDoctorListByIdTime_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RegisterationServer).OfficeDoctorList(ctx, req.(*OfficeDoctorListReq))
+		return srv.(RegisterationServer).GetOfficeDoctorListByIdTime(ctx, req.(*OfficeDoctorListByIdTimeReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -279,24 +349,32 @@ var Registeration_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*RegisterationServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "AppointmentAttendingPhysician",
-			Handler:    _Registeration_AppointmentAttendingPhysician_Handler,
+			MethodName: "CreateAppointment",
+			Handler:    _Registeration_CreateAppointment_Handler,
 		},
 		{
 			MethodName: "CancelAppointmentRegistration",
 			Handler:    _Registeration_CancelAppointmentRegistration_Handler,
 		},
 		{
-			MethodName: "GetAppointmentRegistrationById",
-			Handler:    _Registeration_GetAppointmentRegistrationById_Handler,
+			MethodName: "GetAppointmentById",
+			Handler:    _Registeration_GetAppointmentById_Handler,
+		},
+		{
+			MethodName: "GetAttendingPhysicianByAppointmentId",
+			Handler:    _Registeration_GetAttendingPhysicianByAppointmentId_Handler,
+		},
+		{
+			MethodName: "GetAttendingPhysicianByIdNumber",
+			Handler:    _Registeration_GetAttendingPhysicianByIdNumber_Handler,
 		},
 		{
 			MethodName: "OfficeList",
 			Handler:    _Registeration_OfficeList_Handler,
 		},
 		{
-			MethodName: "OfficeDoctorList",
-			Handler:    _Registeration_OfficeDoctorList_Handler,
+			MethodName: "GetOfficeDoctorListByIdTime",
+			Handler:    _Registeration_GetOfficeDoctorListByIdTime_Handler,
 		},
 		{
 			MethodName: "DoctorDetails",

@@ -19,6 +19,7 @@ func (c *Registration) OfficeList(ctx context.Context, in *proto.Empty) (*proto.
 		list = append(list, &proto.DoctorOffice{
 			Id:         int32(v.ID),
 			OfficeName: v.OfficeName,
+			Pid:        int32(v.Pid),
 			Status:     int32(v.Status),
 		})
 	}
@@ -30,38 +31,28 @@ func (c *Registration) OfficeList(ctx context.Context, in *proto.Empty) (*proto.
 	}, nil
 }
 
-// 科室医生列表
-func (c *Registration) OfficeDoctorList(ctx context.Context, in *proto.OfficeDoctorListReq) (*proto.OfficeDoctorListRes, error) {
+// 排班科室医生列表
+func (c *Registration) GetOfficeDoctorListByIdTime(ctx context.Context, in *proto.OfficeDoctorListByIdTimeReq) (*proto.OfficeDoctorListByIdTimeRes, error) {
 	var (
-		doctorList []*proto.Doctor
+		doctorList []*proto.ShiftDoctor
 	)
-	res, err := mysql.GetOfficeDoctorList(int(in.OfficeId))
+	res, err := mysql.GetOfficeDoctorListByIdTime(int(in.OfficeId), in.ShiftTime)
 	if err != nil {
-		return &proto.OfficeDoctorListRes{}, err
+		return &proto.OfficeDoctorListByIdTimeRes{}, err
 	}
-	for _, v := range res.Doctor {
-		doctorList = append(doctorList, &proto.Doctor{
-			Id:          int32(v.ID),
-			DoctorName:  v.DoctorName,
-			Age:         int32(v.Age),
-			Sex:         int32(v.Sex),
-			Position:    v.Position,
-			Tag:         v.Tag,
-			Description: v.Description,
-			WorkAge:     int32(v.WorkAge),
-			WorkTime:    v.WorkTime,
-			OfficeId:    int32(v.OfficeID),
-			Status:      int32(v.Status),
+	for _, v := range res {
+		doctorList = append(doctorList, &proto.ShiftDoctor{
+			Id:       int32(v.ID),
+			OfficeId: int32(v.OfficeID),
+			DoctorId: int32(v.DoctorId),
+			Data:     v.Date,
+			Time:     int32(v.Time),
+			Count:    int32(v.Count),
+			Status:   int32(v.Status),
 		})
 	}
-	list := &proto.DoctorOffice{
-		Id:         int32(res.ID),
-		OfficeName: res.OfficeName,
-		Status:     int32(res.Status),
-		Doctor:     doctorList,
-	}
-	return &proto.OfficeDoctorListRes{
-		Data: list,
+	return &proto.OfficeDoctorListByIdTimeRes{
+		Data: doctorList,
 	}, nil
 }
 

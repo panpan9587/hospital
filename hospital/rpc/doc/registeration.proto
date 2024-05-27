@@ -6,16 +6,20 @@ option go_package = ".;proto";
 
 service Registeration {
   //挂号预约
-  rpc AppointmentAttendingPhysician(AppointmentAttendingPhysicianReq) returns(Empty);
+  rpc CreateAppointment(CreateAppointmentReq) returns(Empty);
   //取消预约
   rpc CancelAppointmentRegistration(CancelAppointmentRegistrationReq) returns(Empty);
   //获取预约信息
-  rpc GetAppointmentRegistrationById(GetAppointmentRegistrationByIdReq) returns(GetAppointmentRegistrationByIdRes);
+  rpc GetAppointmentById(GetAppointmentByIdReq) returns(GetAppointmentByIdRes);
+  //获取挂号信息  根据预约id
+  rpc GetAttendingPhysicianByAppointmentId(GetAttendingPhysicianByAppointmentIdReq) returns(GetAttendingPhysicianByAppointmentIdRes);
+  //获取挂号信息 根据身份证号
+  rpc GetAttendingPhysicianByIdNumber(GetAttendingPhysicianByIdNumberReq) returns(GetAttendingPhysicianByIdNumberRes);
   //------------------------------------------------//todo 医生模块--------------------------------------------------------
   //科室列表
   rpc OfficeList(Empty) returns(OfficeListRes);
-  //科室医生列表
-  rpc OfficeDoctorList(OfficeDoctorListReq) returns(OfficeDoctorListRes);
+  //排班科室医生列表
+  rpc GetOfficeDoctorListByIdTime(OfficeDoctorListByIdTimeReq) returns(OfficeDoctorListByIdTimeRes);
   //医生详情
   rpc DoctorDetails(DoctorDetailsReq) returns(DoctorDetailsRes);
 }
@@ -24,38 +28,76 @@ message Empty {
 
 }
 //预约
-message AppointmentAttendingPhysicianReq {
+message CreateAppointmentReq {
   int32 user_id = 10;
-  int32 doctor_id = 20;
-  string real_name = 30;
-  string id_number = 40;
-  string mobile = 50;
-  string appointment_data = 60;
-  int32 appointment_type = 70;
-  int32 office_id = 80;
-  int32 status = 90;
+  int32 office_id = 20;;
+  int32 appointment_type = 30;
+  string appointment_data = 50;
+  int32 status = 70;
+  int32 doctor_id = 40;
+  string real_name = 60;
+  string id_number = 80;
+  string mobile = 81;
+  int32 shift_id = 90;
 }
 //取消预约
 message CancelAppointmentRegistrationReq {
-  int32 appointment_id = 1;
+  int32 appointment_id = 10;
+  int32 shift_id = 20;
 }
 //获取预约信息
-message GetAppointmentRegistrationByIdReq {
-  int32 attending_physician_id = 1;
+message GetAppointmentByIdReq {
+  int32 appointment_id = 1;
+  string id_number = 2;
 }
-message GetAppointmentRegistrationByIdRes {
-  AttendingPhysician data = 1;
+message GetAppointmentByIdRes {
+  Appointment data = 10;
+}
+//获取挂号信息
+message GetAttendingPhysicianByAppointmentIdReq {
+  int32 appointment_id = 1;
+}
+message GetAttendingPhysicianByAppointmentIdRes {
+  AttendingPhysician data = 10;
+}
+//获取挂号信息 (根据身份证号）
+message GetAttendingPhysicianByIdNumberReq {
+  string id_number = 1;
+}
+message GetAttendingPhysicianByIdNumberRes {
+  repeated AttendingPhysician data = 10;
+}
+
+//------------------------------------------------//todo 医生模块--------------------------------------------------------
+//科室列表
+message OfficeListRes{
+  repeated DoctorOffice data = 10;
+}
+//排班科室医生列表
+message OfficeDoctorListByIdTimeReq{
+  int32 office_id = 10;
+  string shift_time = 20;
+}
+message OfficeDoctorListByIdTimeRes{
+  repeated ShiftDoctor data = 10;
+}
+//医生详情
+message DoctorDetailsReq{
+  int32 doctor_id = 10;
+}
+message DoctorDetailsRes{
+  Doctor data = 10;
 }
 
 
-//用户预约结构体
-message AppointmentRegistration {
-  int32 id = 1;
-  int32 user_id = 10;
-  int32 AppointmentType = 20;
-  string AppointmentDate = 40;
-  string AppointmentTime = 50;
-  int32 Status = 60;
+//用户预约
+message Appointment {
+  int32 id = 10;
+  int32 user_id = 20;
+  int32 appointment_type = 30;
+  string appointment_data = 50;
+  string appointment_time = 60;
+  int32 status = 70;
 }
 //用户挂号
 message AttendingPhysician {
@@ -66,36 +108,19 @@ message AttendingPhysician {
   int32 OfficeID = 50;;
   string RealName = 60;
   string IDNumber = 80;
+  string mobile = 81;
   string Symptoms = 90;
   string Diagnosis = 100;
   string Prescription = 110;
-}
-
-//------------------------------------------------//todo 医生模块--------------------------------------------------------
-//科室列表
-message OfficeListRes{
-  repeated DoctorOffice data = 10;
-}
-//科室医生列表
-message OfficeDoctorListReq{
-  int32 office_id  = 10;
-}
-message OfficeDoctorListRes{
-  DoctorOffice data = 10;
-}
-//医生详情
-message DoctorDetailsReq{
-  int32 doctor_id  = 10;
-}
-message DoctorDetailsRes{
-  Doctor data = 10;
+  int32 ShiftId = 120;
 }
 //科室
 message DoctorOffice{
   int32 id = 10;
   string office_name = 20;
   int32 status = 30;
-  repeated Doctor Doctor = 40;
+  int32 pid = 40;
+  repeated Doctor Doctor = 50;
 }
 //医生
 message Doctor {
@@ -110,4 +135,14 @@ message Doctor {
   string work_time = 90;
   int32 office_id = 100;
   int32 status = 110;
+}
+//排班医生
+message ShiftDoctor {
+  int32 id = 10;
+  int32 office_id = 20;
+  int32 doctor_id = 30;
+  string data = 40;
+  int32 time = 50;
+  int32 count = 60;
+  int32 status = 70;
 }

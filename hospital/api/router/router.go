@@ -2,7 +2,6 @@ package router
 
 import (
 	"demo/api/advisory"
-	_case "demo/api/case"
 	"demo/api/health"
 	"demo/api/registration"
 	"demo/api/user"
@@ -38,13 +37,14 @@ func initRouter(router *gin.Engine) {
 		}
 		registrations := v1.Group("/registration")
 		{
-			//预约
+			//挂号预约
 			registrations.POST("/add", registration.AddRegistration)
 			//取消预约
 			registrations.POST("/cancel", registration.CancelRegistration)
 			//获取预约信息
-			registrations.GET("/get/id", registration.GetRegistrationById)
-			//修改预约信息
+			registrations.GET("/get/appointment", registration.GetAppointmentById)
+			//根据身份证号获取挂号信息
+			registrations.GET("/get/attending/idNumber", registration.GetAttendingByIdNumber)
 		}
 		online := v1.Group("/advisory")
 		{
@@ -63,17 +63,17 @@ func initRouter(router *gin.Engine) {
 			//签到记录
 			healths.GET("/GetSignIn", health.GetSignIn)
 		}
-		cases := v1.Group("/cases")
-		{
-			cases.POST("/list", _case.CaseRecordList) //病历记录
-			cases.POST("/search", _case.SearchCase)   //搜索病历
-		}
+		//cases := v1.Group("/cases")
+		//{
+		//	cases.POST("/list", _case.CaseRecordList) //病历记录
+		//	cases.POST("/search", _case.SearchCase)   //搜索病历
+		//}
 		doctors := v1.Group("/doctor")
 		{
 			//科室列表
 			doctors.GET("/office/list", registration.OfficeList)
-			//科室医生列表
-			doctors.GET("/office/doctor/list", registration.OfficeDoctorList)
+			//排班科室医生列表
+			doctors.GET("/office/doctor/list/id/time", registration.OfficeDoctorListByIdTime)
 			//医生详情
 			doctors.GET("/doctor/details", registration.DoctorDetails)
 			//doctors.POST("/demo", registration.Demo)
