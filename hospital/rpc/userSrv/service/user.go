@@ -9,6 +9,7 @@ package service
 */
 import (
 	"context"
+	"demo/rpc/common"
 	"demo/rpc/model/mysql"
 	"demo/rpc/userSrv/etc"
 	proto "demo/rpc/userSrv/userclient"
@@ -20,6 +21,66 @@ import (
 
 type User struct {
 	proto.UnimplementedUserServer
+}
+
+func (u User) GetUserAuth(ctx context.Context, request *proto.GetUserAuthRequest) (*proto.GetUserAuthResponse, error) {
+	//TODO 获取用户实名信息
+	auth, err := mysql.GetUserAuth(int(request.UserId))
+	if err != nil {
+		zap.S().Info("获取用户实名信息失败", err)
+		return nil, errors.New("获取用户实名信息失败")
+	}
+	return &proto.GetUserAuthResponse{
+		AuthInfo: &proto.UserAuthInfo{
+			RealName: auth.RealName,
+			IdNumber: auth.IdNumber,
+			Status:   int32(auth.Status),
+		},
+	}, nil
+}
+
+func (u User) AddUserAuth(ctx context.Context, request *proto.AddUserAuthRequest) (*proto.AddUserAuthResponse, error) {
+	//TODO 实名认证接口
+	auth := mysql.UserAuth{
+		UserID:   int(request.UserId),
+		RealName: request.RealName,
+		IdNumber: request.IdNumber,
+	}
+	tx := mysql.DB.Begin()
+	res, err := common.AuthUser(auth.IdNumber, auth.RealName)
+	if err != nil {
+		tx.Rollback()
+		zap.S().Info("实名信息认证失败", err)
+		return nil, errors.New("实名信息认证失败")
+	}
+	if res.ErrorCode == 0 {
+		if res.Result.Isok {
+			tx.Rollback()
+			zap.S().Info("实名信息认证失败", err)
+			return nil, errors.New("实名信息认证失败")
+		}
+		err = tx.Create(&auth).Error
+		if err != nil {
+			tx.Rollback()
+			zap.S().Info("实名信息认证失败", err)
+			return nil, errors.New("实名信息认证失败")
+		}
+		err = tx.Model(mysql.User{}).Update("status", "3").Error
+		if err != nil {
+			tx.Rollback()
+			zap.S().Info("用户状态修改失败", err)
+			return nil, errors.New("获取用户状态失败")
+		}
+		tx.Commit()
+	}
+	// 同步修改用户状态
+	return &proto.AddUserAuthResponse{
+		AuthInfo: &proto.UserAuthInfo{
+			RealName: auth.RealName,
+			IdNumber: auth.IdNumber,
+			Status:   int32(auth.Status),
+		},
+	}, nil
 }
 
 func (u User) GetUserInfo(ctx context.Context, request *proto.GetUserInfoRequest) (*proto.GetUserInfoResponse, error) {

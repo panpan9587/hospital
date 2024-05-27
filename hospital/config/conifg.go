@@ -34,6 +34,13 @@ type Config struct {
 		DataId      string `yaml:"DataId"`
 		Group       string `yaml:"group"`
 	} `yaml:"NacosRpcRegistrationConfig"`
+	NacosRpcDiagnosisConfig struct {
+		NamespaceId string `yaml:"NamespaceId"`
+		Host        string `yaml:"host"`
+		Port        int    `yaml:"port"`
+		DataId      string `yaml:"DataId"`
+		Group       string `yaml:"group"`
+	} `yaml:"NacosRpcDiagnosisConfig"`
 	NacosRpcCaseConfig struct {
 		NamespaceId string `yaml:"NamespaceId"`
 		Host        string `yaml:"host"`
@@ -67,6 +74,13 @@ type Config struct {
 		Database   string `yaml:"database"`   //数据库
 		Collection string `yaml:"collection"` //集合
 	} `yaml:"mongodb"`
+	Rabbitmq struct {
+		Host     string `yaml:"host"`
+		Port     int    `yaml:"port"`
+		Username string `yaml:"username"` //用户名
+		Password string `yaml:"password"` //密码
+		Exchange string `yaml:"exchange"` //交换机
+	} `yaml:"rabbitmq"`
 	Es struct {
 		Host string `yaml:"host"`
 		Port int    `yaml:"port"`
@@ -81,7 +95,7 @@ var GlobalConfig Config
 
 // 初始化配置文件
 func init() {
-	viper.SetConfigFile("D:/github_daima/hospital/config/config.yaml")
+	viper.SetConfigFile("D:/go/src/hospital/hospital/config/config.yaml")
 	viper.ReadInConfig()
 	err := viper.Unmarshal(&GlobalConfig)
 	if err != nil {

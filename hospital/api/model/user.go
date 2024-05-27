@@ -32,3 +32,10 @@ type UpdatePassword struct {
 	Code   string `form:"code" json:"code" binding:"required"`
 	NewPwd string `form:"new_pwd" json:"new_pwd" binding:"required"`
 }
+
+// 用户实名认证信息,两要素实名
+
+type UserAuthReq struct {
+	RealName string `form:"real_name" json:"real_name" binding:"required"`
+	IdNumber string `form:"id_number" json:"id_number" binding:"required"`
+}

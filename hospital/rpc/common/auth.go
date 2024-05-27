@@ -12,6 +12,7 @@ import (
 	"crypto/sha1"
 	"demo/api/etc"
 	"encoding/base64"
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -21,7 +22,6 @@ import (
 	"time"
 )
 
-// ////////////////////////////////////////////////////////////////////////////////////////todo:
 type Response struct {
 	ErrorCode int    `json:"error_code"`
 	Reason    string `json:"reason"`
@@ -119,6 +119,7 @@ func AuthUser(cardNo, realName string) (res *Response, err error) {
 	if err != nil {
 		return nil, err
 	}
-	fmt.Println(string(bodyBytes))
-	return nil, err
+	var resp *Response
+	json.Unmarshal(bodyBytes, resp)
+	return resp, err
 }

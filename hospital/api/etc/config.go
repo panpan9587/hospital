@@ -27,6 +27,9 @@ type Config struct {
 	HealthSrv struct {
 		Name string `yaml:"Name"`
 	} `yaml:"health_srv"`
+	DiagnosisSrv struct {
+		Name string `yaml:"Name"`
+	} `yaml:"diagnosis_srv"`
 	SearchSrv struct {
 		Name string `yaml:"Name"`
 	} `yaml:"search_srv"`

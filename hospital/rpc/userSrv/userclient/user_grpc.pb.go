@@ -25,6 +25,8 @@ const (
 	User_UpdateUser_FullMethodName     = "/user.User/UpdateUser"
 	User_DeleteUser_FullMethodName     = "/user.User/DeleteUser"
 	User_UpdatePassword_FullMethodName = "/user.User/UpdatePassword"
+	User_AddUserAuth_FullMethodName    = "/user.User/AddUserAuth"
+	User_GetUserAuth_FullMethodName    = "/user.User/GetUserAuth"
 	User_GetHealthList_FullMethodName  = "/user.User/GetHealthList"
 )
 
@@ -43,6 +45,10 @@ type UserClient interface {
 	DeleteUser(ctx context.Context, in *DeleteUserRequest, opts ...grpc.CallOption) (*DeleteUserResponse, error)
 	// 修改密码，通过调用手机号验证码
 	UpdatePassword(ctx context.Context, in *UpdatePasswordRequest, opts ...grpc.CallOption) (*UpdatePasswordResponse, error)
+	// 用户实名认证
+	AddUserAuth(ctx context.Context, in *AddUserAuthRequest, opts ...grpc.CallOption) (*AddUserAuthResponse, error)
+	// 查看用户实名信息
+	GetUserAuth(ctx context.Context, in *GetUserAuthRequest, opts ...grpc.CallOption) (*GetUserAuthResponse, error)
 	// 获取个人体检记录
 	GetHealthList(ctx context.Context, in *GetHealthListRequest, opts ...grpc.CallOption) (*GetHealthListResponse, error)
 }
@@ -109,6 +115,24 @@ func (c *userClient) UpdatePassword(ctx context.Context, in *UpdatePasswordReque
 	return out, nil
 }
 
+func (c *userClient) AddUserAuth(ctx context.Context, in *AddUserAuthRequest, opts ...grpc.CallOption) (*AddUserAuthResponse, error) {
+	out := new(AddUserAuthResponse)
+	err := c.cc.Invoke(ctx, User_AddUserAuth_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) GetUserAuth(ctx context.Context, in *GetUserAuthRequest, opts ...grpc.CallOption) (*GetUserAuthResponse, error) {
+	out := new(GetUserAuthResponse)
+	err := c.cc.Invoke(ctx, User_GetUserAuth_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *userClient) GetHealthList(ctx context.Context, in *GetHealthListRequest, opts ...grpc.CallOption) (*GetHealthListResponse, error) {
 	out := new(GetHealthListResponse)
 	err := c.cc.Invoke(ctx, User_GetHealthList_FullMethodName, in, out, opts...)
@@ -133,6 +157,10 @@ type UserServer interface {
 	DeleteUser(context.Context, *DeleteUserRequest) (*DeleteUserResponse, error)
 	// 修改密码，通过调用手机号验证码
 	UpdatePassword(context.Context, *UpdatePasswordRequest) (*UpdatePasswordResponse, error)
+	// 用户实名认证
+	AddUserAuth(context.Context, *AddUserAuthRequest) (*AddUserAuthResponse, error)
+	// 查看用户实名信息
+	GetUserAuth(context.Context, *GetUserAuthRequest) (*GetUserAuthResponse, error)
 	// 获取个人体检记录
 	GetHealthList(context.Context, *GetHealthListRequest) (*GetHealthListResponse, error)
 	mustEmbedUnimplementedUserServer()
@@ -159,6 +187,12 @@ func (UnimplementedUserServer) DeleteUser(context.Context, *DeleteUserRequest) (
 }
 func (UnimplementedUserServer) UpdatePassword(context.Context, *UpdatePasswordRequest) (*UpdatePasswordResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdatePassword not implemented")
+}
+func (UnimplementedUserServer) AddUserAuth(context.Context, *AddUserAuthRequest) (*AddUserAuthResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddUserAuth not implemented")
+}
+func (UnimplementedUserServer) GetUserAuth(context.Context, *GetUserAuthRequest) (*GetUserAuthResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserAuth not implemented")
 }
 func (UnimplementedUserServer) GetHealthList(context.Context, *GetHealthListRequest) (*GetHealthListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetHealthList not implemented")
@@ -284,6 +318,42 @@ func _User_UpdatePassword_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
+func _User_AddUserAuth_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddUserAuthRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).AddUserAuth(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_AddUserAuth_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).AddUserAuth(ctx, req.(*AddUserAuthRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_GetUserAuth_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserAuthRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).GetUserAuth(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_GetUserAuth_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).GetUserAuth(ctx, req.(*GetUserAuthRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _User_GetHealthList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetHealthListRequest)
 	if err := dec(in); err != nil {
@@ -332,6 +402,14 @@ var User_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdatePassword",
 			Handler:    _User_UpdatePassword_Handler,
+		},
+		{
+			MethodName: "AddUserAuth",
+			Handler:    _User_AddUserAuth_Handler,
+		},
+		{
+			MethodName: "GetUserAuth",
+			Handler:    _User_GetUserAuth_Handler,
 		},
 		{
 			MethodName: "GetHealthList",

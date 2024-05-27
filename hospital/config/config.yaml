@@ -31,6 +31,13 @@ NacosRpcCaseConfig:
   DataId: hospital_rpc_case
   group: dev
 
+NacosRpcDiagnosisConfig:
+  NamespaceId: dfb27e84-14e7-4bc1-ad5b-4c8dd4516d42
+  host: 124.223.203.56
+  port: 8848
+  DataId: hospital_rpc_diagnosis
+  group: dev
+
 consul:
   host: 124.223.203.56
   port: 8500
@@ -57,6 +64,14 @@ redis:
   host: 124.223.203.56
   port: 6379
   db: 3
+
+rabbitmq:
+  host: 124.223.203.56
+  port: 5672
+  username: guest
+  password: guest
+  exchange: doctor
+
 
 log:
   path: ../zaplog/log.log

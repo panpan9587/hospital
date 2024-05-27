@@ -42,6 +42,22 @@ func AddUser(user *User) (err error) {
 	return
 }
 
+func AddUserAuth(auth *UserAuth) (err error) {
+	err = DB.Create(&auth).Error
+	return
+}
+
+// 获取用户实名信息
+func GetUserAuth(userid int) (auth *UserAuth, err error) {
+	err = DB.Where("user_id =?", userid).First(&auth).Error
+	return
+}
+
+func UpdateUserAuth(auth *UserAuth) (err error) {
+	err = DB.Save(&auth).Error
+	return
+}
+
 func GetUserByUsername(username string) (user *User, err error) {
 	err = DB.Where("username=?", username).First(&user).Error
 	return

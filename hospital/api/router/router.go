@@ -3,6 +3,7 @@ package router
 import (
 	"demo/api/advisory"
 	_case "demo/api/case"
+	"demo/api/diagnosis"
 	"demo/api/health"
 	"demo/api/registration"
 	"demo/api/user"
@@ -45,6 +46,7 @@ func initRouter(router *gin.Engine) {
 			//获取预约信息
 			registrations.GET("/get/id", registration.GetRegistrationById)
 			//修改预约信息
+			registrations.POST("/update", registration.UpdateRegistrationMsg)
 		}
 		online := v1.Group("/advisory")
 		{
@@ -77,6 +79,11 @@ func initRouter(router *gin.Engine) {
 			//医生详情
 			doctors.GET("/doctor/details", registration.DoctorDetails)
 			//doctors.POST("/demo", registration.Demo)
+		}
+		//在线问诊
+		chats := v1.Group("/diagnosis")
+		{
+			chats.GET("/chat", diagnosis.Chat) //在线聊天室
 		}
 	}
 

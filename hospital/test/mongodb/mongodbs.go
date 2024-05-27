@@ -41,6 +41,7 @@ func main() {
 		"content": 1,
 		"result":  1,
 	}
+	collection.InsertOne(context.Background(), projection)
 	// 执行查询操作
 	cursor, err := collection.Find(context.Background(), filter, options.Find().SetProjection(projection))
 	if err != nil {
