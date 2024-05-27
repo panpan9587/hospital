@@ -18,7 +18,3 @@ func GetOfficeList() ([]*DoctorOffice, error) {
 	var list []*DoctorOffice
 	return list, DB.Find(&list).Error
 }
-func GetOfficeDoctorList(id int) (*DoctorOffice, error) {
-	var list = new(DoctorOffice)
-	return list, DB.Preload("Doctor").Where("id = ?", id).First(&list).Error
-}

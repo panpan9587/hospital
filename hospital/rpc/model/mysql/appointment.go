@@ -6,7 +6,6 @@ import "gorm.io/gorm"
 type Appointment struct {
 	UserID          int    `gorm:"type:int(11);not null" json:"user_id"`
 	AppointmentType int    `gorm:"type:tinyint(1);not null;check:status IN (1,2);comment:1：代表预约的是体检 2：代表预约挂号" json:"appointment_type"`
-	Mobile          string `gorm:"type:varchar(20);not null" json:"mobile"`
 	AppointmentData string `gorm:"type:varchar(20);not null" json:"appointment_data"`
 	AppointmentTime string `gorm:"type:varchar(20);not null" son:"appointment_time"`
 	Status          int    `gorm:"type:tinyint(1);not null;check:status IN (1,2)comment:1:已预约 2:已处理" json:"status"`
@@ -15,6 +14,10 @@ type Appointment struct {
 
 func (Appointment) TableName() string {
 	return "appointment"
+}
+func GetAppointmentById(db *gorm.DB, id int) (*Appointment, error) {
+	appointment := new(Appointment)
+	return appointment, db.Where("id = ?", id).First(appointment).Error
 }
 func CreateAppointment(db *gorm.DB, appointment *Appointment) error {
 	return db.Create(appointment).Error

@@ -19,7 +19,7 @@ type Registration struct {
 	proto.UnimplementedRegisterationServer
 }
 
-func (c *Registration) AppointmentAttendingPhysician(ctx context.Context, in *proto.AppointmentAttendingPhysicianReq) (*proto.Empty, error) {
+func (c *Registration) CreateAppointment(ctx context.Context, in *proto.CreateAppointmentReq) (*proto.Empty, error) {
 	parsedTime, err := time.Parse(time.DateTime, in.AppointmentData)
 	if err != nil {
 		fmt.Println("解析时间出错:", err)
@@ -30,7 +30,6 @@ func (c *Registration) AppointmentAttendingPhysician(ctx context.Context, in *pr
 		appointment = &mysql.Appointment{
 			UserID:          int(in.UserId),
 			AppointmentType: int(in.AppointmentType),
-			Mobile:          in.Mobile,
 			AppointmentData: parsedTime.Format(time.DateOnly),
 			AppointmentTime: parsedTime.Format(time.TimeOnly),
 			Status:          int(in.Status),
