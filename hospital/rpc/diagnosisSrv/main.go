@@ -1,4 +1,4 @@
-package diagnosisSrv
+package main
 
 import (
 	"demo/consul"

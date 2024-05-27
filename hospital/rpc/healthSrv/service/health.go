@@ -14,7 +14,6 @@ type HealthService struct {
 func (h *HealthService) GetAppointment(ctx context.Context, in *proto.GetAppointmentReq) (*proto.GetAppointmentResp, error) {
 	var app mysql.Appointment
 	app.UserID = int(in.UserID)
-	app.Mobile = in.Mobile
 	app.AppointmentData = in.AppointmentData
 	app.AppointmentTime = in.AppointmentTime
 	app.AppointmentType = int(in.AppointmentType)
@@ -27,7 +26,6 @@ func (h *HealthService) GetAppointment(ctx context.Context, in *proto.GetAppoint
 		ID:              int64(app.ID),
 		UserID:          int64(app.UserID),
 		AppointmentType: int64(app.AppointmentType),
-		Mobile:          app.Mobile,
 		AppointmentData: app.AppointmentData,
 		AppointmentTime: app.AppointmentTime,
 		Status:          int64(app.Status),
@@ -144,7 +142,7 @@ func (h *HealthService) GetDoctorOffice(ctx context.Context, in *proto.GetDoctor
 		return nil, err
 	}
 	return &proto.GetDoctorOfficeResp{DoctorOffice: &proto.DoctorOfficeInfo{
-		ID:         office.Id,
+		ID:         int64(office.ID),
 		OfficeName: office.OfficeName,
 		Status:     int64(office.Status),
 	}}, nil

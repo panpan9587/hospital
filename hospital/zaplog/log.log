@@ -237,3 +237,15 @@
 2024-05-27T19:44:35.980+0800	INFO	router/httpserver.go:36	API 服务启动8851
 2024-05-27T19:44:39.151+0800	INFO	registerationSrv/main.go:28	服务已注册，无需重复注册
 2024-05-27T19:44:39.151+0800	INFO	registerationSrv/main.go:38	User Srv 服务启动8854
+2024-05-27T21:05:19.720+0800	INFO	registerationSrv/main.go:28	服务已注册，无需重复注册
+2024-05-27T21:05:19.721+0800	INFO	registerationSrv/main.go:38	User Srv 服务启动8854
+2024-05-27T21:17:19.496+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-27T21:17:19.496+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-27T21:18:05.193+0800	INFO	userSrv/main.go:28	服务已注册，无需重复注册
+2024-05-27T21:18:05.194+0800	INFO	userSrv/main.go:38	User Srv 服务启动8852
+2024-05-27T21:19:52.147+0800	INFO	healthSrv/main.go:28	服务已注册，无需重复注册
+2024-05-27T21:19:52.147+0800	INFO	healthSrv/main.go:38	User Srv 服务启动8855
+2024-05-27T21:20:16.219+0800	INFO	advisorySrv/main.go:30	服务已注册，无需重复注册
+2024-05-27T21:20:16.219+0800	INFO	advisorySrv/main.go:40	advisory Srv 服务启动8853
+2024-05-27T21:23:30.249+0800	INFO	diagnosisSrv/main.go:28	服务已注册，无需重复注册
+2024-05-27T21:23:30.250+0800	INFO	diagnosisSrv/main.go:38	Diagnosis Srv 服务启动8857
