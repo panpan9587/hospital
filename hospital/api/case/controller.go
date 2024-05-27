@@ -35,24 +35,24 @@ func CaseRecordList(ctx *gin.Context) {
 
 // SearchCase 搜索病历记录
 func SearchCase(ctx *gin.Context) {
-	content := ctx.PostForm("content")
 	index := ctx.PostForm("index")
+	content := ctx.PostForm("content")
 	res, err := CaseSrv.SearchCaseRecord(ctx, &proto.SearchCaseRecordReq{
-		Content: content,
 		Index:   index,
+		Content: content,
 	})
 	if err != nil {
-		// 处理调用失败情况
+		//处理调用失败情况
 		ctx.JSON(http.StatusInternalServerError, model.Response{
 			Code:    http.StatusInternalServerError,
-			Message: err.Error(),
+			Message: fmt.Sprintf("调用SearchCaseRecord失败的原因：%s", err.Error()),
 		})
 		return
 	}
-	//返回成功的响应
+	//返回成功响应
 	ctx.JSON(http.StatusOK, model.Response{
 		Code:    http.StatusOK,
 		Message: "success",
-		Data:    res.Result,
+		Data:    res,
 	})
 }

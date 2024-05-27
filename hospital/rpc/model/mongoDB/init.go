@@ -28,11 +28,11 @@ func init() {
 	clientOptions := options.Client().ApplyURI(dsn)
 
 	// 设置连接池大小
-	clientOptions.SetMaxPoolSize(100) // 设置连接池大小为100，根据你的需求调整
+	clientOptions.SetMaxPoolSize(100) // 设置连接池大小为100
 
 	// 设置超时设置
-	clientOptions.SetConnectTimeout(5 * time.Second) // 连接超时时间为5秒，根据你的需求调整
-	clientOptions.SetSocketTimeout(30 * time.Second) // Socket超时时间为30秒，根据你的需求调整
+	clientOptions.SetConnectTimeout(5 * time.Second) // 连接超时时间为5秒
+	clientOptions.SetSocketTimeout(30 * time.Second) // Socket超时时间为30秒
 
 	// 连接到 MongoDB
 	client, err := mongo.Connect(context.Background(), clientOptions)

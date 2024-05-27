@@ -178,3 +178,163 @@
 2024-05-24T19:11:39.268+0800	INFO	caseSrv/main.go:40	case Srv 服务启动8856
 2024-05-24T19:11:47.812+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
 2024-05-24T19:11:47.812+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-24T20:30:30.735+0800	INFO	advisorySrv/main.go:30	服务已注册，无需重复注册
+2024-05-24T20:30:30.735+0800	INFO	advisorySrv/main.go:40	advisory Srv 服务启动8853
+2024-05-24T20:30:55.284+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-24T20:30:55.284+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-25T07:00:53.820+0800	INFO	advisorySrv/main.go:30	服务已注册，无需重复注册
+2024-05-25T07:00:53.821+0800	INFO	advisorySrv/main.go:40	advisory Srv 服务启动8853
+2024-05-25T07:01:11.303+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-25T07:01:11.303+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-25T07:09:02.281+0800	INFO	caseSrv/main.go:30	服务已注册，无需重复注册
+2024-05-25T07:09:02.282+0800	INFO	caseSrv/main.go:40	case Srv 服务启动8856
+2024-05-25T07:10:26.058+0800	INFO	caseSrv/main.go:30	服务已注册，无需重复注册
+2024-05-25T07:10:26.059+0800	INFO	caseSrv/main.go:40	case Srv 服务启动8856
+2024-05-25T07:10:36.002+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-25T07:10:36.002+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-25T07:12:10.510+0800	INFO	caseSrv/main.go:30	服务已注册，无需重复注册
+2024-05-25T07:12:10.510+0800	INFO	caseSrv/main.go:40	case Srv 服务启动8856
+2024-05-25T07:12:24.700+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-25T07:12:24.700+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-25T07:13:26.614+0800	INFO	caseSrv/main.go:30	服务已注册，无需重复注册
+2024-05-25T07:13:26.615+0800	INFO	caseSrv/main.go:40	case Srv 服务启动8856
+2024-05-25T07:13:34.714+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-25T07:13:34.714+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-25T10:46:05.738+0800	INFO	advisorySrv/main.go:30	服务已注册，无需重复注册
+2024-05-25T10:46:05.739+0800	INFO	advisorySrv/main.go:40	advisory Srv 服务启动8853
+2024-05-25T11:40:47.961+0800	INFO	advisorySrv/main.go:30	服务已注册，无需重复注册
+2024-05-25T11:40:47.962+0800	INFO	advisorySrv/main.go:40	advisory Srv 服务启动8853
+2024-05-25T11:40:59.078+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-25T11:40:59.078+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-25T11:42:01.201+0800	INFO	caseSrv/main.go:30	服务已注册，无需重复注册
+2024-05-25T11:42:01.202+0800	INFO	caseSrv/main.go:40	case Srv 服务启动8856
+2024-05-25T11:42:56.595+0800	INFO	caseSrv/main.go:30	服务已注册，无需重复注册
+2024-05-25T11:42:56.595+0800	INFO	caseSrv/main.go:40	case Srv 服务启动8856
+2024-05-25T11:43:04.858+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-25T11:43:04.858+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-26T18:45:59.619+0800	INFO	advisorySrv/main.go:30	服务已注册，无需重复注册
+2024-05-26T18:45:59.620+0800	INFO	advisorySrv/main.go:40	advisory Srv 服务启动8853
+2024-05-26T18:46:17.593+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-26T18:46:17.593+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-26T18:51:18.756+0800	INFO	caseSrv/main.go:30	服务已注册，无需重复注册
+2024-05-26T18:51:18.757+0800	INFO	caseSrv/main.go:40	case Srv 服务启动8856
+2024-05-26T18:51:30.710+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-26T18:51:30.710+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-26T18:53:15.801+0800	INFO	caseSrv/main.go:30	服务已注册，无需重复注册
+2024-05-26T18:53:15.802+0800	INFO	caseSrv/main.go:40	case Srv 服务启动8856
+2024-05-26T18:53:24.555+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-26T18:53:24.555+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-26T19:02:58.673+0800	INFO	caseSrv/main.go:30	服务已注册，无需重复注册
+2024-05-26T19:02:58.674+0800	INFO	caseSrv/main.go:40	case Srv 服务启动8856
+2024-05-26T19:03:08.665+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-26T19:03:08.665+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-26T19:14:59.314+0800	INFO	caseSrv/main.go:30	服务已注册，无需重复注册
+2024-05-26T19:14:59.315+0800	INFO	caseSrv/main.go:40	case Srv 服务启动8856
+2024-05-26T19:17:28.136+0800	INFO	caseSrv/main.go:30	服务已注册，无需重复注册
+2024-05-26T19:17:28.136+0800	INFO	caseSrv/main.go:40	case Srv 服务启动8856
+2024-05-26T19:17:42.376+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-26T19:17:42.376+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-26T19:24:34.390+0800	INFO	caseSrv/main.go:30	服务已注册，无需重复注册
+2024-05-26T19:24:34.391+0800	INFO	caseSrv/main.go:40	case Srv 服务启动8856
+2024-05-26T19:24:43.769+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-26T19:24:43.769+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-26T19:29:39.461+0800	INFO	caseSrv/main.go:30	服务已注册，无需重复注册
+2024-05-26T19:29:39.461+0800	INFO	caseSrv/main.go:40	case Srv 服务启动8856
+2024-05-26T19:30:36.655+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-26T19:30:36.655+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-26T19:33:31.926+0800	INFO	caseSrv/main.go:30	服务已注册，无需重复注册
+2024-05-26T19:33:31.927+0800	INFO	caseSrv/main.go:40	case Srv 服务启动8856
+2024-05-26T19:33:40.664+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-26T19:33:40.664+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-26T19:40:37.629+0800	INFO	caseSrv/main.go:30	服务已注册，无需重复注册
+2024-05-26T19:40:37.630+0800	INFO	caseSrv/main.go:40	case Srv 服务启动8856
+2024-05-26T19:40:48.981+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-26T19:40:48.981+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-26T19:41:47.168+0800	INFO	caseSrv/main.go:30	服务已注册，无需重复注册
+2024-05-26T19:41:47.168+0800	INFO	caseSrv/main.go:40	case Srv 服务启动8856
+2024-05-26T19:41:57.929+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-26T19:41:57.929+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-26T19:43:09.999+0800	INFO	caseSrv/main.go:30	服务已注册，无需重复注册
+2024-05-26T19:43:10.000+0800	INFO	caseSrv/main.go:40	case Srv 服务启动8856
+2024-05-26T19:51:02.492+0800	INFO	caseSrv/main.go:30	服务已注册，无需重复注册
+2024-05-26T19:51:02.492+0800	INFO	caseSrv/main.go:40	case Srv 服务启动8856
+2024-05-26T19:51:14.272+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-26T19:51:14.272+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-26T19:54:09.971+0800	INFO	caseSrv/main.go:30	服务已注册，无需重复注册
+2024-05-26T19:54:09.971+0800	INFO	caseSrv/main.go:40	case Srv 服务启动8856
+2024-05-26T19:54:17.719+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-26T19:54:17.719+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-26T19:54:23.851+0800	INFO	service/case.go:25	查询失败的原因:::elastic: Error 404 (Not Found): no such index [users] [type=index_not_found_exception]
+2024-05-26T19:55:34.975+0800	INFO	caseSrv/main.go:30	服务已注册，无需重复注册
+2024-05-26T19:55:34.975+0800	INFO	caseSrv/main.go:40	case Srv 服务启动8856
+2024-05-26T19:55:43.438+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-26T19:55:43.438+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-26T19:57:38.489+0800	INFO	caseSrv/main.go:30	服务已注册，无需重复注册
+2024-05-26T19:57:38.490+0800	INFO	caseSrv/main.go:40	case Srv 服务启动8856
+2024-05-26T19:57:49.216+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-26T19:57:49.218+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-26T20:07:33.165+0800	INFO	caseSrv/main.go:30	服务已注册，无需重复注册
+2024-05-26T20:07:33.165+0800	INFO	caseSrv/main.go:40	case Srv 服务启动8856
+2024-05-26T20:07:42.027+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-26T20:07:42.027+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-26T20:15:28.290+0800	INFO	caseSrv/main.go:30	服务已注册，无需重复注册
+2024-05-26T20:15:28.290+0800	INFO	caseSrv/main.go:40	case Srv 服务启动8856
+2024-05-26T20:16:15.930+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-26T20:16:15.930+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-26T20:17:10.985+0800	INFO	caseSrv/main.go:30	服务已注册，无需重复注册
+2024-05-26T20:17:10.986+0800	INFO	caseSrv/main.go:40	case Srv 服务启动8856
+2024-05-26T20:17:18.577+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-26T20:17:18.577+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-26T20:22:22.298+0800	INFO	caseSrv/main.go:30	服务已注册，无需重复注册
+2024-05-26T20:22:22.298+0800	INFO	caseSrv/main.go:40	case Srv 服务启动8856
+2024-05-26T20:22:40.756+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-26T20:22:40.756+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-26T20:23:51.990+0800	INFO	caseSrv/main.go:30	服务已注册，无需重复注册
+2024-05-26T20:23:51.990+0800	INFO	caseSrv/main.go:40	case Srv 服务启动8856
+2024-05-26T20:34:33.651+0800	INFO	caseSrv/main.go:30	服务已注册，无需重复注册
+2024-05-26T20:34:33.652+0800	INFO	caseSrv/main.go:40	case Srv 服务启动8856
+2024-05-26T20:34:44.310+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-26T20:34:44.310+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-26T20:35:27.867+0800	INFO	caseSrv/main.go:30	服务已注册，无需重复注册
+2024-05-26T20:35:27.867+0800	INFO	caseSrv/main.go:40	case Srv 服务启动8856
+2024-05-26T20:35:41.325+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-26T20:35:41.326+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-26T20:52:08.125+0800	INFO	caseSrv/main.go:30	服务已注册，无需重复注册
+2024-05-26T20:52:08.126+0800	INFO	caseSrv/main.go:40	case Srv 服务启动8856
+2024-05-26T20:52:31.849+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-26T20:52:31.849+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-26T20:52:40.066+0800	INFO	service/case.go:25	查询失败的原因:::elastic: Error 404 (Not Found): no such index [users] [type=index_not_found_exception]
+2024-05-26T21:07:23.960+0800	INFO	advisorySrv/main.go:30	服务已注册，无需重复注册
+2024-05-26T21:07:23.961+0800	INFO	advisorySrv/main.go:40	advisory Srv 服务启动8853
+2024-05-26T21:07:39.714+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-26T21:07:39.714+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-26T21:09:00.224+0800	INFO	caseSrv/main.go:30	服务已注册，无需重复注册
+2024-05-26T21:09:00.225+0800	INFO	caseSrv/main.go:40	case Srv 服务启动8856
+2024-05-26T21:09:08.152+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-26T21:09:08.152+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-26T21:19:49.424+0800	INFO	advisorySrv/main.go:30	服务已注册，无需重复注册
+2024-05-26T21:19:49.424+0800	INFO	advisorySrv/main.go:40	advisory Srv 服务启动8853
+2024-05-26T21:19:57.957+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-26T21:19:57.957+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-27T10:26:29.715+0800	INFO	caseSrv/main.go:30	服务已注册，无需重复注册
+2024-05-27T10:26:29.716+0800	INFO	caseSrv/main.go:40	case Srv 服务启动8856
+2024-05-27T10:26:57.752+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-27T10:26:57.752+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-27T10:27:06.741+0800	INFO	service/case.go:25	查询失败的原因:::elastic: Error 404 (Not Found): no such index [users] [type=index_not_found_exception]
+2024-05-27T10:27:30.979+0800	INFO	service/case.go:25	查询失败的原因:::elastic: Error 404 (Not Found): no such index [users] [type=index_not_found_exception]
+2024-05-27T10:28:27.298+0800	INFO	caseSrv/main.go:30	服务已注册，无需重复注册
+2024-05-27T10:28:27.299+0800	INFO	caseSrv/main.go:40	case Srv 服务启动8856
+2024-05-27T10:28:35.596+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-27T10:28:35.596+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-27T10:39:26.812+0800	INFO	caseSrv/main.go:30	服务已注册，无需重复注册
+2024-05-27T10:39:26.813+0800	INFO	caseSrv/main.go:40	case Srv 服务启动8856
+2024-05-27T10:40:05.640+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-27T10:40:05.640+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-27T10:48:11.583+0800	INFO	caseSrv/main.go:30	服务已注册，无需重复注册
+2024-05-27T10:48:11.584+0800	INFO	caseSrv/main.go:40	case Srv 服务启动8856
+2024-05-27T10:49:19.369+0800	INFO	caseSrv/main.go:30	服务已注册，无需重复注册
+2024-05-27T10:49:19.370+0800	INFO	caseSrv/main.go:40	case Srv 服务启动8856
+2024-05-27T10:53:19.734+0800	INFO	caseSrv/main.go:30	服务已注册，无需重复注册
+2024-05-27T10:53:19.734+0800	INFO	caseSrv/main.go:40	case Srv 服务启动8856
+2024-05-27T10:53:46.982+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-27T10:53:46.982+0800	INFO	router/httpserver.go:36	API 服务启动8851

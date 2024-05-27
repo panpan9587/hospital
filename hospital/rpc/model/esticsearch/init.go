@@ -5,11 +5,9 @@ import (
 	"demo/config"
 	"encoding/json"
 	"fmt"
-	"math"
-
-	"go.uber.org/zap"
-
 	"github.com/olivere/elastic/v7"
+	"go.uber.org/zap"
+	"math"
 )
 
 var (
@@ -37,7 +35,7 @@ func QueryEs(index string, query elastic.Query, page int) (int, int, []map[strin
 	}
 
 	//每页展示条数
-	size := 1
+	size := 2
 	//总条数
 	count, _ := ES.Count().Index(index).Query(query).Do(context.Background())
 	//总页数
@@ -59,12 +57,18 @@ func QueryEs(index string, query elastic.Query, page int) (int, int, []map[strin
 	return int(totalPage), page, list, nil
 }
 
-// 单条件查询
+// 条件查询
 func FilterSearch(index string, content string) ([]map[string]interface{}, error) {
-	res, err := ES.Search().Index(index).Query(elastic.NewQueryStringQuery(content)).Do(context.Background())
+	// 构建查询条件
+	query := elastic.NewBoolQuery().Must(
+		elastic.NewMatchPhraseQuery("content", content),
+	)
+
+	res, err := ES.Search().Index(index).Query(query).Do(context.Background())
 	if err != nil {
 		return nil, err
 	}
+
 	var list []map[string]interface{}
 	for _, hit := range res.Hits.Hits {
 		data := make(map[string]interface{})
