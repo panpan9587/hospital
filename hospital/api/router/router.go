@@ -30,7 +30,6 @@ func initRouter(router *gin.Engine) {
 			// todo：中间件校验手机号是否一致
 			users.POST("/update", user.UpdateUser)
 			users.POST("/auth", user.AddUserAuth)                //用户实名认证
-			users.POST("/update/auth", user.UpdateUserAuth)      //修改用户实名信息
 			users.POST("/get/auth", user.GetUserAuth)            //查看用户实名信息
 			users.POST("/delete", user.DeleteUser)               //注销用户
 			users.GET("/registration", user.GetRegistrationList) //查看个人的挂号纪录
@@ -45,8 +44,6 @@ func initRouter(router *gin.Engine) {
 			registrations.POST("/cancel", registration.CancelRegistration)
 			//获取预约信息
 			registrations.GET("/get/id", registration.GetRegistrationById)
-			//修改预约信息
-			registrations.POST("/update", registration.UpdateRegistrationMsg)
 		}
 		online := v1.Group("/advisory")
 		{
