@@ -34,6 +34,13 @@ type Config struct {
 		DataId      string `yaml:"DataId"`
 		Group       string `yaml:"group"`
 	} `yaml:"NacosRpcRegistrationConfig"`
+	NacosRpcHealthConfig struct {
+		NamespaceId string `yaml:"NamespaceId"`
+		Host        string `yaml:"host"`
+		Port        int    `yaml:"port"`
+		DataId      string `yaml:"DataId"`
+		Group       string `yaml:"group"`
+	} `yaml:"NacosRpcHealthConfig"`
 	NacosRpcDiagnosisConfig struct {
 		NamespaceId string `yaml:"NamespaceId"`
 		Host        string `yaml:"host"`
@@ -48,6 +55,8 @@ type Config struct {
 		DataId      string `yaml:"DataId"`
 		Group       string `yaml:"group"`
 	} `yaml:"NacosRpcCaseConfig"`
+
+
 	Consul struct {
 		Host string `yaml:"host"`
 		Port int    `yaml:"port"`
@@ -61,11 +70,7 @@ type Config struct {
 		MaxIdleConn int    `yaml:"MaxIdleConn"`
 		MaxOpenConn int    `yaml:"MaxOpenConn"`
 	} `yaml:"mysql"`
-	Redis struct {
-		Host string `yaml:"host"`
-		Port int    `yaml:"port"`
-		Db   int    `yaml:"db"`
-	} `yaml:"redis"`
+
 	Mongodb struct {
 		Username   string `yaml:"username"`   //用户名
 		Password   string `yaml:"password"`   //密码
@@ -74,6 +79,11 @@ type Config struct {
 		Database   string `yaml:"database"`   //数据库
 		Collection string `yaml:"collection"` //集合
 	} `yaml:"mongodb"`
+	Redis struct {
+		Host string `yaml:"host"`
+		Port int    `yaml:"port"`
+		Db   int    `yaml:"db"`
+	} `yaml:"redis"`
 	Rabbitmq struct {
 		Host     string `yaml:"host"`
 		Port     int    `yaml:"port"`
@@ -85,6 +95,7 @@ type Config struct {
 		Host string `yaml:"host"`
 		Port int    `yaml:"port"`
 	} `yaml:"es"`
+
 	Log struct {
 		Path  string `yaml:"path"`
 		Level string `yaml:"level"`

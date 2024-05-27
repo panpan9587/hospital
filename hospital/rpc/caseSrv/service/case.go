@@ -56,8 +56,8 @@ func (c Case) SearchCaseRecord(ctx context.Context, in *proto.SearchCaseRecordRe
 
 	// 遍历查询结果，将每个结果连接成一个字符串
 	for _, v := range status {
-		result := v["result"].(string)
-		res.WriteString(result)
+		reses := v["result"].(string)
+		res.WriteString(reses)
 		res.WriteString(" ") // 可能需要分隔符，这里假设用空格分隔每个结果
 	}
 

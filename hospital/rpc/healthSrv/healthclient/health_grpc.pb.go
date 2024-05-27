@@ -19,24 +19,30 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	HealthService_AddBodyInspect_FullMethodName  = "/user.HealthService/AddBodyInspect"
-	HealthService_GetMedicalItems_FullMethodName = "/user.HealthService/GetMedicalItems"
-	HealthService_GetBodyInspect_FullMethodName  = "/user.HealthService/GetBodyInspect"
-	HealthService_GetSignIn_FullMethodName       = "/user.HealthService/GetSignIn"
+	HealthService_GetAppointment_FullMethodName  = "/user.HealthService/GetAppointment"
+	HealthService_GetHealth_FullMethodName       = "/user.HealthService/GetHealth"
+	HealthService_GetHealthId_FullMethodName     = "/user.HealthService/GetHealthId"
+	HealthService_HealthProjectId_FullMethodName = "/user.HealthService/HealthProjectId"
+	HealthService_GetDoctorOffice_FullMethodName = "/user.HealthService/GetDoctorOffice"
+	HealthService_GetPackage_FullMethodName      = "/user.HealthService/GetPackage"
 )
 
 // HealthServiceClient is the client API for HealthService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type HealthServiceClient interface {
-	// 添加体检信息
-	AddBodyInspect(ctx context.Context, in *BodyInspectRequest, opts ...grpc.CallOption) (*BodyInspectResponse, error)
-	// 根据id查询体检项目的详情
-	GetMedicalItems(ctx context.Context, in *MedicalItemsRequest, opts ...grpc.CallOption) (*MedicalItemsResponse, error)
-	// 预约体检信息详情
-	GetBodyInspect(ctx context.Context, in *GetBodyInspectRequest, opts ...grpc.CallOption) (*GetBodyInspectResponse, error)
-	// 签到记录
-	GetSignIn(ctx context.Context, in *GetSignInRequest, opts ...grpc.CallOption) (*GetSignInResponse, error)
+	// 预约纪录
+	GetAppointment(ctx context.Context, in *GetAppointmentReq, opts ...grpc.CallOption) (*GetAppointmentResp, error)
+	// 体检纪录/体检项目记录
+	GetHealth(ctx context.Context, in *GetHealthReq, opts ...grpc.CallOption) (*GetHealthResp, error)
+	// 根据user_id查询体检详情列表
+	GetHealthId(ctx context.Context, in *GetHealthIdReq, opts ...grpc.CallOption) (*GetHealthIdResp, error)
+	// 根据user_id查询体检项目详情
+	HealthProjectId(ctx context.Context, in *HealthProjectIdReq, opts ...grpc.CallOption) (*HealthProjectIdResp, error)
+	// 获取科室详情
+	GetDoctorOffice(ctx context.Context, in *GetDoctorOfficeReq, opts ...grpc.CallOption) (*GetDoctorOfficeResp, error)
+	// 获取套餐信息
+	GetPackage(ctx context.Context, in *GetPackageReq, opts ...grpc.CallOption) (*GetPackageResp, error)
 }
 
 type healthServiceClient struct {
@@ -47,36 +53,54 @@ func NewHealthServiceClient(cc grpc.ClientConnInterface) HealthServiceClient {
 	return &healthServiceClient{cc}
 }
 
-func (c *healthServiceClient) AddBodyInspect(ctx context.Context, in *BodyInspectRequest, opts ...grpc.CallOption) (*BodyInspectResponse, error) {
-	out := new(BodyInspectResponse)
-	err := c.cc.Invoke(ctx, HealthService_AddBodyInspect_FullMethodName, in, out, opts...)
+func (c *healthServiceClient) GetAppointment(ctx context.Context, in *GetAppointmentReq, opts ...grpc.CallOption) (*GetAppointmentResp, error) {
+	out := new(GetAppointmentResp)
+	err := c.cc.Invoke(ctx, HealthService_GetAppointment_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *healthServiceClient) GetMedicalItems(ctx context.Context, in *MedicalItemsRequest, opts ...grpc.CallOption) (*MedicalItemsResponse, error) {
-	out := new(MedicalItemsResponse)
-	err := c.cc.Invoke(ctx, HealthService_GetMedicalItems_FullMethodName, in, out, opts...)
+func (c *healthServiceClient) GetHealth(ctx context.Context, in *GetHealthReq, opts ...grpc.CallOption) (*GetHealthResp, error) {
+	out := new(GetHealthResp)
+	err := c.cc.Invoke(ctx, HealthService_GetHealth_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *healthServiceClient) GetBodyInspect(ctx context.Context, in *GetBodyInspectRequest, opts ...grpc.CallOption) (*GetBodyInspectResponse, error) {
-	out := new(GetBodyInspectResponse)
-	err := c.cc.Invoke(ctx, HealthService_GetBodyInspect_FullMethodName, in, out, opts...)
+func (c *healthServiceClient) GetHealthId(ctx context.Context, in *GetHealthIdReq, opts ...grpc.CallOption) (*GetHealthIdResp, error) {
+	out := new(GetHealthIdResp)
+	err := c.cc.Invoke(ctx, HealthService_GetHealthId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *healthServiceClient) GetSignIn(ctx context.Context, in *GetSignInRequest, opts ...grpc.CallOption) (*GetSignInResponse, error) {
-	out := new(GetSignInResponse)
-	err := c.cc.Invoke(ctx, HealthService_GetSignIn_FullMethodName, in, out, opts...)
+func (c *healthServiceClient) HealthProjectId(ctx context.Context, in *HealthProjectIdReq, opts ...grpc.CallOption) (*HealthProjectIdResp, error) {
+	out := new(HealthProjectIdResp)
+	err := c.cc.Invoke(ctx, HealthService_HealthProjectId_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *healthServiceClient) GetDoctorOffice(ctx context.Context, in *GetDoctorOfficeReq, opts ...grpc.CallOption) (*GetDoctorOfficeResp, error) {
+	out := new(GetDoctorOfficeResp)
+	err := c.cc.Invoke(ctx, HealthService_GetDoctorOffice_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *healthServiceClient) GetPackage(ctx context.Context, in *GetPackageReq, opts ...grpc.CallOption) (*GetPackageResp, error) {
+	out := new(GetPackageResp)
+	err := c.cc.Invoke(ctx, HealthService_GetPackage_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -87,14 +111,18 @@ func (c *healthServiceClient) GetSignIn(ctx context.Context, in *GetSignInReques
 // All implementations must embed UnimplementedHealthServiceServer
 // for forward compatibility
 type HealthServiceServer interface {
-	// 添加体检信息
-	AddBodyInspect(context.Context, *BodyInspectRequest) (*BodyInspectResponse, error)
-	// 根据id查询体检项目的详情
-	GetMedicalItems(context.Context, *MedicalItemsRequest) (*MedicalItemsResponse, error)
-	// 预约体检信息详情
-	GetBodyInspect(context.Context, *GetBodyInspectRequest) (*GetBodyInspectResponse, error)
-	// 签到记录
-	GetSignIn(context.Context, *GetSignInRequest) (*GetSignInResponse, error)
+	// 预约纪录
+	GetAppointment(context.Context, *GetAppointmentReq) (*GetAppointmentResp, error)
+	// 体检纪录/体检项目记录
+	GetHealth(context.Context, *GetHealthReq) (*GetHealthResp, error)
+	// 根据user_id查询体检详情列表
+	GetHealthId(context.Context, *GetHealthIdReq) (*GetHealthIdResp, error)
+	// 根据user_id查询体检项目详情
+	HealthProjectId(context.Context, *HealthProjectIdReq) (*HealthProjectIdResp, error)
+	// 获取科室详情
+	GetDoctorOffice(context.Context, *GetDoctorOfficeReq) (*GetDoctorOfficeResp, error)
+	// 获取套餐信息
+	GetPackage(context.Context, *GetPackageReq) (*GetPackageResp, error)
 	mustEmbedUnimplementedHealthServiceServer()
 }
 
@@ -102,17 +130,23 @@ type HealthServiceServer interface {
 type UnimplementedHealthServiceServer struct {
 }
 
-func (UnimplementedHealthServiceServer) AddBodyInspect(context.Context, *BodyInspectRequest) (*BodyInspectResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddBodyInspect not implemented")
+func (UnimplementedHealthServiceServer) GetAppointment(context.Context, *GetAppointmentReq) (*GetAppointmentResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAppointment not implemented")
 }
-func (UnimplementedHealthServiceServer) GetMedicalItems(context.Context, *MedicalItemsRequest) (*MedicalItemsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetMedicalItems not implemented")
+func (UnimplementedHealthServiceServer) GetHealth(context.Context, *GetHealthReq) (*GetHealthResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetHealth not implemented")
 }
-func (UnimplementedHealthServiceServer) GetBodyInspect(context.Context, *GetBodyInspectRequest) (*GetBodyInspectResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetBodyInspect not implemented")
+func (UnimplementedHealthServiceServer) GetHealthId(context.Context, *GetHealthIdReq) (*GetHealthIdResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetHealthId not implemented")
 }
-func (UnimplementedHealthServiceServer) GetSignIn(context.Context, *GetSignInRequest) (*GetSignInResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetSignIn not implemented")
+func (UnimplementedHealthServiceServer) HealthProjectId(context.Context, *HealthProjectIdReq) (*HealthProjectIdResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method HealthProjectId not implemented")
+}
+func (UnimplementedHealthServiceServer) GetDoctorOffice(context.Context, *GetDoctorOfficeReq) (*GetDoctorOfficeResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDoctorOffice not implemented")
+}
+func (UnimplementedHealthServiceServer) GetPackage(context.Context, *GetPackageReq) (*GetPackageResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPackage not implemented")
 }
 func (UnimplementedHealthServiceServer) mustEmbedUnimplementedHealthServiceServer() {}
 
@@ -127,74 +161,110 @@ func RegisterHealthServiceServer(s grpc.ServiceRegistrar, srv HealthServiceServe
 	s.RegisterService(&HealthService_ServiceDesc, srv)
 }
 
-func _HealthService_AddBodyInspect_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(BodyInspectRequest)
+func _HealthService_GetAppointment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAppointmentReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(HealthServiceServer).AddBodyInspect(ctx, in)
+		return srv.(HealthServiceServer).GetAppointment(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: HealthService_AddBodyInspect_FullMethodName,
+		FullMethod: HealthService_GetAppointment_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HealthServiceServer).AddBodyInspect(ctx, req.(*BodyInspectRequest))
+		return srv.(HealthServiceServer).GetAppointment(ctx, req.(*GetAppointmentReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _HealthService_GetMedicalItems_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MedicalItemsRequest)
+func _HealthService_GetHealth_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetHealthReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(HealthServiceServer).GetMedicalItems(ctx, in)
+		return srv.(HealthServiceServer).GetHealth(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: HealthService_GetMedicalItems_FullMethodName,
+		FullMethod: HealthService_GetHealth_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HealthServiceServer).GetMedicalItems(ctx, req.(*MedicalItemsRequest))
+		return srv.(HealthServiceServer).GetHealth(ctx, req.(*GetHealthReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _HealthService_GetBodyInspect_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetBodyInspectRequest)
+func _HealthService_GetHealthId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetHealthIdReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(HealthServiceServer).GetBodyInspect(ctx, in)
+		return srv.(HealthServiceServer).GetHealthId(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: HealthService_GetBodyInspect_FullMethodName,
+		FullMethod: HealthService_GetHealthId_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HealthServiceServer).GetBodyInspect(ctx, req.(*GetBodyInspectRequest))
+		return srv.(HealthServiceServer).GetHealthId(ctx, req.(*GetHealthIdReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _HealthService_GetSignIn_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetSignInRequest)
+func _HealthService_HealthProjectId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HealthProjectIdReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(HealthServiceServer).GetSignIn(ctx, in)
+		return srv.(HealthServiceServer).HealthProjectId(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: HealthService_GetSignIn_FullMethodName,
+		FullMethod: HealthService_HealthProjectId_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HealthServiceServer).GetSignIn(ctx, req.(*GetSignInRequest))
+		return srv.(HealthServiceServer).HealthProjectId(ctx, req.(*HealthProjectIdReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HealthService_GetDoctorOffice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetDoctorOfficeReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HealthServiceServer).GetDoctorOffice(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: HealthService_GetDoctorOffice_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HealthServiceServer).GetDoctorOffice(ctx, req.(*GetDoctorOfficeReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HealthService_GetPackage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPackageReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HealthServiceServer).GetPackage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: HealthService_GetPackage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HealthServiceServer).GetPackage(ctx, req.(*GetPackageReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -207,20 +277,28 @@ var HealthService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*HealthServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "AddBodyInspect",
-			Handler:    _HealthService_AddBodyInspect_Handler,
+			MethodName: "GetAppointment",
+			Handler:    _HealthService_GetAppointment_Handler,
 		},
 		{
-			MethodName: "GetMedicalItems",
-			Handler:    _HealthService_GetMedicalItems_Handler,
+			MethodName: "GetHealth",
+			Handler:    _HealthService_GetHealth_Handler,
 		},
 		{
-			MethodName: "GetBodyInspect",
-			Handler:    _HealthService_GetBodyInspect_Handler,
+			MethodName: "GetHealthId",
+			Handler:    _HealthService_GetHealthId_Handler,
 		},
 		{
-			MethodName: "GetSignIn",
-			Handler:    _HealthService_GetSignIn_Handler,
+			MethodName: "HealthProjectId",
+			Handler:    _HealthService_HealthProjectId_Handler,
+		},
+		{
+			MethodName: "GetDoctorOffice",
+			Handler:    _HealthService_GetDoctorOffice_Handler,
+		},
+		{
+			MethodName: "GetPackage",
+			Handler:    _HealthService_GetPackage_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

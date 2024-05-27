@@ -4,84 +4,148 @@ package user;
 
 option go_package=".;proto";
 
-//体检信息表
-message BodyInspectInfo {
+//科室表
+message DoctorOfficeInfo{
+  int64  ID = 10;
+  string OfficeName = 20; //科室名称
+  int64 Status = 30;  //状态
+}
+
+//套餐表
+message PackageInfo{
+   int64 Id = 10;
+   string packageName = 20; //套餐名称
+  string packageAmount = 30; //套餐金额
+}
+
+//预约表
+message AppointmentInfo {
+  int64  ID = 10;
+  int64  UserID = 20;         //用户id
+  int64  AppointmentType = 30;    //预约类型 1：代表预约的是体检，2代表预约的是挂号
+  string  Mobile = 40;         //手机号
+  string AppointmentData = 50;  //预约日期
+  string  AppointmentTime = 60; //预约时间
+  int64  Status = 70;          //预约状态（1:已预约 2:已处理）
+}
+
+//体检表记录
+message HealthInfo {
   int64  ID =10;
-  int64  PeopleMsgId = 20;   //个人信息id
-  int64  Height = 30;         //身高
-  int64  Weight = 40;        //体重
-  string  Inheritance = 50; //遗传
-  int64  DoctorId = 60;     //医生id
+  int64 AppointmentId =20;    //预约id
+  int64  UserID = 30;         //用户id
+  string RealName = 40;       //患者项目
+  string IdNumber = 50;       //身份证
+  HealthProjectInfo ProjectInfo =90; //体检项目记录
 }
 
-//体检表添加 --入参
-message BodyInspectRequest {
-  int64  PeopleMsgId = 20;   //个人信息id
-  int64  Height = 30;         //身高
-  int64  Weight = 40;        //体重
-  string  Inheritance = 50; //遗传
-  int64  DoctorId = 60;     //医生id
+//体检项目表记录
+message HealthProjectInfo {
+  int64  ID =10;
+  int64  HealthId =20;           //体检id
+  int64  UserID = 30;           //用户id
+  int64  DoctorId = 40;         //医生id
+  fixed64 Height = 50;          //身高
+  fixed64  Weight = 60;         //体重
+  int64  HeartRate =70;         //心率
+  string Hearing =80;           //听力检查
+  string  BloodPressur = 90;    //血压
+  string  BloodSugar =100;       //血糖
+  string  Urine =110;            //尿常规
+  int64  Ct = 120;               //CT 1.胸部ct 2.脑部ct
 }
 
-message BodyInspectResponse {
-  BodyInspectInfo  BodyInspect = 10;
+//体检纪录添加 --入参
+message GetHealthReq{
+  int64  ID =10;
+  int64 AppointmentId =20;    //预约id
+  int64  UserID = 30;         //用户id
+  string RealName = 40;       //患者项目
+  string IdNumber = 50;       //身份证
+  HealthProjectInfo ProjectInfo =90; //体检项目记录
 }
 
-message MedicalItemsInfo{
-  int64   Id=10;
-  string  Visual =20;           //视力检查
-  string  Hearing = 30;         //听力检查
-  string  BloodPressure = 40;   //血压
-  string  BloodSugar = 50;      //血糖
-  string  Urine = 60;           //尿常规
-  int64   Ct  = 70;             //CT 1.胸部ct 2.脑部ct
+//体检日期
+message CheckupDate{
+  string AppointmentData = 50;  //预约日期
+  string  AppointmentTime = 60; //预约时间
 }
 
-//根据id查询体检项目的详情 --入参
-message MedicalItemsRequest{
-  int64   Id = 10;
+
+//根据AppointmentId查询体检纪录详情 --入参
+message GetHealthIdReq{
+  int64 AppointmentId =20;    //预约id
 }
 
-//反参
-message MedicalItemsResponse{
-  MedicalItemsInfo  MedicalItems = 10;
+////根据user_id查询体检纪录详情 --反参
+message GetHealthIdResp{
+  repeated HealthInfo Health = 10;
 }
 
-//预约体检信息详情 --入参
-message GetBodyInspectRequest {
-  int64  Id = 20;   //个人信息id
-}
-//预约体检信息详情 --反参
-message GetBodyInspectResponse {
-  BodyInspectInfo  BodyInspect = 10;
+//体检纪录添加 --反参
+message GetHealthResp {
+  HealthInfo Health = 10;
 }
 
-message SignInInfo{
-  int64  Id   =10;
-  int64  UserId =20;          //用户id
-  string SignInMethod =30;   //签到方式
-  int64  Status =40;         //签到状态
+//根据user_id查询体检项目详情
+message HealthProjectIdReq{
+  int64  UserID = 30;         //用户id
 }
 
-//签到记录 --入参
-message GetSignInRequest{
-  int64  UserId =20;          //用户id
-  string SignInMethod =30;   //签到方式
-  int64  Status =40;         //签到状态
+//根据user_id查询体检项目详情
+message HealthProjectIdResp{
+  HealthProjectInfo ProjectInfo = 10;
 }
 
-//签到记录 --反参
-message GetSignInResponse{
-  SignInInfo  SignIn = 10;
+//预约表记录 --入参
+message GetAppointmentReq{
+  int64  UserID = 20;         //用户id
+  int64  AppointmentType = 30;    //预约类型 1：代表预约的是体检，2代表预约的是挂号
+  string  Mobile = 40;         //手机号
+  string AppointmentData = 50; //预约日期
+  string  AppointmentTime = 60;       //预约时间
+  int64  Status = 70;          //预约状态（1:已预约 2:已处理）
 }
+
+//预约表记录 --反参
+message GetAppointmentResp{
+  AppointmentInfo Appointment = 10;
+}
+
+//获取科室详情
+message GetDoctorOfficeReq{
+  int64  ID = 10;
+}
+//获取科室详情
+message GetDoctorOfficeResp{
+  DoctorOfficeInfo DoctorOffice = 10;
+}
+
+//获取套餐信息
+message GetPackageReq{
+  int64  ID = 10;
+}
+
+//获取套餐信息
+message GetPackageResp{
+  string packageName = 20; //套餐名称
+  string packageAmount = 30; //套餐金额
+  CheckupDate CheckupDate = 40; //体检日期
+}
+
 
 service HealthService {
-  //添加体检信息
-  rpc AddBodyInspect(BodyInspectRequest) returns (BodyInspectResponse) {}
-  //根据id查询体检项目的详情
-  rpc GetMedicalItems(MedicalItemsRequest) returns (MedicalItemsResponse) {}
-  //预约体检信息详情
-  rpc GetBodyInspect(GetBodyInspectRequest) returns (GetBodyInspectResponse) {}
-  //签到记录
-  rpc GetSignIn(GetSignInRequest) returns (GetSignInResponse) {}
+  //预约纪录
+  rpc GetAppointment(GetAppointmentReq) returns (GetAppointmentResp);
+  //体检纪录/体检项目记录
+  rpc GetHealth(GetHealthReq) returns (GetHealthResp);
+ //根据user_id查询体检详情列表
+  rpc GetHealthId(GetHealthIdReq) returns (GetHealthIdResp);
+  //根据user_id查询体检项目详情
+  rpc HealthProjectId(HealthProjectIdReq) returns (HealthProjectIdResp);
+  //获取科室详情
+  rpc GetDoctorOffice(GetDoctorOfficeReq) returns (GetDoctorOfficeResp);
+  //获取套餐信息
+  rpc GetPackage(GetPackageReq) returns (GetPackageResp);
 }
+

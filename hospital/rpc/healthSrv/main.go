@@ -16,7 +16,7 @@ func main() {
 	zaplog.InitZapLog(etc.RpcConfig.Server.LogPath)
 	//初始化数据库
 	s := grpc.NewServer()
-	proto.RegisterHealthServiceServer(s, service.HealthService{})
+	proto.RegisterHealthServiceServer(s, &service.HealthService{})
 	lis, err := net.Listen("tcp", fmt.Sprintf("%s:%d", etc.RpcConfig.Server.Host, etc.RpcConfig.Server.Port))
 	if err != nil {
 		zap.S().Info("端口监听失败", err)

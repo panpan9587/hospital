@@ -45,7 +45,7 @@ func main() {
 
 	go func() {
 
-		data := genParams1(appid, "我想早点下班怎么办？")
+		data := genParams1(appid, "你好？")
 		conn.WriteJSON(data)
 
 	}()

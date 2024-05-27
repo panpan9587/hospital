@@ -23,19 +23,12 @@ NacosRpcAdvisoryConfig:
   port: 8848
   DataId: hospital_rpc_advisory
   group: dev
-#病例
-NacosRpcCaseConfig:
-  NamespaceId: dfb27e84-14e7-4bc1-ad5b-4c8dd4516d42
-  host: 124.223.203.56
-  port: 8848
-  DataId: hospital_rpc_case
-  group: dev
 
-NacosRpcDiagnosisConfig:
+NacosRpcHealthConfig:
   NamespaceId: dfb27e84-14e7-4bc1-ad5b-4c8dd4516d42
   host: 124.223.203.56
   port: 8848
-  DataId: hospital_rpc_diagnosis
+  DataId: hospital_rpc_health
   group: dev
 
 consul:
@@ -57,21 +50,18 @@ mongodb:
   port: 27017 #端口
   database: information #数据库
   collection: user #集合
-es:
-  host: 127.0.0.1
-  port: 9201
+
 redis:
   host: 124.223.203.56
   port: 6379
   db: 3
 
-rabbitmq:
-  host: 124.223.203.56
-  port: 5672
-  username: guest
-  password: guest
-  exchange: doctor
-
+  rabbitmq:
+    host: 124.223.203.56
+    port: 5672
+    username: guest
+    password: guest
+    exchange: doctor
 
 log:
   path: ../zaplog/log.log
