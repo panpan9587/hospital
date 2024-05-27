@@ -68,7 +68,7 @@ func main() {
 
 		// 索引到 Elasticsearch，并指定字符串类型的 _id 字段
 		_, err := esClient.Index().
-			Index("users").
+			Index("users_inx").
 			Id(id). // 指定字符串类型的 _id 字段
 			BodyJson(result).
 			Do(context.Background())
