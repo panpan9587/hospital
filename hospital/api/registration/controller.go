@@ -7,6 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"
+	"sync"
 )
 
 // todo: 对应的接口api方法
@@ -51,12 +52,9 @@ func AddRegistration(ctx *gin.Context) {
 // 取消预约
 func CancelRegistration(ctx *gin.Context) {
 	rId := ctx.PostForm("id")
-	shiftId := ctx.PostForm("shift_id")
 	id, _ := strconv.Atoi(rId)
-	sid, _ := strconv.Atoi(shiftId)
 	_, err := RegistrationSrv.CancelAppointmentRegistration(ctx, &proto.CancelAppointmentRegistrationReq{
 		AppointmentId: int32(id),
-		ShiftId:       int32(sid),
 	})
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, model.Response{
@@ -71,11 +69,13 @@ func CancelRegistration(ctx *gin.Context) {
 	})
 }
 
+
 // 获取预约信息
 func GetAppointmentById(ctx *gin.Context) {
 	var (
 		req  model.Appointment
 		data = map[string]interface{}{}
+		wg   sync.WaitGroup
 	)
 	err := ctx.ShouldBindJSON(&req)
 	if err != nil {
@@ -85,34 +85,55 @@ func GetAppointmentById(ctx *gin.Context) {
 		})
 		return
 	}
-	appointment, err := RegistrationSrv.GetAppointmentById(ctx, &proto.GetAppointmentByIdReq{AppointmentId: int32(req.AppointmentId)})
-	if err != nil {
-		ctx.JSON(http.StatusInternalServerError, model.Response{
-			Code:    400,
-			Message: err.Error(),
-		})
-		return
-	}
-	data["id"] = appointment.Data.Id
-	data["userid"] = appointment.Data.UserId
-	data["appointment_type"] = appointment.Data.AppointmentType
-	data["appointment_data"] = appointment.Data.AppointmentData
-	data["appointment_time"] = appointment.Data.AppointmentTime
-	data["status"] = appointment.Data.Status
-	if req.AppointmentType == 1 {
-		//health.HealthSrv.
-	} else {
-		res, err := RegistrationSrv.GetAttendingPhysicianByAppointmentId(ctx, &proto.GetAttendingPhysicianByAppointmentIdReq{AppointmentId: int32(req.AppointmentId)})
+	wg.Add(2)
+	go func() {
+		defer wg.Done()
+		appointment, err := RegistrationSrv.GetAppointmentById(ctx, &proto.GetAppointmentByIdReq{AppointmentId: int32(req.AppointmentId)})
 		if err != nil {
+			ctx.JSON(http.StatusInternalServerError, model.Response{
+				Code:    400,
+				Message: err.Error(),
+			})
 			return
 		}
-		data["doctor_id"] = res.Data.DoctorID
-		data["office_id"] = res.Data.OfficeID
-		data["shift_id"] = res.Data.ShiftId
-		data["real_name"] = res.Data.RealName
-		data["id_number"] = res.Data.IDNumber
-		data["mobile"] = res.Data.Mobile
+		data["id"] = appointment.Data.Id
+		data["userid"] = appointment.Data.UserId
+		data["appointment_type"] = appointment.Data.AppointmentType
+		data["appointment_data"] = appointment.Data.AppointmentData
+		data["appointment_time"] = appointment.Data.AppointmentTime
+		data["status"] = appointment.Data.Status
+	}()
+	if req.AppointmentType == 1 {
+		//health.HealthSrv.
+		go func() {
+			defer wg.Done()
+			res, err := RegistrationSrv.GetAttendingPhysicianByAppointmentId(ctx, &proto.GetAttendingPhysicianByAppointmentIdReq{AppointmentId: int32(req.AppointmentId)})
+			if err != nil {
+				return
+			}
+			data["doctor_id"] = res.Data.DoctorID
+			data["office_id"] = res.Data.OfficeID
+			data["shift_id"] = res.Data.ShiftId
+			data["real_name"] = res.Data.RealName
+			data["id_number"] = res.Data.IDNumber
+			data["mobile"] = res.Data.Mobile
+		}()
+	} else {
+		go func() {
+			defer wg.Done()
+			res, err := RegistrationSrv.GetAttendingPhysicianByAppointmentId(ctx, &proto.GetAttendingPhysicianByAppointmentIdReq{AppointmentId: int32(req.AppointmentId)})
+			if err != nil {
+				return
+			}
+			data["doctor_id"] = res.Data.DoctorID
+			data["office_id"] = res.Data.OfficeID
+			data["shift_id"] = res.Data.ShiftId
+			data["real_name"] = res.Data.RealName
+			data["id_number"] = res.Data.IDNumber
+			data["mobile"] = res.Data.Mobile
+		}()
 	}
+	wg.Wait()
 	ctx.JSON(http.StatusOK, model.Response{
 		Code:    200,
 		Message: "获取预约信息成功",

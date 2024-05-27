@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="sticky top-0.5 z-10">
+    <div class="sticky top-0.5 z-10 bg-white">
       <el-input
         v-model="filterText"
         class="w-3/5"

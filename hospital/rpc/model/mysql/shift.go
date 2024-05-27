@@ -1,6 +1,8 @@
 package mysql
 
-import "gorm.io/gorm"
+import (
+	"gorm.io/gorm"
+)
 
 type Shift struct {
 	OfficeID int    `gorm:"type:int(11);not null" json:"office_id"`
@@ -15,9 +17,9 @@ type Shift struct {
 func (Shift) TableName() string {
 	return "shift"
 }
-func GetOfficeDoctorListByIdTime(id int, time int) ([]*Shift, error) {
+func GetOfficeDoctorListByIdTime(id int, time string) ([]*Shift, error) {
 	var list []*Shift
-	return list, DB.Where("office_id = ?", id).Where("time = ?", time).Find(&list).Error
+	return list, DB.Where("office_id = ?", id).Where("date = ?", time).Find(&list).Error
 }
 func GetShiftDoctorById(id int) (*Shift, error) {
 	var res = new(Shift)

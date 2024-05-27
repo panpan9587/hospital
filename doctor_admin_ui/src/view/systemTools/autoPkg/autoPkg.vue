@@ -61,10 +61,10 @@
 
     </div>
 
-    <el-drawer
+    <el-dialog
       v-model="dialogFormVisible"
-      size="40%"
-      :show-close="false"
+      :before-close="closeDialog"
+      title="创建Package"
     >
       <warning-bar title="新增Pkg用于自动化代码使用" />
       <el-form
@@ -101,19 +101,16 @@
           />
         </el-form-item>
       </el-form>
-      <template #header>
-        <div class="flex justify-between items-center">
-          <span class="text-lg">创建Package</span>
-          <div>
-            <el-button @click="closeDialog">取 消</el-button>
-            <el-button
-                type="primary"
-                @click="enterDialog"
-            >确 定</el-button>
-          </div>
+      <template #footer>
+        <div class="dialog-footer">
+          <el-button @click="closeDialog">取 消</el-button>
+          <el-button
+            type="primary"
+            @click="enterDialog"
+          >确 定</el-button>
         </div>
       </template>
-    </el-drawer>
+    </el-dialog>
   </div>
 </template>
 

@@ -2,8 +2,6 @@ package router
 
 import (
 	"demo/api/advisory"
-	_case "demo/api/case"
-	"demo/api/diagnosis"
 	"demo/api/health"
 	"demo/api/registration"
 	"demo/api/user"
@@ -30,6 +28,7 @@ func initRouter(router *gin.Engine) {
 			// todo：中间件校验手机号是否一致
 			users.POST("/update", user.UpdateUser)
 			users.POST("/auth", user.AddUserAuth)                //用户实名认证
+			users.POST("/update/auth", user.UpdateUserAuth)      //修改用户实名信息
 			users.POST("/get/auth", user.GetUserAuth)            //查看用户实名信息
 			users.POST("/delete", user.DeleteUser)               //注销用户
 			users.GET("/registration", user.GetRegistrationList) //查看个人的挂号纪录
@@ -38,12 +37,14 @@ func initRouter(router *gin.Engine) {
 		}
 		registrations := v1.Group("/registration")
 		{
-			//预约
+			//挂号预约
 			registrations.POST("/add", registration.AddRegistration)
 			//取消预约
 			registrations.POST("/cancel", registration.CancelRegistration)
 			//获取预约信息
-			registrations.GET("/get/id", registration.GetRegistrationById)
+			registrations.GET("/get/appointment", registration.GetAppointmentById)
+			//根据身份证号获取挂号信息
+			registrations.GET("/get/attending/idNumber", registration.GetAttendingByIdNumber)
 		}
 		online := v1.Group("/advisory")
 		{
@@ -53,38 +54,29 @@ func initRouter(router *gin.Engine) {
 		}
 		healths := v1.Group("/health")
 		{
-			//记录预约
-			healths.GET("/GetAppointment", health.GetAppointment)
-			//体检表记录/体检项目/使用事务两表记录
-			healths.GET("/GetHealth", health.GetHealth)
-			//根据AppointmentId查询体检详情列表
-			healths.POST("/GetHealthId", health.GetHealthId)
-			//根据user_id查询体检项目详情
-			healths.POST("/HealthProjectId", health.HealthProjectId)
-			//科室详情
-			healths.POST("/GetHealthInfo", health.GetHealthInfo)
-			//套餐详情
-			healths.POST("/GetPackage", health.GetPackage)
+			//预约体检信息记录
+			healths.GET("/AddHealth", health.AddHealth)
+			//获取体检项目信息
+			healths.GET("/GetMedicalItems", health.GetMedicalItems)
+			//预约体检信息详情
+			healths.GET("/GetBodyInspect", health.GetBodyInspect)
+			//签到记录
+			healths.GET("/GetSignIn", health.GetSignIn)
 		}
-		cases := v1.Group("/cases")
-		{
-			cases.POST("/list", _case.CaseRecordList) //病历记录
-			cases.POST("/search", _case.SearchCase)   //搜索病历
-		}
+		//cases := v1.Group("/cases")
+		//{
+		//	cases.POST("/list", _case.CaseRecordList) //病历记录
+		//	cases.POST("/search", _case.SearchCase)   //搜索病历
+		//}
 		doctors := v1.Group("/doctor")
 		{
 			//科室列表
 			doctors.GET("/office/list", registration.OfficeList)
-			//科室医生列表
-			doctors.GET("/office/doctor/list", registration.OfficeDoctorList)
+			//排班科室医生列表
+			doctors.GET("/office/doctor/list/id/time", registration.OfficeDoctorListByIdTime)
 			//医生详情
 			doctors.GET("/doctor/details", registration.DoctorDetails)
 			//doctors.POST("/demo", registration.Demo)
-		}
-		//在线问诊
-		chats := v1.Group("/diagnosis")
-		{
-			chats.GET("/chat", diagnosis.Chat) //在线聊天室
 		}
 	}
 
