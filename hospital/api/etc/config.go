@@ -2,6 +2,7 @@ package etc
 
 import (
 	"demo/config"
+	"fmt"
 	"github.com/nacos-group/nacos-sdk-go/v2/clients"
 	"github.com/nacos-group/nacos-sdk-go/v2/common/constant"
 	"github.com/nacos-group/nacos-sdk-go/v2/vo"
@@ -26,12 +27,18 @@ type Config struct {
 	HealthSrv struct {
 		Name string `yaml:"Name"`
 	} `yaml:"health_srv"`
+	DiagnosisSrv struct {
+		Name string `yaml:"Name"`
+	} `yaml:"diagnosis_srv"`
 	SearchSrv struct {
 		Name string `yaml:"Name"`
 	} `yaml:"search_srv"`
 	AdvisorySrv struct {
 		Name string `yaml:"Name"`
 	} `yaml:"advisory_srv"`
+	CaseSrv struct {
+		Name string `yaml:"Name"`
+	} `yaml:"case_srv"`
 	AISrv struct {
 		HostUrl   string `yaml:"HostUrl"` //地址
 		Appid     string `yaml:"Appid"`
@@ -57,6 +64,7 @@ var ApiConfig Config
 
 // 接入对应的配置文件
 func init() {
+	fmt.Println(config.GlobalConfig, "ddd")
 	clientConfig := constant.ClientConfig{
 		NamespaceId:         config.GlobalConfig.NacosApiConfig.NamespaceId, // 如果需要支持多namespace，我们可以创建多个client,它们有不同的NamespaceId。当namespace是public时，此处填空字符串。
 		TimeoutMs:           5000,

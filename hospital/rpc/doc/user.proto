@@ -15,6 +15,12 @@ message UserInfo {
   int32 Status=10;
 }
 
+message UserAuthInfo {
+  string  RealName =1;
+  string  IdNumber =2;
+  int32  Status =3;
+}
+
 message RegisterRequest {
   string Username=1;
   string Password=2;
@@ -91,6 +97,22 @@ message GetHealthListResponse {
 
 }
 
+message AddUserAuthRequest{
+    int32  UserId =1;
+    string  RealName =2;
+    string  IdNumber =3;
+}
+
+message AddUserAuthResponse{
+    UserAuthInfo AuthInfo =1;
+}
+
+message GetUserAuthRequest{
+    int32 UserId =1;
+}
+message GetUserAuthResponse{
+    UserAuthInfo AuthInfo =1;
+}
 
 service User {
   rpc Register(RegisterRequest) returns(RegisterResponse);
@@ -104,6 +126,12 @@ service User {
   rpc DeleteUser(DeleteUserRequest) returns(DeleteUserResponse);
   // 修改密码，通过调用手机号验证码
   rpc UpdatePassword(UpdatePasswordRequest) returns(UpdatePasswordResponse);
+
+  //用户实名认证
+  rpc AddUserAuth(AddUserAuthRequest) returns(AddUserAuthResponse);
+  // 查看用户实名信息
+  rpc GetUserAuth(GetUserAuthRequest) returns(GetUserAuthResponse);
+
   // 获取个人预约
 
   // 获取个人挂号记录

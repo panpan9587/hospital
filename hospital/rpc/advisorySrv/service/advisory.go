@@ -13,8 +13,8 @@ type Advisory struct {
 	proto.UnimplementedAdvisoryServer
 }
 
+// 记录历史咨询消息
 func (a Advisory) RecordsUserConsultationInformation(ctx context.Context, in *proto.RecordsUserConsultationInformationReq) (*proto.RecordsUserConsultationInformationRes, error) {
-
 	//创建要插入的文档
 	document := bson.M{
 		"content": in.Content,

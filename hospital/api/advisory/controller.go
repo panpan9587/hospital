@@ -86,6 +86,7 @@ func Consult(ctx *gin.Context) {
 
 }
 
+// 记录历史咨询消息（包含敏感词过滤）
 func UserInformation(ctx *gin.Context) {
 	// 获取参数
 	contents := ctx.PostForm("content")
@@ -96,7 +97,7 @@ func UserInformation(ctx *gin.Context) {
 		// 处理连接失败情况
 		ctx.JSON(http.StatusInternalServerError, model.Response{
 			Code:    http.StatusInternalServerError,
-			Message: fmt.Sprintf("Failed to establish WebSocket connection: %s", err.Error()),
+			Message: fmt.Sprintf("日志含义建立WebSocket连接失败的原因: %s", err.Error()),
 		})
 		return
 	}
@@ -117,7 +118,7 @@ func UserInformation(ctx *gin.Context) {
 			// 处理读取消息错误
 			ctx.JSON(http.StatusInternalServerError, model.Response{
 				Code:    http.StatusInternalServerError,
-				Message: fmt.Sprintf("Failed to read message from WebSocket connection: %s", err.Error()),
+				Message: fmt.Sprintf("从WebSocket连接读取消息失败的原因: %s", err.Error()),
 			})
 			return
 		}
@@ -127,7 +128,7 @@ func UserInformation(ctx *gin.Context) {
 			// 处理 JSON 解析错误
 			ctx.JSON(http.StatusInternalServerError, model.Response{
 				Code:    http.StatusInternalServerError,
-				Message: fmt.Sprintf("Failed to parse JSON data: %s", err.Error()),
+				Message: fmt.Sprintf("日志含义解析JSON数据失败的原因: %s", err.Error()),
 			})
 			return
 		}
@@ -142,7 +143,7 @@ func UserInformation(ctx *gin.Context) {
 			// 处理错误码不为0的情况
 			ctx.JSON(http.StatusInternalServerError, model.Response{
 				Code:    http.StatusInternalServerError,
-				Message: fmt.Sprintf("Received non-zero error code: %v", code),
+				Message: fmt.Sprintf("收到非零错误码: %v", code),
 			})
 			return
 		}
@@ -171,7 +172,7 @@ func UserInformation(ctx *gin.Context) {
 		// 处理调用失败情况
 		ctx.JSON(http.StatusInternalServerError, model.Response{
 			Code:    http.StatusInternalServerError,
-			Message: fmt.Sprintf("Failed to call RecordsUserConsultationInformation: %s", err.Error()),
+			Message: fmt.Sprintf("调用RecordsUserConsultationInformation失败的原因: %s", err.Error()),
 		})
 		return
 	}

@@ -290,15 +290,85 @@ func DeleteUser(ctx *gin.Context) {
 	return
 }
 
-/////////////////////////////////////////////////////////todo:待实现//////////////////////////////
-
 func AddUserAuth(ctx *gin.Context) {
-
+	user, ok := ctx.Get("user")
+	if !ok {
+		ctx.JSON(http.StatusUnauthorized, model.Response{
+			Code:    http.StatusUnauthorized,
+			Message: "登录状态已过期",
+		})
+		return
+	}
+	userinfo := user.(*proto.UserInfo)
+	//添加实名信息，修改用户状态为以实名
+	var req model.UserAuthReq
+	err := ctx.ShouldBindJSON(&req)
+	if err != nil {
+		ctx.JSON(http.StatusBadRequest, model.Response{
+			Code:    http.StatusBadRequest,
+			Message: "请输入正确的用户信息",
+		})
+		return
+	}
+	res, err := UserSrv.AddUserAuth(ctx, &proto.AddUserAuthRequest{
+		UserId:   userinfo.ID,
+		RealName: req.RealName,
+		IdNumber: req.IdNumber,
+	})
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, model.Response{
+			Code:    http.StatusInternalServerError,
+			Message: err.Error(),
+		})
+		return
+	}
+	if res.AuthInfo == nil {
+		ctx.JSON(http.StatusBadGateway, model.Response{
+			Code:    http.StatusBadGateway,
+			Message: "实名认证失败",
+		})
+		return
+	}
+	ctx.JSON(http.StatusOK, model.Response{
+		Code:    http.StatusOK,
+		Message: "实名认证成功",
+		Data:    res.AuthInfo,
+	})
 }
 
-func UpdateUserAuth(ctx *gin.Context) {}
-
-func GetUserAuth(ctx *gin.Context) {}
+func GetUserAuth(ctx *gin.Context) {
+	user, ok := ctx.Get("user")
+	if !ok {
+		ctx.JSON(http.StatusUnauthorized, model.Response{
+			Code:    http.StatusUnauthorized,
+			Message: "登录状态已过期",
+		})
+		return
+	}
+	userinfo := user.(*proto.UserInfo)
+	res, err := UserSrv.GetUserAuth(ctx, &proto.GetUserAuthRequest{
+		UserId: userinfo.ID,
+	})
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, model.Response{
+			Code:    http.StatusInternalServerError,
+			Message: err.Error(),
+		})
+		return
+	}
+	if res.AuthInfo == nil {
+		ctx.JSON(http.StatusBadGateway, model.Response{
+			Code:    http.StatusBadGateway,
+			Message: "实名认证失败",
+		})
+		return
+	}
+	ctx.JSON(http.StatusOK, model.Response{
+		Code:    http.StatusOK,
+		Message: "获取成功",
+		Data:    res.AuthInfo,
+	})
+}
 
 // 查看用户的体检记录
 func GetHealthList(ctx *gin.Context) {
@@ -327,7 +397,6 @@ func GetHealthList(ctx *gin.Context) {
 
 // 查看用户的挂号记录
 func GetRegistrationList(ctx *gin.Context) {
-
 }
 
 // 查看个人的预约

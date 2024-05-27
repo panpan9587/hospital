@@ -2,6 +2,8 @@ package router
 
 import (
 	"demo/api/advisory"
+	_case "demo/api/case"
+	"demo/api/diagnosis"
 	"demo/api/health"
 	"demo/api/registration"
 	"demo/api/user"
@@ -24,7 +26,7 @@ func initRouter(router *gin.Engine) {
 			users.POST("/update/password", user.UpdatePassword)
 			users.Use(user.ParseToken)
 
-			users.GET("/info", user.GetUserInfo) //详情展示实名信息
+			users.GET("/info", user.GetUserInfo) //详情不展示实名信息
 			// todo：中间件校验手机号是否一致
 			users.POST("/update", user.UpdateUser)
 			users.POST("/auth", user.AddUserAuth)                //用户实名认证
@@ -67,5 +69,26 @@ func initRouter(router *gin.Engine) {
 			//套餐详情
 			healths.POST("/GetPackage", health.GetPackage)
 		}
+		cases := v1.Group("/cases")
+		{
+			cases.POST("/list", _case.CaseRecordList) //病历记录
+			cases.POST("/search", _case.SearchCase)   //搜索病历
+		}
+		doctors := v1.Group("/doctor")
+		{
+			//科室列表
+			doctors.GET("/office/list", registration.OfficeList)
+			//科室医生列表
+			doctors.GET("/office/doctor/list", registration.OfficeDoctorList)
+			//医生详情
+			doctors.GET("/doctor/details", registration.DoctorDetails)
+			//doctors.POST("/demo", registration.Demo)
+		}
+		//在线问诊
+		chats := v1.Group("/diagnosis")
+		{
+			chats.GET("/chat", diagnosis.Chat) //在线聊天室
+		}
 	}
+
 }

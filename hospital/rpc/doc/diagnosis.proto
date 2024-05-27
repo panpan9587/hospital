@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package diagnosis;
+option go_package=".;proto";
+
+message Request{
+      int32 UserId = 1;
+      int32 DoctorId =2;
+}
+message Response{}
+
+
+service Diagnosis {
+  rpc Register(Request) returns(Response);
+  // todo：手机号验证码登录，待实现
+}

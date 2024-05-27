@@ -3,6 +3,7 @@ package registration
 import (
 	"demo/api/model"
 	proto "demo/rpc/registerationSrv/registerationclient"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"
@@ -15,19 +16,23 @@ func AddRegistration(ctx *gin.Context) {
 	)
 	err := ctx.ShouldBindJSON(&req)
 	if err != nil {
+		fmt.Println(err, ";;;")
 		ctx.JSON(http.StatusInternalServerError, model.Response{
 			Code:    400,
 			Message: "请输入正确的用户信息",
 		})
 		return
 	}
-	_, err = RegistrationSrv.AddRegisteration(ctx, &proto.AddAppointmentRegisterReq{
-		PatientId:       int32(req.PatientID),
+	_, err = RegistrationSrv.AppointmentAttendingPhysician(ctx, &proto.AppointmentAttendingPhysicianReq{
+		UserId:          int32(req.UserId),
 		DoctorId:        int32(req.DoctorID),
 		RealName:        req.RealName,
 		IdNumber:        req.IdNumber,
 		Mobile:          req.Mobile,
-		AppointmentTime: req.AppointmentTime,
+		AppointmentData: req.AppointmentData,
+		AppointmentType: int32(req.AppointmentType),
+		OfficeId:        int32(req.OfficeId),
+		Status:          int32(req.Status),
 	})
 	if err != nil {
 		ctx.JSON(http.StatusBadRequest, model.Response{
@@ -66,7 +71,7 @@ func CancelRegistration(ctx *gin.Context) {
 func GetRegistrationById(ctx *gin.Context) {
 	appointmentId := ctx.PostForm("appointmentId")
 	id, _ := strconv.Atoi(appointmentId)
-	res, err := RegistrationSrv.GetAppointmentRegistrationById(ctx, &proto.GetAppointmentRegistrationByIdReq{AppointmentId: int32(id)})
+	res, err := RegistrationSrv.GetAppointmentRegistrationById(ctx, &proto.GetAppointmentRegistrationByIdReq{AttendingPhysicianId: int32(id)})
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, model.Response{
 			Code:    400,
@@ -79,38 +84,4 @@ func GetRegistrationById(ctx *gin.Context) {
 		Message: "获取预约信息成功",
 		Data:    res.Data,
 	})
-}
-
-// 修改预约信息
-func UpdateRegistrationMsg(ctx *gin.Context) {
-	var (
-		req model.UpdateRegistration
-	)
-	err := ctx.ShouldBindJSON(&req)
-	if err != nil {
-		ctx.JSON(http.StatusInternalServerError, model.Response{
-			Code:    400,
-			Message: "请输入正确的用户信息",
-		})
-		return
-	}
-	_, err = RegistrationSrv.UpdateAppointmentRegistration(ctx, &proto.UpdateAppointmentRegistrationReq{Data: &proto.AppointmentRegistration{
-		Id:              int32(req.AppointmentId),
-		PatientId:       int32(req.PatientID),
-		DoctorId:        int32(req.DoctorID),
-		AppointmentTime: req.AppointmentTime,
-		Status:          int32(req.Status),
-	}})
-	if err != nil {
-		ctx.JSON(http.StatusInternalServerError, model.Response{
-			Code:    400,
-			Message: err.Error(),
-		})
-		return
-	}
-	ctx.JSON(http.StatusOK, model.Response{
-		Code:    200,
-		Message: "修改成功",
-	})
-	return
 }

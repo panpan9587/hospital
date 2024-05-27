@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package case;
+option go_package=".;proto";
+
+//病历记录的结构体
+message CaseRecord{
+  string content = 1; //询问的问题
+  string result = 2; //回答
+}
+
+//病历记录列表的入参(使用es)
+message CaseRecordListReq {
+  string index = 1;//索引名称
+  int64 page = 2;//分页
+}
+
+//病历记录列表的返参
+message CaseRecordListRes {
+  repeated CaseRecord result = 1;
+}
+
+//搜索病历记录的入参(使用es)
+message SearchCaseRecordReq{
+  string index = 1;//索引名称
+  string content =2;//询问的问题
+
+}
+//搜索病历记录的返参
+message SearchCaseRecordRes{
+string result = 1;
+}
+service Case {
+  rpc CaseRecordList(CaseRecordListReq) returns(CaseRecordListRes); //AI的病历记录
+  rpc SearchCaseRecord(SearchCaseRecordReq) returns(SearchCaseRecordRes); //AI的搜索病历记录
+}
+
+
+

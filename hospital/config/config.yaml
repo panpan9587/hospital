@@ -56,6 +56,13 @@ redis:
   port: 6379
   db: 3
 
+  rabbitmq:
+    host: 124.223.203.56
+    port: 5672
+    username: guest
+    password: guest
+    exchange: doctor
+
 log:
   path: ../zaplog/log.log
   level:
