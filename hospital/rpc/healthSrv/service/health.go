@@ -14,6 +14,7 @@ type HealthService struct {
 func (h *HealthService) GetAppointment(ctx context.Context, in *proto.GetAppointmentReq) (*proto.GetAppointmentResp, error) {
 	var app mysql.Appointment
 	app.UserID = int(in.UserID)
+	app.Mobile = in.Mobile
 	app.AppointmentData = in.AppointmentData
 	app.AppointmentTime = in.AppointmentTime
 	app.AppointmentType = int(in.AppointmentType)
@@ -26,6 +27,7 @@ func (h *HealthService) GetAppointment(ctx context.Context, in *proto.GetAppoint
 		ID:              int64(app.ID),
 		UserID:          int64(app.UserID),
 		AppointmentType: int64(app.AppointmentType),
+		Mobile:          app.Mobile,
 		AppointmentData: app.AppointmentData,
 		AppointmentTime: app.AppointmentTime,
 		Status:          int64(app.Status),
@@ -152,7 +154,7 @@ func (h *HealthService) GetDoctorOffice(ctx context.Context, in *proto.GetDoctor
 func (h *HealthService) GetPackage(ctx context.Context, in *proto.GetPackageReq) (*proto.GetPackageResp, error) {
 	var pack mysql.Package
 	var app mysql.Appointment
-	err := mysql.DB.Preload("app").Where("id=?", in.ID).First(&pack).Error
+	err := mysql.DB.Preload("Package").Where("id = ?", in.ID).First(app).Error
 	if err != nil {
 		return nil, err
 	}

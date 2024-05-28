@@ -56,7 +56,6 @@ type Config struct {
 		Group       string `yaml:"group"`
 	} `yaml:"NacosRpcCaseConfig"`
 
-
 	Consul struct {
 		Host string `yaml:"host"`
 		Port int    `yaml:"port"`
@@ -106,7 +105,7 @@ var GlobalConfig Config
 
 // 初始化配置文件
 func init() {
-	viper.SetConfigFile("D:/gos/src/bookProject/hospital/hospital/config/config.yaml")
+	viper.SetConfigFile("D:/github_daima/hospital/config/config.yaml")
 	viper.ReadInConfig()
 	err := viper.Unmarshal(&GlobalConfig)
 	if err != nil {
