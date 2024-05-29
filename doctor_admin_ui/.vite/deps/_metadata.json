@@ -1,0 +1,41 @@
+{
+  "hash": "0fe814b2",
+  "browserHash": "8ae1efe2",
+  "optimized": {
+    "element-plus/es/components/message/style/css": {
+      "src": "../../node_modules/element-plus/es/components/message/style/css.mjs",
+      "file": "element-plus_es_components_message_style_css.js",
+      "fileHash": "c4ac0aad",
+      "needsInterop": false
+    },
+    "element-plus/es/components/loading/style/css": {
+      "src": "../../node_modules/element-plus/es/components/loading/style/css.mjs",
+      "file": "element-plus_es_components_loading_style_css.js",
+      "fileHash": "05e13523",
+      "needsInterop": false
+    },
+    "element-plus/es/components/notification/style/css": {
+      "src": "../../node_modules/element-plus/es/components/notification/style/css.mjs",
+      "file": "element-plus_es_components_notification_style_css.js",
+      "fileHash": "9bcc7be5",
+      "needsInterop": false
+    },
+    "element-plus/es/components/message-box/style/css": {
+      "src": "../../node_modules/element-plus/es/components/message-box/style/css.mjs",
+      "file": "element-plus_es_components_message-box_style_css.js",
+      "fileHash": "83af608c",
+      "needsInterop": false
+    },
+    "vue": {
+      "src": "../../node_modules/vue/dist/vue.runtime.esm-bundler.js",
+      "file": "vue.js",
+      "fileHash": "b6fdc357",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-REI3N65N": {
+      "file": "chunk-REI3N65N.js"
+    }
+  }
+}
