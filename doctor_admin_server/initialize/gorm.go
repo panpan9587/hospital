@@ -1,13 +1,16 @@
 package initialize
 
 import (
-	"os"
-
 	"github.com/flipped-aurora/gin-vue-admin/server/global"
+	"github.com/flipped-aurora/gin-vue-admin/server/model/appointmentmgmt"
 	"github.com/flipped-aurora/gin-vue-admin/server/model/doctorment"
 	"github.com/flipped-aurora/gin-vue-admin/server/model/doctormsg"
 	"github.com/flipped-aurora/gin-vue-admin/server/model/doctorrecipe"
 	"github.com/flipped-aurora/gin-vue-admin/server/model/example"
+	"github.com/flipped-aurora/gin-vue-admin/server/model/patientmgmt"
+	"github.com/flipped-aurora/gin-vue-admin/server/model/registermgmt"
+	"github.com/flipped-aurora/gin-vue-admin/server/model/userauth"
+	"os"
 
 	"github.com/flipped-aurora/gin-vue-admin/server/model/disease"
 	"github.com/flipped-aurora/gin-vue-admin/server/model/system"
@@ -53,10 +56,18 @@ func RegisterTables() {
 		system.Condition{},
 		system.JoinTemplate{},
 
-		example.ExaFile{},
+		example.ExaCustomer{},
 		doctormsg.Doctor{},
 		doctorrecipe.Recipe{},
-		doctorment.Shift{}, disease.Diseases{},
+		doctorment.Shift{},
+
+		example.ExaFileChunk{},
+		example.ExaFileUploadAndDownload{}, patientmgmt.User{}, userauth.UserAuth{},
+
+		example.ExaFile{},
+
+		disease.Diseases{},
+		appointmentmgmt.Appointment{}, registermgmt.Attendingphysician{},
 	)
 	if err != nil {
 		global.GVA_LOG.Error("register table failed", zap.Error(err))

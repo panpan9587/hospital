@@ -1,8 +1,11 @@
 package router
 
 import (
+	"github.com/flipped-aurora/gin-vue-admin/server/router/appointmentmgmt"
 	"github.com/flipped-aurora/gin-vue-admin/server/router/diagnosis"
 	"github.com/flipped-aurora/gin-vue-admin/server/router/example"
+	"github.com/flipped-aurora/gin-vue-admin/server/router/registermgmt"
+
 	//"github.com/flipped-aurora/gin-vue-admin/server/router/health"
 	"github.com/flipped-aurora/gin-vue-admin/server/router/device"
 	"github.com/flipped-aurora/gin-vue-admin/server/router/devicemgmt"
@@ -21,16 +24,18 @@ type RouterGroup struct {
 	System  system.RouterGroup
 	Example example.RouterGroup
 	//Health    health.RouterGroup
-	Diagnosis    diagnosis.RouterGroup
-	Doctor       doctor.RouterGroup
-	Doctormsg    doctormsg.RouterGroup
-	Doctorment   doctorment.RouterGroup
-	Doctorrecipe doctorrecipe.RouterGroup
-	Userauth     userauth.RouterGroup
-	Patientmgmt  patientmgmt.RouterGroup
-	Device       device.RouterGroup
-	Devicemgmt   devicemgmt.RouterGroup
-	Disease      disease.RouterGroup
+	Diagnosis       diagnosis.RouterGroup
+	Doctor          doctor.RouterGroup
+	Doctormsg       doctormsg.RouterGroup
+	Doctorment      doctorment.RouterGroup
+	Doctorrecipe    doctorrecipe.RouterGroup
+	Userauth        userauth.RouterGroup
+	Patientmgmt     patientmgmt.RouterGroup
+	Device          device.RouterGroup
+	Devicemgmt      devicemgmt.RouterGroup
+	Disease         disease.RouterGroup
+	Appointmentmgmt appointmentmgmt.RouterGroup
+	Registermgmt    registermgmt.RouterGroup
 }
 
 var RouterGroupApp = new(RouterGroup)

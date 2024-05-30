@@ -120,7 +120,14 @@ func Routers() *gin.Engine {
 		diseaseRouter := router.RouterGroupApp.Disease
 		diseaseRouter.InitDiseasesRouter(PrivateGroup, PublicGroup)
 	}
-
+	{
+		appointmentmgmtRouter := router.RouterGroupApp.Appointmentmgmt
+		appointmentmgmtRouter.InitAppointmentRouter(PrivateGroup, PublicGroup)
+	}
+	{
+		registermgmtRouter := router.RouterGroupApp.Registermgmt
+		registermgmtRouter.InitAttendingphysicianRouter(PrivateGroup, PublicGroup)
+	}
 	global.GVA_LOG.Info("router register success")
 	return Router
 }

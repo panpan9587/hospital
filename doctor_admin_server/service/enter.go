@@ -1,8 +1,11 @@
 package service
 
 import (
+	"github.com/flipped-aurora/gin-vue-admin/server/service/appointmentmgmt"
 	"github.com/flipped-aurora/gin-vue-admin/server/service/diagnosis"
 	"github.com/flipped-aurora/gin-vue-admin/server/service/example"
+	"github.com/flipped-aurora/gin-vue-admin/server/service/registermgmt"
+
 	//"github.com/flipped-aurora/gin-vue-admin/server/service/health"
 	"github.com/flipped-aurora/gin-vue-admin/server/service/doctor"
 	"github.com/flipped-aurora/gin-vue-admin/server/service/system"
@@ -21,16 +24,18 @@ type ServiceGroup struct {
 	SystemServiceGroup  system.ServiceGroup
 	ExampleServiceGroup example.ServiceGroup
 	//HealthServiceGroup    health.ServiceGroup
-	DiagnosisServiceGroup    diagnosis.ServiceGroup
-	DoctorServiceGroup       doctor.ServiceGroup
-	DoctormsgServiceGroup    doctormsg.ServiceGroup
-	DoctormentServiceGroup   doctorment.ServiceGroup
-	DoctorrecipeServiceGroup doctorrecipe.ServiceGroup
-	UserauthServiceGroup     userauth.ServiceGroup
-	PatientmgmtServiceGroup  patientmgmt.ServiceGroup
-	DeviceServiceGroup       device.ServiceGroup
-	DevicemgmtServiceGroup   devicemgmt.ServiceGroup
-	DiseaseServiceGroup      disease.ServiceGroup
+	DiagnosisServiceGroup       diagnosis.ServiceGroup
+	DoctorServiceGroup          doctor.ServiceGroup
+	DoctormsgServiceGroup       doctormsg.ServiceGroup
+	DoctormentServiceGroup      doctorment.ServiceGroup
+	DoctorrecipeServiceGroup    doctorrecipe.ServiceGroup
+	UserauthServiceGroup        userauth.ServiceGroup
+	PatientmgmtServiceGroup     patientmgmt.ServiceGroup
+	DeviceServiceGroup          device.ServiceGroup
+	DevicemgmtServiceGroup      devicemgmt.ServiceGroup
+	DiseaseServiceGroup         disease.ServiceGroup
+	AppointmentmgmtServiceGroup appointmentmgmt.ServiceGroup
+	RegistermgmtServiceGroup    registermgmt.ServiceGroup
 }
 
 var ServiceGroupApp = new(ServiceGroup)
