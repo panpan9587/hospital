@@ -103,6 +103,7 @@
 
 <script setup>
 import {
+  getUserAuthDataSource,
   createUserAuth,
   deleteUserAuth,
   deleteUserAuthByIds,
@@ -128,13 +129,13 @@ const formData = ref({
         userId: 0,
         })
   const dataSource = ref([])
-  // const getDataSourceFunc = async()=>{
-  //   const res = await getUserAuthDataSource()
-  //   if (res.code === 0) {
-  //     dataSource.value = res.data
-  //   }
-  // }
-  // getDataSourceFunc()
+  const getDataSourceFunc = async()=>{
+    const res = await getUserAuthDataSource()
+    if (res.code === 0) {
+      dataSource.value = res.data
+    }
+  }
+  getDataSourceFunc()
 
 
 

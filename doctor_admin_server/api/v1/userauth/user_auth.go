@@ -15,13 +15,13 @@ type UserAuthApi struct {
 
 var userAuthService = service.ServiceGroupApp.UserauthServiceGroup.UserAuthService
 
-// CreateUserAuth 创建实名认证表
+// CreateUserAuth 创建userAuth表
 // @Tags UserAuth
-// @Summary 创建实名认证表
+// @Summary 创建userAuth表
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body userauth.UserAuth true "创建实名认证表"
+// @Param data body userauth.UserAuth true "创建userAuth表"
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"创建成功"}"
 // @Router /userAuth/createUserAuth [post]
 func (userAuthApi *UserAuthApi) CreateUserAuth(c *gin.Context) {
@@ -40,13 +40,13 @@ func (userAuthApi *UserAuthApi) CreateUserAuth(c *gin.Context) {
 	}
 }
 
-// DeleteUserAuth 删除实名认证表
+// DeleteUserAuth 删除userAuth表
 // @Tags UserAuth
-// @Summary 删除实名认证表
+// @Summary 删除userAuth表
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body userauth.UserAuth true "删除实名认证表"
+// @Param data body userauth.UserAuth true "删除userAuth表"
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"删除成功"}"
 // @Router /userAuth/deleteUserAuth [delete]
 func (userAuthApi *UserAuthApi) DeleteUserAuth(c *gin.Context) {
@@ -59,9 +59,9 @@ func (userAuthApi *UserAuthApi) DeleteUserAuth(c *gin.Context) {
 	}
 }
 
-// DeleteUserAuthByIds 批量删除实名认证表
+// DeleteUserAuthByIds 批量删除userAuth表
 // @Tags UserAuth
-// @Summary 批量删除实名认证表
+// @Summary 批量删除userAuth表
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
@@ -77,13 +77,13 @@ func (userAuthApi *UserAuthApi) DeleteUserAuthByIds(c *gin.Context) {
 	}
 }
 
-// UpdateUserAuth 更新实名认证表
+// UpdateUserAuth 更新userAuth表
 // @Tags UserAuth
-// @Summary 更新实名认证表
+// @Summary 更新userAuth表
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body userauth.UserAuth true "更新实名认证表"
+// @Param data body userauth.UserAuth true "更新userAuth表"
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"更新成功"}"
 // @Router /userAuth/updateUserAuth [put]
 func (userAuthApi *UserAuthApi) UpdateUserAuth(c *gin.Context) {
@@ -102,13 +102,13 @@ func (userAuthApi *UserAuthApi) UpdateUserAuth(c *gin.Context) {
 	}
 }
 
-// FindUserAuth 用id查询实名认证表
+// FindUserAuth 用id查询userAuth表
 // @Tags UserAuth
-// @Summary 用id查询实名认证表
+// @Summary 用id查询userAuth表
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data query userauth.UserAuth true "用id查询实名认证表"
+// @Param data query userauth.UserAuth true "用id查询userAuth表"
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"查询成功"}"
 // @Router /userAuth/findUserAuth [get]
 func (userAuthApi *UserAuthApi) FindUserAuth(c *gin.Context) {
@@ -121,13 +121,13 @@ func (userAuthApi *UserAuthApi) FindUserAuth(c *gin.Context) {
 	}
 }
 
-// GetUserAuthList 分页获取实名认证表列表
+// GetUserAuthList 分页获取userAuth表列表
 // @Tags UserAuth
-// @Summary 分页获取实名认证表列表
+// @Summary 分页获取userAuth表列表
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data query userauthReq.UserAuthSearch true "分页获取实名认证表列表"
+// @Param data query userauthReq.UserAuthSearch true "分页获取userAuth表列表"
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"获取成功"}"
 // @Router /userAuth/getUserAuthList [get]
 func (userAuthApi *UserAuthApi) GetUserAuthList(c *gin.Context) {
@@ -150,26 +150,35 @@ func (userAuthApi *UserAuthApi) GetUserAuthList(c *gin.Context) {
 	}
 }
 
-func (userAuthApi *UserAuthApi) GetUserAuthDataSource(c *gin.Context) {
-	// 此接口不需要鉴权
-	// 示例为返回了一个固定的消息接口，一般本接口用于C端服务，需要自己实现业务逻辑
-	response.OkWithDetailed(gin.H{
-		"info": "不需要鉴权的实名认证表接口信息",
-	}, "获取成功", c)
-}
-
-// GetUserAuthPublic 不需要鉴权的实名认证表接口
+// GetUserAuthPublic 不需要鉴权的userAuth表接口
 // @Tags UserAuth
-// @Summary 不需要鉴权的实名认证表接口
+// @Summary 不需要鉴权的userAuth表接口
 // @accept application/json
 // @Produce application/json
-// @Param data query userauthReq.UserAuthSearch true "分页获取实名认证表列表"
+// @Param data query userauthReq.UserAuthSearch true "分页获取userAuth表列表"
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"获取成功"}"
 // @Router /userAuth/getUserAuthList [get]
 func (userAuthApi *UserAuthApi) GetUserAuthPublic(c *gin.Context) {
 	// 此接口不需要鉴权
 	// 示例为返回了一个固定的消息接口，一般本接口用于C端服务，需要自己实现业务逻辑
 	response.OkWithDetailed(gin.H{
-		"info": "不需要鉴权的实名认证表接口信息",
+		"info": "不需要鉴权的userAuth表接口信息",
 	}, "获取成功", c)
+}
+
+// GetDoctoressDataSource 获取Doctoress的数据源
+// @Tags Doctoress
+// @Summary 获取Doctoress的数据源
+// @accept application/json
+// @Produce application/json
+// @Success 200 {object} response.Response{data=object,msg=string} "查询成功"
+// @Router /doctoress/getDoctoressDataSource [get]
+func (userAuthApi *UserAuthApi) GetUserAuthDataSource(c *gin.Context) {
+	// 此接口为获取数据源定义的数据
+	if dataSource, err := userAuthService.GetUserAuthDataSource(); err != nil {
+		global.GVA_LOG.Error("查询失败!", zap.Error(err))
+		response.FailWithMessage("查询失败", c)
+	} else {
+		response.OkWithData(dataSource, c)
+	}
 }

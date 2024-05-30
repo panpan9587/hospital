@@ -81,13 +81,14 @@ func Routers() *gin.Engine {
 	}
 
 	InstallPlugin(PrivateGroup, PublicGroup)
-	{
-		userauthRouter := router.RouterGroupApp.Userauth
-		userauthRouter.InitUserAuthRouter(PrivateGroup, PublicGroup)
-	}
+
 	{
 		patientmgmtRouter := router.RouterGroupApp.Patientmgmt
 		patientmgmtRouter.InitUserRouter(PrivateGroup, PublicGroup)
+	}
+	{
+		userauthRouter := router.RouterGroupApp.Userauth
+		userauthRouter.InitUserAuthRouter(PrivateGroup, PublicGroup)
 	}
 
 	global.GVA_LOG.Info("router register success")

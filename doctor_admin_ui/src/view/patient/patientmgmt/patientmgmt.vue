@@ -49,15 +49,16 @@
         >
         <el-table-column type="selection" width="55" />
         
-        <el-table-column align="left" label="日期" prop="createdAt" width="180">
-            <template #default="scope">{{ formatDate(scope.row.CreatedAt) }}</template>
-        </el-table-column>
-        
+       
         <el-table-column align="left" label="账号" prop="username" width="120" />
         <el-table-column align="left" label="用户名" prop="full_name" width="120" />
         <el-table-column sortable align="left" label="年龄" prop="age" width="120" />
         <el-table-column align="left" label="手机号" prop="mobile" width="120" />
         <el-table-column align="left" label="用户状态" prop="status" width="120" />
+         <el-table-column align="left" label="创建日期" prop="createdAt" width="180">
+            <template #default="scope">{{ formatDate(scope.row.CreatedAt) }}</template>
+        </el-table-column>
+        
         <el-table-column align="left" label="操作" fixed="right" min-width="240">
             <template #default="scope">
             <el-button type="primary" link icon="edit" class="table-button" @click="updateUserFunc(scope.row)">变更</el-button>

@@ -5,7 +5,7 @@ import (
 	"github.com/flipped-aurora/gin-vue-admin/server/global"
 )
 
-// 实名认证表 结构体  UserAuth
+// userAuth表 结构体  UserAuth
 type UserAuth struct {
 	global.GVA_MODEL
 	IdNumber string `json:"idNumber" form:"idNumber" gorm:"column:id_number;comment:身份证号;size:18;" binding:"required"`   //身份证号
@@ -14,7 +14,7 @@ type UserAuth struct {
 	UserId   *int   `json:"userId" form:"userId" gorm:"column:user_id;comment:用户;size:11;" binding:"required"`           //用户
 }
 
-// TableName 实名认证表 UserAuth自定义表名 user_auth
+// TableName userAuth表 UserAuth自定义表名 user_auth
 func (UserAuth) TableName() string {
 	return "user_auth"
 }

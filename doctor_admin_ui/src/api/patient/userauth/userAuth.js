@@ -1,11 +1,11 @@
 import service from '@/utils/request'
 
 // @Tags UserAuth
-// @Summary 创建实名认证表
+// @Summary 创建userAuth表
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body model.UserAuth true "创建实名认证表"
+// @Param data body model.UserAuth true "创建userAuth表"
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"创建成功"}"
 // @Router /userAuth/createUserAuth [post]
 export const createUserAuth = (data) => {
@@ -17,11 +17,11 @@ export const createUserAuth = (data) => {
 }
 
 // @Tags UserAuth
-// @Summary 删除实名认证表
+// @Summary 删除userAuth表
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body model.UserAuth true "删除实名认证表"
+// @Param data body model.UserAuth true "删除userAuth表"
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"删除成功"}"
 // @Router /userAuth/deleteUserAuth [delete]
 export const deleteUserAuth = (params) => {
@@ -33,11 +33,11 @@ export const deleteUserAuth = (params) => {
 }
 
 // @Tags UserAuth
-// @Summary 批量删除实名认证表
+// @Summary 批量删除userAuth表
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body request.IdsReq true "批量删除实名认证表"
+// @Param data body request.IdsReq true "批量删除userAuth表"
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"删除成功"}"
 // @Router /userAuth/deleteUserAuth [delete]
 export const deleteUserAuthByIds = (params) => {
@@ -49,11 +49,11 @@ export const deleteUserAuthByIds = (params) => {
 }
 
 // @Tags UserAuth
-// @Summary 更新实名认证表
+// @Summary 更新userAuth表
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data body model.UserAuth true "更新实名认证表"
+// @Param data body model.UserAuth true "更新userAuth表"
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"更新成功"}"
 // @Router /userAuth/updateUserAuth [put]
 export const updateUserAuth = (data) => {
@@ -65,11 +65,11 @@ export const updateUserAuth = (data) => {
 }
 
 // @Tags UserAuth
-// @Summary 用id查询实名认证表
+// @Summary 用id查询userAuth表
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data query model.UserAuth true "用id查询实名认证表"
+// @Param data query model.UserAuth true "用id查询userAuth表"
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"查询成功"}"
 // @Router /userAuth/findUserAuth [get]
 export const findUserAuth = (params) => {
@@ -81,11 +81,11 @@ export const findUserAuth = (params) => {
 }
 
 // @Tags UserAuth
-// @Summary 分页获取实名认证表列表
+// @Summary 分页获取userAuth表列表
 // @Security ApiKeyAuth
 // @accept application/json
 // @Produce application/json
-// @Param data query request.PageInfo true "分页获取实名认证表列表"
+// @Param data query request.PageInfo true "分页获取userAuth表列表"
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"获取成功"}"
 // @Router /userAuth/getUserAuthList [get]
 export const getUserAuthList = (params) => {
@@ -93,5 +93,18 @@ export const getUserAuthList = (params) => {
     url: '/userAuth/getUserAuthList',
     method: 'get',
     params
+  })
+}
+// @Tags Doctoress
+// @Summary 获取数据源
+// @Security ApiKeyAuth
+// @accept application/json
+// @Produce application/json
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"查询成功"}"
+// @Router /doctoress/findDoctoressDataSource [get]
+export const getUserAuthDataSource = () => {
+  return service({
+    url: '/userAuth/getUserAuthDataSource',
+    method: 'get',
   })
 }

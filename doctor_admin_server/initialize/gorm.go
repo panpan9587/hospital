@@ -8,6 +8,7 @@ import (
 	"github.com/flipped-aurora/gin-vue-admin/server/model/system"
 
 	"github.com/flipped-aurora/gin-vue-admin/server/model/patientmgmt"
+
 	"github.com/flipped-aurora/gin-vue-admin/server/model/userauth"
 	"go.uber.org/zap"
 	"gorm.io/gorm"
@@ -54,7 +55,7 @@ func RegisterTables() {
 		example.ExaFile{},
 		example.ExaCustomer{},
 		example.ExaFileChunk{},
-		example.ExaFileUploadAndDownload{}, userauth.UserAuth{}, patientmgmt.User{},
+		example.ExaFileUploadAndDownload{}, patientmgmt.User{}, userauth.UserAuth{},
 	)
 	if err != nil {
 		global.GVA_LOG.Error("register table failed", zap.Error(err))

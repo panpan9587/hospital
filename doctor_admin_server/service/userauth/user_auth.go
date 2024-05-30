@@ -9,42 +9,42 @@ import (
 type UserAuthService struct {
 }
 
-// CreateUserAuth 创建实名认证表记录
+// CreateUserAuth 创建userAuth表记录
 // Author [piexlmax](https://github.com/piexlmax)
 func (userAuthService *UserAuthService) CreateUserAuth(userAuth *userauth.UserAuth) (err error) {
 	err = global.GVA_DB.Create(userAuth).Error
 	return err
 }
 
-// DeleteUserAuth 删除实名认证表记录
+// DeleteUserAuth 删除userAuth表记录
 // Author [piexlmax](https://github.com/piexlmax)
 func (userAuthService *UserAuthService) DeleteUserAuth(ID string) (err error) {
 	err = global.GVA_DB.Delete(&userauth.UserAuth{}, "id = ?", ID).Error
 	return err
 }
 
-// DeleteUserAuthByIds 批量删除实名认证表记录
+// DeleteUserAuthByIds 批量删除userAuth表记录
 // Author [piexlmax](https://github.com/piexlmax)
 func (userAuthService *UserAuthService) DeleteUserAuthByIds(IDs []string) (err error) {
 	err = global.GVA_DB.Delete(&[]userauth.UserAuth{}, "id in ?", IDs).Error
 	return err
 }
 
-// UpdateUserAuth 更新实名认证表记录
+// UpdateUserAuth 更新userAuth表记录
 // Author [piexlmax](https://github.com/piexlmax)
 func (userAuthService *UserAuthService) UpdateUserAuth(userAuth userauth.UserAuth) (err error) {
 	err = global.GVA_DB.Model(&userauth.UserAuth{}).Where("id = ?", userAuth.ID).Updates(&userAuth).Error
 	return err
 }
 
-// GetUserAuth 根据ID获取实名认证表记录
+// GetUserAuth 根据ID获取userAuth表记录
 // Author [piexlmax](https://github.com/piexlmax)
 func (userAuthService *UserAuthService) GetUserAuth(ID string) (userAuth userauth.UserAuth, err error) {
 	err = global.GVA_DB.Where("id = ?", ID).First(&userAuth).Error
 	return
 }
 
-// GetUserAuthInfoList 分页获取实名认证表记录
+// GetUserAuthInfoList 分页获取userAuth表记录
 // Author [piexlmax](https://github.com/piexlmax)
 func (userAuthService *UserAuthService) GetUserAuthInfoList(info userauthReq.UserAuthSearch) (list []userauth.UserAuth, total int64, err error) {
 	limit := info.PageSize
@@ -72,7 +72,7 @@ func (userAuthService *UserAuthService) GetUserAuthDataSource() (res map[string]
 	res = make(map[string][]map[string]any)
 
 	userId := make([]map[string]any, 0)
-	global.GVA_DB.Table("user").Select("username as label,id as value").Scan(&userId)
+	global.GVA_DB.Table("user").Select("full_name as label,id as value").Scan(&userId)
 	res["userId"] = userId
 	return
 }
