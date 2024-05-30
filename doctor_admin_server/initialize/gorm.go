@@ -7,6 +7,7 @@ import (
 	"github.com/flipped-aurora/gin-vue-admin/server/model/doctormsg"
 	"github.com/flipped-aurora/gin-vue-admin/server/model/doctorrecipe"
 	"github.com/flipped-aurora/gin-vue-admin/server/model/example"
+	"github.com/flipped-aurora/gin-vue-admin/server/model/healths"
 	"github.com/flipped-aurora/gin-vue-admin/server/model/patientmgmt"
 	"github.com/flipped-aurora/gin-vue-admin/server/model/registermgmt"
 	"github.com/flipped-aurora/gin-vue-admin/server/model/userauth"
@@ -67,6 +68,7 @@ func RegisterTables() {
 		example.ExaFile{},
 
 		disease.Diseases{},
+		healths.Health{},
 		appointmentmgmt.Appointment{}, registermgmt.Attendingphysician{},
 	)
 	if err != nil {

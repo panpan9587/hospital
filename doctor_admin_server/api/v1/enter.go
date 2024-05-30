@@ -12,9 +12,9 @@ import (
 
 	"github.com/flipped-aurora/gin-vue-admin/server/api/v1/device"
 	"github.com/flipped-aurora/gin-vue-admin/server/api/v1/devicemgmt"
-	"github.com/flipped-aurora/gin-vue-admin/server/api/v1/doctorrecipe"
-
 	"github.com/flipped-aurora/gin-vue-admin/server/api/v1/disease"
+	"github.com/flipped-aurora/gin-vue-admin/server/api/v1/doctorrecipe"
+	"github.com/flipped-aurora/gin-vue-admin/server/api/v1/healths"
 	"github.com/flipped-aurora/gin-vue-admin/server/api/v1/patientmgmt"
 	"github.com/flipped-aurora/gin-vue-admin/server/api/v1/userauth"
 )
@@ -36,6 +36,7 @@ type ApiGroup struct {
 	DiseaseApiGroup         disease.ApiGroup
 	AppointmentmgmtApiGroup appointmentmgmt.ApiGroup
 	RegistermgmtApiGroup    registermgmt.ApiGroup
+	HealthsApiGroup         healths.ApiGroup
 }
 
 var ApiGroupApp = new(ApiGroup)
