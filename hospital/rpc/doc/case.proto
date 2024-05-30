@@ -28,7 +28,7 @@ message SearchCaseRecordReq{
 }
 //搜索病历记录的返参
 message SearchCaseRecordRes{
-string result = 1;
+   string result = 1;
 }
 service Case {
   rpc CaseRecordList(CaseRecordListReq) returns(CaseRecordListRes); //AI的病历记录

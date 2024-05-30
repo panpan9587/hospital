@@ -56,9 +56,14 @@ func (c Case) SearchCaseRecord(ctx context.Context, in *proto.SearchCaseRecordRe
 
 	// 遍历查询结果，将每个结果连接成一个字符串
 	for _, v := range status {
-		reses := v["result"].(string)
-		res.WriteString(reses)
-		res.WriteString(" ") // 可能需要分隔符，这里假设用空格分隔每个结果
+		// 检查 map 中是否存在 "result" 键，并且值的类型是否为 string
+		if result, ok := v["result"].(string); ok {
+			res.WriteString(result)
+			res.WriteString(" ") // 可能需要分隔符，这里假设用空格分隔每个结果
+		} else {
+			// 如果类型断言失败，记录错误并跳过当前结果
+			zap.S().Warn("Result is not a string:", v["result"])
+		}
 	}
 
 	// 返回结果对象

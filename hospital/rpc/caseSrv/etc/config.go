@@ -2,6 +2,7 @@ package etc
 
 import (
 	"demo/config"
+	"fmt"
 	"github.com/nacos-group/nacos-sdk-go/v2/clients"
 	"github.com/nacos-group/nacos-sdk-go/v2/common/constant"
 	"github.com/nacos-group/nacos-sdk-go/v2/vo"
@@ -48,6 +49,9 @@ func init() {
 	content, err := configClient.GetConfig(vo.ConfigParam{
 		DataId: config.GlobalConfig.NacosRpcCaseConfig.DataId,
 		Group:  config.GlobalConfig.NacosRpcCaseConfig.Group})
+
+	fmt.Println(config.GlobalConfig.NacosRpcCaseConfig.Host, "1111")
+
 	err = yaml.Unmarshal([]byte(content), &RpcConfig)
 	if err != nil {
 		log.Fatalln("nacos caserpc配置文件解码失败")

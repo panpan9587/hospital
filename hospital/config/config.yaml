@@ -23,7 +23,12 @@ NacosRpcAdvisoryConfig:
   port: 8848
   DataId: hospital_rpc_advisory
   group: dev
-
+NacosRpcCaseConfig:
+  NamespaceId: dfb27e84-14e7-4bc1-ad5b-4c8dd4516d42
+  host: 124.223.203.56
+  port: 8848
+  DataId: hospital_rpc_case
+  group: dev
 NacosRpcHealthConfig:
   NamespaceId: dfb27e84-14e7-4bc1-ad5b-4c8dd4516d42
   host: 124.223.203.56
@@ -61,8 +66,11 @@ redis:
   host: 124.223.203.56
   port: 6379
   db: 3
+es:
+  host: 127.0.0.1
+  port: 9201
 
-  rabbitmq:
+rabbitmq:
     host: 124.223.203.56
     port: 5672
     username: guest

@@ -10,7 +10,7 @@ import (
 )
 
 // CaseRecordList 病历记录列表
-func CaseRecordList(ctx *gin.Context) {
+func CaseList(ctx *gin.Context) {
 	index := ctx.PostForm("index")
 	page, _ := strconv.Atoi(ctx.PostForm("page"))
 	res, err := CaseSrv.CaseRecordList(ctx, &proto.CaseRecordListReq{
@@ -34,7 +34,7 @@ func CaseRecordList(ctx *gin.Context) {
 }
 
 // SearchCase 搜索病历记录
-func SearchCase(ctx *gin.Context) {
+func CaseSearch(ctx *gin.Context) {
 	content := ctx.PostForm("content")
 	index := ctx.PostForm("index")
 	res, err := CaseSrv.SearchCaseRecord(ctx, &proto.SearchCaseRecordReq{

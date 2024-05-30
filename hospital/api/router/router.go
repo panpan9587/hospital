@@ -2,6 +2,7 @@ package router
 
 import (
 	"demo/api/advisory"
+	_case "demo/api/case"
 	"demo/api/health"
 	"demo/api/registration"
 	"demo/api/user"
@@ -66,11 +67,13 @@ func initRouter(router *gin.Engine) {
 			//套餐详情
 			healths.POST("/GetPackage", health.GetPackage)
 		}
-		//cases := v1.Group("/cases")
-		//{
-		//	cases.POST("/list", _case.CaseRecordList) //病历记录
-		//	cases.POST("/search", _case.SearchCase)   //搜索病历
-		//}
+
+		cases := v1.Group("/cases")
+		{
+			cases.POST("/list", _case.CaseList)     //病历记录
+			cases.POST("/search", _case.CaseSearch) //搜索病历
+		}
+
 		doctors := v1.Group("/doctor")
 		{
 			//科室列表
