@@ -4,11 +4,13 @@ import (
 	"os"
 
 	"github.com/flipped-aurora/gin-vue-admin/server/global"
+	"github.com/flipped-aurora/gin-vue-admin/server/model/doctorment"
+	"github.com/flipped-aurora/gin-vue-admin/server/model/doctormsg"
+	"github.com/flipped-aurora/gin-vue-admin/server/model/doctorrecipe"
 	"github.com/flipped-aurora/gin-vue-admin/server/model/example"
-	"github.com/flipped-aurora/gin-vue-admin/server/model/system"
-
+	"github.com/flipped-aurora/gin-vue-admin/server/model/mdeical"
 	"github.com/flipped-aurora/gin-vue-admin/server/model/patientmgmt"
-
+	"github.com/flipped-aurora/gin-vue-admin/server/model/system"
 	"github.com/flipped-aurora/gin-vue-admin/server/model/userauth"
 	"go.uber.org/zap"
 	"gorm.io/gorm"
@@ -53,7 +55,11 @@ func RegisterTables() {
 		system.JoinTemplate{},
 
 		example.ExaFile{},
-		example.ExaCustomer{},
+		example.ExaCustomer{}, mdeical.Medical{},
+		doctormsg.Doctor{},
+		doctorrecipe.Recipe{},
+		doctorment.Shift{},
+
 		example.ExaFileChunk{},
 		example.ExaFileUploadAndDownload{}, patientmgmt.User{}, userauth.UserAuth{},
 	)

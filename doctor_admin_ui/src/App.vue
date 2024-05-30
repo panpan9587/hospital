@@ -22,6 +22,7 @@ defineOptions({
 @tailwind utilities;
 // 引入初始化样式
 #app {
+  background: #eee;
   height: 100vh;
   overflow: hidden;
   font-weight: 400 !important;
@@ -40,5 +41,4 @@ defineOptions({
 .gva-container2{
   height: calc(100% - 4.5rem);
 }
-
 </style>
