@@ -10,7 +10,8 @@ import (
 	"github.com/flipped-aurora/gin-vue-admin/server/router/doctorment"
 	"github.com/flipped-aurora/gin-vue-admin/server/router/doctormsg"
 	"github.com/flipped-aurora/gin-vue-admin/server/router/doctorrecipe"
-	"github.com/flipped-aurora/gin-vue-admin/server/router/mdeical"
+
+	"github.com/flipped-aurora/gin-vue-admin/server/router/disease"
 	"github.com/flipped-aurora/gin-vue-admin/server/router/patientmgmt"
 	"github.com/flipped-aurora/gin-vue-admin/server/router/system"
 	"github.com/flipped-aurora/gin-vue-admin/server/router/userauth"
@@ -21,7 +22,6 @@ type RouterGroup struct {
 	Example example.RouterGroup
 	//Health    health.RouterGroup
 	Diagnosis    diagnosis.RouterGroup
-	Mdeical      mdeical.RouterGroup
 	Doctor       doctor.RouterGroup
 	Doctormsg    doctormsg.RouterGroup
 	Doctorment   doctorment.RouterGroup
@@ -30,6 +30,7 @@ type RouterGroup struct {
 	Patientmgmt  patientmgmt.RouterGroup
 	Device       device.RouterGroup
 	Devicemgmt   devicemgmt.RouterGroup
+	Disease      disease.RouterGroup
 }
 
 var RouterGroupApp = new(RouterGroup)

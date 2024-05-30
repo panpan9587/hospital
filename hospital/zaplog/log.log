@@ -317,3 +317,7 @@
 2024-05-30T15:36:45.206+0800	INFO	caseSrv/main.go:40	case Srv 服务启动8856
 2024-05-30T15:37:15.917+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
 2024-05-30T15:37:15.917+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-30T15:54:47.554+0800	INFO	caseSrv/main.go:30	服务已注册，无需重复注册
+2024-05-30T15:54:47.554+0800	INFO	caseSrv/main.go:40	case Srv 服务启动8856
+2024-05-30T15:55:11.710+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-30T15:55:11.710+0800	INFO	router/httpserver.go:36	API 服务启动8851

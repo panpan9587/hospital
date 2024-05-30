@@ -34,3 +34,43 @@
 [github.com/flipped-aurora/gin-vue-admin/server]2024-05-30 11:21:47.587	[34minfo[0m	D:/go/src/hospital/doctor_admin_server/initialize/router.go:60	register swagger handler
 [github.com/flipped-aurora/gin-vue-admin/server]2024-05-30 11:21:47.609	[34minfo[0m	D:/go/src/hospital/doctor_admin_server/initialize/router.go:123	router register success
 [github.com/flipped-aurora/gin-vue-admin/server]2024-05-30 11:21:47.609	[34minfo[0m	D:/go/src/hospital/doctor_admin_server/core/server.go:37	server run success on 	{"address": ":8888"}
+[github.com/flipped-aurora/gin-vue-admin/server]2024-05-30 15:55:53.657	[34minfo[0m	D:/go/src/hospital/doctor_admin_server/initialize/gorm.go:70	register table success
+[github.com/flipped-aurora/gin-vue-admin/server]2024-05-30 15:55:53.673	[34minfo[0m	D:/go/src/hospital/doctor_admin_server/initialize/router.go:60	register swagger handler
+[github.com/flipped-aurora/gin-vue-admin/server]2024-05-30 15:55:53.683	[34minfo[0m	D:/go/src/hospital/doctor_admin_server/initialize/router.go:123	router register success
+[github.com/flipped-aurora/gin-vue-admin/server]2024-05-30 15:55:53.684	[34minfo[0m	D:/go/src/hospital/doctor_admin_server/core/server.go:37	server run success on 	{"address": ":8888"}
+[github.com/flipped-aurora/gin-vue-admin/server]2024-05-30 16:05:25.581	[34minfo[0m	D:/go/src/hospital/doctor_admin_server/initialize/gorm.go:70	register table success
+[github.com/flipped-aurora/gin-vue-admin/server]2024-05-30 16:05:25.590	[34minfo[0m	D:/go/src/hospital/doctor_admin_server/initialize/router.go:60	register swagger handler
+[github.com/flipped-aurora/gin-vue-admin/server]2024-05-30 16:05:25.610	[34minfo[0m	D:/go/src/hospital/doctor_admin_server/initialize/router.go:120	router register success
+[github.com/flipped-aurora/gin-vue-admin/server]2024-05-30 16:05:25.611	[34minfo[0m	D:/go/src/hospital/doctor_admin_server/core/server.go:37	server run success on 	{"address": ":8888"}
+[github.com/flipped-aurora/gin-vue-admin/server]2024-05-30 16:19:45.534	[34minfo[0m	D:/go/src/hospital/doctor_admin_server/initialize/gorm.go:70	register table success
+[github.com/flipped-aurora/gin-vue-admin/server]2024-05-30 16:19:45.543	[34minfo[0m	D:/go/src/hospital/doctor_admin_server/initialize/router.go:60	register swagger handler
+[github.com/flipped-aurora/gin-vue-admin/server]2024-05-30 16:19:45.567	[34minfo[0m	D:/go/src/hospital/doctor_admin_server/initialize/router.go:120	router register success
+[github.com/flipped-aurora/gin-vue-admin/server]2024-05-30 16:19:45.569	[34minfo[0m	D:/go/src/hospital/doctor_admin_server/core/server.go:37	server run success on 	{"address": ":8888"}
+[github.com/flipped-aurora/gin-vue-admin/server]2024-05-30 16:26:40.261	[34minfo[0m	D:/go/src/hospital/doctor_admin_server/initialize/gorm.go:70	register table success
+[github.com/flipped-aurora/gin-vue-admin/server]2024-05-30 16:26:40.270	[34minfo[0m	D:/go/src/hospital/doctor_admin_server/initialize/router.go:60	register swagger handler
+[github.com/flipped-aurora/gin-vue-admin/server]2024-05-30 16:26:40.296	[34minfo[0m	D:/go/src/hospital/doctor_admin_server/initialize/router.go:124	router register success
+[github.com/flipped-aurora/gin-vue-admin/server]2024-05-30 16:26:40.297	[34minfo[0m	D:/go/src/hospital/doctor_admin_server/core/server.go:37	server run success on 	{"address": ":8888"}
+[github.com/flipped-aurora/gin-vue-admin/server]2024-05-30 16:29:45.256	[34minfo[0m	D:/go/src/hospital/doctor_admin_server/initialize/gorm.go:70	register table success
+[github.com/flipped-aurora/gin-vue-admin/server]2024-05-30 16:29:45.266	[34minfo[0m	D:/go/src/hospital/doctor_admin_server/initialize/router.go:60	register swagger handler
+[github.com/flipped-aurora/gin-vue-admin/server]2024-05-30 16:29:45.276	[34minfo[0m	D:/go/src/hospital/doctor_admin_server/initialize/router.go:124	router register success
+[github.com/flipped-aurora/gin-vue-admin/server]2024-05-30 16:29:45.277	[34minfo[0m	D:/go/src/hospital/doctor_admin_server/core/server.go:37	server run success on 	{"address": ":8888"}
+[github.com/flipped-aurora/gin-vue-admin/server]2024-05-30 16:34:08.379	[34minfo[0m	D:/go/src/hospital/doctor_admin_server/initialize/gorm.go:70	register table success
+[github.com/flipped-aurora/gin-vue-admin/server]2024-05-30 16:34:08.391	[34minfo[0m	D:/go/src/hospital/doctor_admin_server/initialize/router.go:60	register swagger handler
+[github.com/flipped-aurora/gin-vue-admin/server]2024-05-30 16:34:08.521	[34minfo[0m	D:/go/src/hospital/doctor_admin_server/initialize/router.go:124	router register success
+[github.com/flipped-aurora/gin-vue-admin/server]2024-05-30 16:34:08.522	[34minfo[0m	D:/go/src/hospital/doctor_admin_server/core/server.go:37	server run success on 	{"address": ":8888"}
+[github.com/flipped-aurora/gin-vue-admin/server]2024-05-30 16:38:43.344	[34minfo[0m	D:/go/src/hospital/doctor_admin_server/initialize/gorm.go:66	register table success
+[github.com/flipped-aurora/gin-vue-admin/server]2024-05-30 16:38:43.368	[34minfo[0m	D:/go/src/hospital/doctor_admin_server/initialize/router.go:60	register swagger handler
+[github.com/flipped-aurora/gin-vue-admin/server]2024-05-30 16:38:43.393	[34minfo[0m	D:/go/src/hospital/doctor_admin_server/initialize/router.go:120	router register success
+[github.com/flipped-aurora/gin-vue-admin/server]2024-05-30 16:38:43.395	[34minfo[0m	D:/go/src/hospital/doctor_admin_server/core/server.go:37	server run success on 	{"address": ":8888"}
+[github.com/flipped-aurora/gin-vue-admin/server]2024-05-30 16:44:25.596	[34minfo[0m	D:/go/src/hospital/doctor_admin_server/initialize/gorm.go:67	register table success
+[github.com/flipped-aurora/gin-vue-admin/server]2024-05-30 16:44:25.606	[34minfo[0m	D:/go/src/hospital/doctor_admin_server/initialize/router.go:60	register swagger handler
+[github.com/flipped-aurora/gin-vue-admin/server]2024-05-30 16:44:25.614	[34minfo[0m	D:/go/src/hospital/doctor_admin_server/initialize/router.go:124	router register success
+[github.com/flipped-aurora/gin-vue-admin/server]2024-05-30 16:44:25.615	[34minfo[0m	D:/go/src/hospital/doctor_admin_server/core/server.go:37	server run success on 	{"address": ":8888"}
+[github.com/flipped-aurora/gin-vue-admin/server]2024-05-30 17:06:54.008	[34minfo[0m	D:/go/src/hospital/doctor_admin_server/initialize/gorm.go:67	register table success
+[github.com/flipped-aurora/gin-vue-admin/server]2024-05-30 17:06:54.029	[34minfo[0m	D:/go/src/hospital/doctor_admin_server/initialize/router.go:60	register swagger handler
+[github.com/flipped-aurora/gin-vue-admin/server]2024-05-30 17:06:54.099	[34minfo[0m	D:/go/src/hospital/doctor_admin_server/initialize/router.go:120	router register success
+[github.com/flipped-aurora/gin-vue-admin/server]2024-05-30 17:06:54.099	[34minfo[0m	D:/go/src/hospital/doctor_admin_server/core/server.go:37	server run success on 	{"address": ":8888"}
+[github.com/flipped-aurora/gin-vue-admin/server]2024-05-30 17:11:50.770	[34minfo[0m	D:/go/src/hospital/doctor_admin_server/initialize/gorm.go:65	register table success
+[github.com/flipped-aurora/gin-vue-admin/server]2024-05-30 17:11:50.778	[34minfo[0m	D:/go/src/hospital/doctor_admin_server/initialize/router.go:60	register swagger handler
+[github.com/flipped-aurora/gin-vue-admin/server]2024-05-30 17:11:50.795	[34minfo[0m	D:/go/src/hospital/doctor_admin_server/initialize/router.go:124	router register success
+[github.com/flipped-aurora/gin-vue-admin/server]2024-05-30 17:11:50.796	[34minfo[0m	D:/go/src/hospital/doctor_admin_server/core/server.go:37	server run success on 	{"address": ":8888"}

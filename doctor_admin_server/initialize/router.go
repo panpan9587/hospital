@@ -95,10 +95,7 @@ func Routers() *gin.Engine {
 
 	//插件路由安装
 	InstallPlugin(PrivateGroup, PublicGroup)
-	{
-		mdeicalRouter := router.RouterGroupApp.Mdeical
-		mdeicalRouter.InitMedicalRouter(PrivateGroup, PublicGroup)
-	}
+
 	{
 		doctormsgRouter := router.RouterGroupApp.Doctormsg
 		doctormsgRouter.InitDoctorRouter(PrivateGroup, PublicGroup)
@@ -118,6 +115,10 @@ func Routers() *gin.Engine {
 	{
 		userauthRouter := router.RouterGroupApp.Userauth
 		userauthRouter.InitUserAuthRouter(PrivateGroup, PublicGroup)
+	}
+	{
+		diseaseRouter := router.RouterGroupApp.Disease
+		diseaseRouter.InitDiseasesRouter(PrivateGroup, PublicGroup)
 	}
 
 	global.GVA_LOG.Info("router register success")
