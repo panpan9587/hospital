@@ -37,20 +37,23 @@
         >
         <el-table-column type="selection" width="55" />
         
-        <el-table-column align="left" label="日期" prop="createdAt" width="180">
-            <template #default="scope">{{ formatDate(scope.row.CreatedAt) }}</template>
-        </el-table-column>
-        
         <el-table-column align="left" label="身份证号" prop="idNumber" width="120" />
         <el-table-column align="left" label="用户真实姓名" prop="realName" width="120" />
-        <el-table-column align="left" label="状态" prop="status" width="120" />
+        <el-table-column align="left" label="状态" prop="status" width="120" >
+           <template #default="scope">
+          <span>{{ scope.row.status === 1 ? '实名成功' : scope.row.status === 2 ? '实名失败' : '' }}</span>
+           </template>
+        </el-table-column>
         <el-table-column align="left" label="用户" prop="userId" width="120">
           <template #default="scope">
-                
+    
                     <span>{{ filterDataSource(dataSource.userId,scope.row.userId) }}</span>
                 
          </template>
          </el-table-column>
+         <el-table-column align="left" label="日期" prop="createdAt" width="180">
+            <template #default="scope">{{ formatDate(scope.row.CreatedAt) }}</template>
+        </el-table-column>
         <el-table-column align="left" label="操作" fixed="right" min-width="240">
             <template #default="scope">
             <el-button type="primary" link icon="edit" class="table-button" @click="updateUserAuthFunc(scope.row)">变更</el-button>

@@ -46,6 +46,15 @@ func (u User) AddUserAuth(ctx context.Context, request *proto.AddUserAuthRequest
 		RealName: request.RealName,
 		IdNumber: request.IdNumber,
 	}
+	// todo: 判断用户是否已经实名
+	userAuth, err := mysql.GetUserAuth(int(request.UserId))
+	if err != nil {
+		zap.S().Info("用户信息获取失败", err)
+		return nil, errors.New("用户信息获取失败")
+	}
+	if userAuth.ID != 0 {
+		return nil, errors.New("用户已经实名认证")
+	}
 	tx := mysql.DB.Begin()
 	res, err := common.AuthUser(auth.IdNumber, auth.RealName)
 	if err != nil {
@@ -53,26 +62,26 @@ func (u User) AddUserAuth(ctx context.Context, request *proto.AddUserAuthRequest
 		zap.S().Info("实名信息认证失败", err)
 		return nil, errors.New("实名信息认证失败")
 	}
-	if res.ErrorCode == 0 {
-		if res.Result.Isok {
+	if int(res["error_code"].(float64)) != 0 {
+		if !res["result"].(map[string]interface{})["isok"].(bool) {
 			tx.Rollback()
 			zap.S().Info("实名信息认证失败", err)
 			return nil, errors.New("实名信息认证失败")
 		}
-		err = tx.Create(&auth).Error
-		if err != nil {
-			tx.Rollback()
-			zap.S().Info("实名信息认证失败", err)
-			return nil, errors.New("实名信息认证失败")
-		}
-		err = tx.Model(mysql.User{}).Update("status", "3").Error
-		if err != nil {
-			tx.Rollback()
-			zap.S().Info("用户状态修改失败", err)
-			return nil, errors.New("获取用户状态失败")
-		}
-		tx.Commit()
 	}
+	err = tx.Create(&auth).Error
+	if err != nil {
+		tx.Rollback()
+		zap.S().Info("实名信息认证失败", err)
+		return nil, errors.New("实名信息认证失败")
+	}
+	err = tx.Model(mysql.User{}).Where("id = ?", request.UserId).Update("status", "3").Error
+	if err != nil {
+		tx.Rollback()
+		zap.S().Info("用户状态修改失败", err)
+		return nil, errors.New("获取用户状态失败")
+	}
+	tx.Commit()
 	// 同步修改用户状态
 	return &proto.AddUserAuthResponse{
 		AuthInfo: &proto.UserAuthInfo{
@@ -189,6 +198,12 @@ func (u User) Register(ctx context.Context, request *proto.RegisterRequest) (*pr
 		Age:      int(request.Age),
 		Mobile:   request.Mobiles,
 		Email:    request.Email,
+	}
+	// todo:判断用户是否已经存在
+	users, _ := mysql.GetUserByUsername(request.Username)
+	if users.ID != 0 {
+		//zap.S().Info(err)
+		return nil, errors.New("用户已经注册,无需重复注册")
 	}
 	err := mysql.AddUser(&user)
 	if err != nil {

@@ -301,6 +301,40 @@
 2024-05-29T14:33:17.454+0800	INFO	userSrv/main.go:38	User Srv 服务启动8852
 2024-05-29T14:33:47.419+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
 2024-05-29T14:33:47.419+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-30T19:02:47.582+0800	INFO	userSrv/main.go:28	服务已注册，无需重复注册
+2024-05-30T19:02:47.584+0800	INFO	userSrv/main.go:38	User Srv 服务启动8852
+2024-05-30T19:03:25.896+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-30T19:03:25.896+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-30T19:12:28.933+0800	INFO	userSrv/main.go:28	服务已注册，无需重复注册
+2024-05-30T19:12:28.933+0800	INFO	userSrv/main.go:38	User Srv 服务启动8852
+2024-05-30T19:14:09.097+0800	INFO	userSrv/main.go:28	服务已注册，无需重复注册
+2024-05-30T19:14:09.097+0800	INFO	userSrv/main.go:38	User Srv 服务启动8852
+2024-05-30T19:34:26.431+0800	INFO	userSrv/main.go:28	服务已注册，无需重复注册
+2024-05-30T19:34:26.431+0800	INFO	userSrv/main.go:38	User Srv 服务启动8852
+2024-05-30T19:36:03.692+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-30T19:36:03.692+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-30T19:37:35.100+0800	INFO	userSrv/main.go:28	服务已注册，无需重复注册
+2024-05-30T19:37:35.100+0800	INFO	userSrv/main.go:38	User Srv 服务启动8852
+2024-05-30T19:41:13.869+0800	INFO	userSrv/main.go:28	服务已注册，无需重复注册
+2024-05-30T19:41:13.869+0800	INFO	userSrv/main.go:38	User Srv 服务启动8852
+2024-05-30T19:41:51.486+0800	INFO	service/user.go:54	实名信息认证失败json: Unmarshal(non-pointer common.Response)
+2024-05-30T19:55:44.313+0800	INFO	userSrv/main.go:28	服务已注册，无需重复注册
+2024-05-30T19:55:44.313+0800	INFO	userSrv/main.go:38	User Srv 服务启动8852
+2024-05-30T19:56:04.977+0800	INFO	service/user.go:54	实名信息认证失败json: Unmarshal(non-pointer map[string]interface {})
+2024-05-30T20:01:16.746+0800	INFO	userSrv/main.go:28	服务已注册，无需重复注册
+2024-05-30T20:01:16.746+0800	INFO	userSrv/main.go:38	User Srv 服务启动8852
+2024-05-30T20:02:16.710+0800	INFO	service/user.go:54	实名信息认证失败json: Unmarshal(non-pointer map[string]interface {})
+2024-05-30T20:02:22.403+0800	INFO	userSrv/main.go:28	服务已注册，无需重复注册
+2024-05-30T20:02:22.403+0800	INFO	userSrv/main.go:38	User Srv 服务启动8852
+2024-05-30T20:04:13.335+0800	INFO	userSrv/main.go:28	服务已注册，无需重复注册
+2024-05-30T20:04:13.335+0800	INFO	userSrv/main.go:38	User Srv 服务启动8852
+2024-05-30T20:05:59.513+0800	INFO	userSrv/main.go:28	服务已注册，无需重复注册
+2024-05-30T20:05:59.513+0800	INFO	userSrv/main.go:38	User Srv 服务启动8852
+2024-05-30T20:06:06.091+0800	INFO	service/user.go:72	用户状态修改失败WHERE conditions required
+2024-05-30T20:07:38.781+0800	INFO	userSrv/main.go:28	服务已注册，无需重复注册
+2024-05-30T20:07:38.781+0800	INFO	userSrv/main.go:38	User Srv 服务启动8852
+2024-05-30T20:11:04.392+0800	INFO	userSrv/main.go:28	服务已注册，无需重复注册
+2024-05-30T20:11:04.392+0800	INFO	userSrv/main.go:38	User Srv 服务启动8852
 2024-05-30T15:06:41.569+0800	INFO	caseSrv/main.go:30	服务已注册，无需重复注册
 2024-05-30T15:06:41.569+0800	INFO	caseSrv/main.go:40	case Srv 服务启动8856
 2024-05-30T15:06:58.035+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
@@ -321,3 +355,17 @@
 2024-05-30T15:54:47.554+0800	INFO	caseSrv/main.go:40	case Srv 服务启动8856
 2024-05-30T15:55:11.710+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
 2024-05-30T15:55:11.710+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-30T22:42:40.892+0800	INFO	userSrv/main.go:28	服务已注册，无需重复注册
+2024-05-30T22:42:40.892+0800	INFO	userSrv/main.go:38	User Srv 服务启动8852
+2024-05-30T22:43:17.912+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-30T22:43:17.913+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-30T22:43:28.848+0800	INFO	healthSrv/main.go:28	服务已注册，无需重复注册
+2024-05-30T22:43:28.848+0800	INFO	healthSrv/main.go:38	User Srv 服务启动8855
+2024-05-30T22:43:43.444+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-30T22:43:43.444+0800	INFO	router/httpserver.go:36	API 服务启动8851
+2024-05-31T08:09:54.615+0800	INFO	userSrv/main.go:28	服务已注册，无需重复注册
+2024-05-31T08:09:54.615+0800	INFO	userSrv/main.go:38	User Srv 服务启动8852
+2024-05-31T08:41:35.876+0800	INFO	userSrv/main.go:28	服务已注册，无需重复注册
+2024-05-31T08:41:35.878+0800	INFO	userSrv/main.go:38	User Srv 服务启动8852
+2024-05-31T08:41:37.004+0800	INFO	router/httpserver.go:26	服务已注册，无需重复注册
+2024-05-31T08:41:37.004+0800	INFO	router/httpserver.go:36	API 服务启动8851

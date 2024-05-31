@@ -14,6 +14,7 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
+	"go.uber.org/zap"
 	"io"
 	"io/ioutil"
 	"net/http"
@@ -21,24 +22,6 @@ import (
 	"strings"
 	"time"
 )
-
-type Response struct {
-	ErrorCode int    `json:"error_code"`
-	Reason    string `json:"reason"`
-	Result    struct {
-		Realname    string `json:"realname"`
-		Idcard      string `json:"idcard"`
-		Isok        bool   `json:"isok"`
-		IdCardInfor struct {
-			Province string `json:"province"`
-			City     string `json:"city"`
-			District string `json:"district"`
-			Area     string `json:"area"`
-			Sex      string `json:"sex"`
-			Birthday string `json:"birthday"`
-		} `json:"IdCardInfor"`
-	} `json:"result"`
-}
 
 func calcAuthorization(source string, secretId string, secretKey string) (auth string, datetime string, err error) {
 	timeLocation, _ := time.LoadLocation("Etc/GMT")
@@ -64,7 +47,7 @@ func urlencode(params map[string]string) string {
 	return p.Encode()
 }
 
-func AuthUser(cardNo, realName string) (res *Response, err error) {
+func AuthUser(cardNo, realName string) (map[string]interface{}, error) {
 	// 云市场分配的密钥Id
 	secretId := etc.ApiConfig.Auth.SecretID
 	// 云市场分配的密钥Key
@@ -104,6 +87,7 @@ func AuthUser(cardNo, realName string) (res *Response, err error) {
 	}
 	request, err := http.NewRequest(method, url, body)
 	if err != nil {
+		zap.S().Info(err)
 		return nil, err
 	}
 	for k, v := range headers {
@@ -111,15 +95,17 @@ func AuthUser(cardNo, realName string) (res *Response, err error) {
 	}
 	response, err := client.Do(request)
 	if err != nil {
+		zap.S().Info(err)
 		return nil, err
 	}
 	defer response.Body.Close()
 
 	bodyBytes, err := ioutil.ReadAll(response.Body)
 	if err != nil {
+		zap.S().Info(err)
 		return nil, err
 	}
-	var resp *Response
-	json.Unmarshal(bodyBytes, resp)
+	resp := map[string]interface{}{}
+	err = json.Unmarshal(bodyBytes, &resp)
 	return resp, err
 }

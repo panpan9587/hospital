@@ -21,48 +21,61 @@
   </div>
 </template>
 
-<script>
-import { ref } from 'vue';
+<script setup lang="ts" name="ChatBox">
+  import { ref } from 'vue';
+  import { WebDisnosis} from '@/api/diagnosis/diagnosis';
+import { da } from 'element-plus/es/locale';
 
-export default {
-  name: 'ChatBox',
-  setup() {
     const users = ref([
       { id: 1, name: 'User 1' },
       { id: 2, name: 'User 2' },
       { id: 3, name: 'User 3' }
-    ]);
+      ]);
     const selectedUser = ref(null);
     const messages = ref([]);
     const newMessage = ref('');
 
     const selectUser = (user) => {
-      selectedUser.value = user;
-      // 清空当前聊天记录
-      messages.value = [];
-    };
+     selectedUser.value = user;
+     // 清空当前聊天记录
+     messages.value = [];
+  };
 
-    const sendMessage = () => {
-      if (newMessage.value.trim() === '') return;
+const sendMessage = () => {
+  if (newMessage.value.trim() === '') return;
+  // 这里接收消息处理
 
-      messages.value.push({
-        id: Date.now(),
-        text: newMessage.value
-      });
+    async function getLoveTalk(){
+ // 发请求，下面这行的写法是：连续解构赋值+重命名
+    let data = await WebDisnosis({});
+    console.log(data);
+    // 把请求回来的字符串，包装成一个对象
+    // let obj = {id:nanoid(),title}
+    // 放到数组中
+    // talkList.unshift(obj)
+}
 
-      newMessage.value = '';
-    };
+// const getTableData = async() => {
+//   const table = await WebDisnosis({ page: page.value, pageSize: pageSize.value, ...searchInfo.value })
+//   if (table.code === 0) {
+//     tableData.value = table.data.list
+//     total.value = table.data.total
+//     page.value = table.data.page
+//     pageSize.value = table.data.pageSize
+//   }
+// }
 
-    return {
-      users,
-      selectedUser,
-      messages,
-      newMessage,
-      selectUser,
-      sendMessage
-    };
-  }
+  //调用后端代码获取消息
+  messages.value.push({
+    id: Date.now(),
+    text: newMessage.value
+  });
+
+  newMessage.value = '';
 };
+
+  
+
 </script>
 
 <style scoped>
